@@ -1,0 +1,246 @@
+%%%%   Standard symbols for use in Snowmass Working Group Proceedings%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  basic formatting macros:%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%   text mode macros
+
+\def\ie{{\it i.e.}}
+\def\eg{{\it e.g.}}
+\def\etc{{\it etc.}}
+\def\etal{{\it et al.}}
+\def\ibid{{\it ibid}.}
+
+\def\Acknowledgements{\bigskip  \bigskip \begin{center} \begin{large}
+             \bf ACKNOWLEDGEMENTS \end{large}\end{center}}
+
+
+%  equation display macros
+
+\def\beq{\begin{equation}}
+\def\eeq#1{\label{#1}\end{equation}}
+\def\eeqn{\end{equation}}
+
+%%  multiple-line equations  (use \CR as the carriage return):
+
+\newenvironment{Eqnarray}%
+   {\arraycolsep 0.14em\begin{eqnarray}}{\end{eqnarray}}
+\def\beqa{\begin{Eqnarray}}
+\def\eeqa#1{\label{#1}\end{Eqnarray}}
+\def\eeqan{\end{Eqnarray}}
+\def\CR{\nonumber \\ }
+
+%%  reference to an equation number:
+
+\def\leqn#1{(\ref{#1})}
+
+%%  sizing and bars
+
+\def\st{\scriptstyle}
+\def\sst{\scriptscriptstyle}
+
+\def\overbar#1{\overline{#1}}
+\let\littlebar=\bar
+\let\bar=\overbar
+
+\def\subscr#1{{\mbox{\scriptsize #1}}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%  expectation values: 
+
+\def\VEV#1{\left\langle{ #1} \right\rangle}
+\def\bra#1{\left\langle{ #1} \right|}
+\def\ket#1{\left| {#1} \right\rangle}
+\def\vev#1{\langle #1 \rangle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% relation symbols
+
+\def\lsim{\mathrel{\raise.3ex\hbox{$<$\kern-.75em\lower1ex\hbox{$\sim$}}}}
+\def\gsim{\mathrel{\raise.3ex\hbox{$>$\kern-.75em\lower1ex\hbox{$\sim$}}}}
+
+\def\Im{{\rm Im}}
+\def\Re{{\rm Re}}
+\def\tr{{ \rm tr}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  caligraphic letters (for matrix elements, luminosity, etc.)
+
+\def\D{{\cal D}}
+\def\L{{\cal L}}
+\def\M{{\cal M}}
+\def\O{{\cal O}}
+\def\W{{\cal W}}
+\def\H{{\cal H}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%  matrix operations and fractions:
+
+\def\One{{\bf 1}}
+\def\hc{{\mbox{\rm h.c.}}}
+\def\tr{{\mbox{\rm tr}}}
+\def\half{\frac{1}{2}}
+\def\thalf{\frac{3}{2}}
+\def\third{\frac{1}{3}}
+\def\tthird{\frac{2}{3}}
+
+\def\del{\partial}
+\def\Dslash{\not{\hbox{\kern-4pt $D$}}}
+\def\dslash{\not{\hbox{\kern-2pt $\del$}}}
+\def\pslash{\not{\hbox{\kern-2pt $p$}}}
+\def\ETmiss{\not{\hbox{\kern-4pt $E$}}_T}
+
+\def\Dlr{\mathrel{\raise1.5ex\hbox{$\leftrightarrow$\kern-1em\lower1.5ex\hbox{$D$}}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%  high-energy physics terminology:
+
+\def\Pl{{\mbox{\scriptsize Pl}}}
+\def\eff{{\mbox{\scriptsize eff}}}
+\def\CM{{\mbox{\scriptsize CM}}}
+\def\GUT{{\mbox{\scriptsize GUT}}}
+\def\BR{\mbox{\rm BR}}
+\def\ee{e^+e^-}
+\def\sstw{\sin^2\theta_w}
+\def\cstw{\cos^2\theta_w}
+\def\mz{m_Z}
+\def\gz{\Gamma_Z}
+\def\mw{m_W}
+\def\gw{\Gamma_W}
+\def\mt{m_t}
+\def\gt{\Gamma_t}
+\def\mh{m_H}
+\def\gh{\Gamma_H}
+\def\gmu{G_\mu}
+\def\GF{G_F}
+\def\alphas{\alpha_s}
+\def\MSB{{\bar{M \kern -2pt S}}}
+\def\msb{{\bar{\scriptsize M \kern -1pt S}}}
+\def\lmsb{\Lambda_{\msb}}
+\def\drb{{\bar{\scriptsize D \kern -1pt R}}}
+\def\ELER{e^-_Le^+_R}
+\def\EREL{e^-_Re^+_L}
+\def\ELEL{e^-_Le^+_L}
+\def\ERER{e^-_Re^+_R}
+\def\eps{\epsilon}
+\def\Kzero{K^0}
+\def\Kzerobar{{\bar K}^0}
+\def\Dzero{D^0}
+\def\Dzerobar{{\bar D}^0}
+\def\Bzero{B^0}
+\def\Bzerobar{{\bar B}^0}
+
+
+%%%%%%%%%%%%   units for math mode  %%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\ifb{{\rm fb}^{-1}}
+\def\eV{{\rm eV}}
+\def\keV{{\rm keV}}
+\def\MeV{{\rm MeV}}
+\def\GeV{{\rm GeV}}
+\def\TeV{{\rm TeV}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%  supersymmetry:
+
+\def\ch#1{\widetilde\chi^+_{#1}}
+\def\chm#1{\widetilde\chi^-_{#1}}
+\def\neu#1{\widetilde\chi^0_{#1}}
+\def\s#1{\widetilde{#1}}
+
+
+
+%%%%%%%%%%  common journal names   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\aj{{Astronomical Journal}}%
+\newcommand\araa{{Annual Review of Astron and Astrophys}}%
+ \newcommand\apj{{Astrophysical Journal}}%
+\newcommand\apjl{{Astrophysical Journal, Letters}}%
+\newcommand\apjs{{ApJS}}%
+% Astrophysical Journal, Supplement
+\newcommand\ao{{Appl.~Opt.}}%
+% Applied Optics
+\newcommand\apss{{Ap\&SS}}%
+% Astrophysics and Space Science
+\newcommand\aap{{Astronomy and Astrophysics}}%
+\newcommand\aapr{{A\&A~Rev.}}%
+% Astronomy and Astrophysics Reviews
+\newcommand\aaps{{A\&AS}}%
+% Astronomy and Astrophysics, Supplement
+\newcommand\azh{{AZh}}%
+% Astronomicheskii Zhurnal
+\newcommand\baas{{BAAS}}%
+% Bulletin of the AAS
+\newcommand\jrasc{{JRASC}}%
+% Journal of the RAS of Canada
+\newcommand\memras{{MmRAS}}%
+% Memoirs of the RAS
+\newcommand\mnras{{Monthly Notices of the Royal Astronomical Society}}%
+\newcommand\pra{{Phys.~Rev.~A}}%
+% Physical Review A: General Physics
+\newcommand\prb{{Phys.~Rev.~B}}%
+% Physical Review B: Solid State
+\newcommand\prc{{Phys.~Rev.~C}}%
+% Physical Review C
+\newcommand\prd{{Physics~Review~D}}%
+% Physical Review D
+\newcommand\pre{{Phys.~Rev.~E}}%
+% Physical Review E
+\newcommand\prl{{Phys.~Rev.~Lett.}}%
+% Physical Review Letters
+\newcommand\pasp{{Publications of the ASP}}%
+\newcommand\pasj{{PASJ}}%
+% Publications of the ASJ
+\newcommand\qjras{{QJRAS}}%
+% Quarterly Journal of the RAS
+\newcommand\jcap{{JCAP}}%
+\newcommand\skytel{{S\&T}}%
+% Sky and Telescope
+\newcommand\solphys{{Sol.~Phys.}}%
+% Solar Physics
+\newcommand\sovast{{Soviet~Ast.}}%
+% Soviet Astronomy
+\newcommand\ssr{{Space~Sci.~Rev.}}%
+% Space Science Reviews
+\newcommand\zap{{ZAp}}%
+% Zeitschrift fuer Astrophysik
+\newcommand\nat{{Nature}}%
+\newcommand\iaucirc{{IAU~Circ.}}%
+% IAU Cirulars
+\newcommand\aplett{{Astrophys.~Lett.}}%
+% Astrophysics Letters
+\newcommand\apspr{{Astrophys.~Space~Phys.~Res.}}%
+% Astrophysics Space Physics Research
+\newcommand\bain{{Bull.~Astron.~Inst.~Netherlands}}%
+% Bulletin Astronomical Institute of the Netherlands
+\newcommand\fcp{{Fund.~Cosmic~Phys.}}%
+% Fundamental Cosmic Physics
+\newcommand\gca{{Geochim.~Cosmochim.~Acta}}%
+% Geochimica Cosmochimica Acta
+\newcommand\grl{{Geophys.~Res.~Lett.}}%
+% Geophysics Research Letters
+\newcommand\jcp{{J.~Chem.~Phys.}}%
+% Journal of Chemical Physics
+\newcommand\jgr{{J.~Geophys.~Res.}}%
+% Journal of Geophysics Research
+\newcommand\jqsrt{{J.~Quant.~Spec.~Radiat.~Transf.}}%
+% Journal of Quantitative Spectroscopy and Radiative Transfer
+\newcommand\memsai{{Mem.~Soc.~Astron.~Italiana}}%
+% Mem. Societa Astronomica Italiana
+\newcommand\nphysa{{Nucl.~Phys.~A}}%
+% Nuclear Physics A
+\newcommand\physrep{{Phys.~Rep.}}%
+% Physics Reports
+\newcommand\physscr{{Phys.~Scr}}%
+% Physica Scripta
+\newcommand\planss{{Planet.~Space~Sci.}}%
+% Planetary Space Science
+\newcommand\procspie{{Proc.~SPIE}}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
