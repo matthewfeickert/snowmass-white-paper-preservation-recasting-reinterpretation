@@ -1,4 +1,26 @@
+%   document style macros
+\def\Title#1{\begin{center} {\LARGE #1 } \end{center}}
+\def\Author#1{\begin{center}{ \sc #1} \end{center}}
+\def\Address#1{\begin{center}{ \it #1} \end{center}}
+\def\andauth{\begin{center}{and} \end{center}}
+\def\submit#1{\begin{center}Submitted to {\sl #1} \end{center}}
+\newcommand\pubblock{\rightline{\begin{tabular}{l} \pubnumber\\
+         \pubdate \end{tabular}}}
+\newenvironment{Abstract}{\begin{quotation} \begin{center}
+                       ABSTRACT
+     \end{center}\bigskip  }{\end{quotation}}
+\newenvironment{Presented}{\begin{quotation} \begin{center} 
+             CONTRIBUTED TO\end{center}\bigskip 
+      \begin{center}\begin{large}}{\end{large}\end{center} \end{quotation}}
+\def\submit#1{\begin{center}Submitted to {\sl #1} \end{center}}
+\def\Acknowledgements{\bigskip  \bigskip \begin{center} \begin{large}
+             \bf ACKNOWLEDGEMENTS \end{large}\end{center}}
+
 \newcommand\snowmass{\begin{center}\rule[-0.2in]{\hsize}{0.01in}\\\rule{\hsize}{0.01in}\\
 \vskip 0.1in Submitted to the  Proceedings of the US Community Study\\ 
 on the Future of Particle Physics (Snowmass 2021)\\ 
 \rule{\hsize}{0.01in}\\\rule[+0.2in]{\hsize}{0.01in} \end{center}}
+
+%  personal abbreviations and macros
+
+\newcommand\NB[1]{\textbf{N.B.: {#1}}}

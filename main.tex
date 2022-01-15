@@ -2,7 +2,6 @@
 
 \input{latex/packages.tex}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % basic data for the eprint:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -16,34 +15,12 @@
 \newcommand\pubnumber{DRAFT}
 \newcommand\pubdate{\today}
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%   document style macros
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\Title#1{\begin{center} {\LARGE #1 } \end{center}}
-\def\Author#1{\begin{center}{ \sc #1} \end{center}}
-\def\Address#1{\begin{center}{ \it #1} \end{center}}
-\def\andauth{\begin{center}{and} \end{center}}
-\def\submit#1{\begin{center}Submitted to {\sl #1} \end{center}}
-\newcommand\pubblock{\rightline{\begin{tabular}{l} \pubnumber\\
-         \pubdate \end{tabular}}}
-\newenvironment{Abstract}{\begin{quotation} \begin{center}
-                       ABSTRACT
-     \end{center}\bigskip  }{\end{quotation}}
-\newenvironment{Presented}{\begin{quotation} \begin{center} 
-             CONTRIBUTED TO\end{center}\bigskip 
-      \begin{center}\begin{large}}{\end{large}\end{center} \end{quotation}}
-\def\submit#1{\begin{center}Submitted to {\sl #1} \end{center}}
-\def\Acknowledgements{\bigskip  \bigskip \begin{center} \begin{large}
-             \bf ACKNOWLEDGEMENTS \end{large}\end{center}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  personal abbreviations and macros
-
-\input{latex/workshopsymbols.tex}
 \input{latex/commands.tex}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{latex/workshopsymbols.tex}
+
+% Toggle commenting to disallow/allow line numbers
+\linenumbers
 
 % DEADLINES
 % 15 January 2022: Please provide an abstract and short outline of your white paper contribution to TF07 conveners
@@ -53,7 +30,7 @@
 % 30 June 2022: draft Frontier report - release for public comments 
 % 17-27 July 2022: Seattle meeting (``Snowmass Community Study”)
 % 30 September 2022: final reports of TGs and Frontiers
-% 31 October 2022: Snowmass book including high level executive summaries online 
+% 31 October 2022: Snowmass book including high level executive summaries online
 
 \begin{document}
 
@@ -61,7 +38,7 @@
 
 \snowmass{}
 
-\Title{{\bf Data and analysis preservation, recasting, and reinterpretation}\\
+\Title{\textbf{Data and Analysis Preservation, \\Recasting, and Reinterpretation}\\
 \vspace{10pt}%
 TF07 (Collider Phenomenology in the Theory Frontier)\\
 \vspace{10pt}%
@@ -72,11 +49,10 @@ COMPF7 (Reinterpretation and long-term preservation of data and code)}
 % IF YOU DON'T SEE YOURSELF ON THE AUTHOR LIST ADD YOURSELF
 % ALSO, IF YOU'D LIKE, PLEASE ADD YOUR ORCID TOO
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% author list
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Author List
 \begin{center}
-Stephen Bailey\,\orcidlink{0000-XXXX-XXXX-XXXX}\textsuperscript{1},
+% Stephen Bailey\,\orcidlink{0000-XXXX-XXXX-XXXX}\textsuperscript{1},
+Stephen Bailey\textsuperscript{1},
 Kyle Cranmer\,\orcidlink{0000-0002-5769-7094}\textsuperscript{2},
 Matthew Feickert\,\orcidlink{0000-0003-4124-7862}\textsuperscript{3},
 Lukas Heinrich\,\orcidlink{0000-0002-4048-7584}\textsuperscript{4},
@@ -87,9 +63,7 @@ Kati Lassila-Perini\,\orcidlink{0000-0002-5502-1795}\textsuperscript{7},
 Mark S. Neubauer\,\orcidlink{0000-0001-8434-9274}\textsuperscript{3}
 \end{center}
 
-
-
-% affiliations 
+% Affiliations 
 \begin{center}
 \textbf{1}~Lawrence Berkeley National Laboratory, USA
 \textbf{2}~New York University, USA
@@ -101,9 +75,10 @@ Mark S. Neubauer\,\orcidlink{0000-0001-8434-9274}\textsuperscript{3}
 \end{center}
 
 \begin{Abstract}
-\noindent We make the case for the systematic, reliable preservation of data, data products and analysis codes for their long-term future reuse, in order to make the most out of particle physics experiments. We discuss technical and infrastructure needs, as well as sociological challenges.
+\noindent We make the case for the systematic, reliable preservation of data, data products, and analysis code for their long-term future reuse, in order to make the most out of particle physics experiments.
+We discuss technical and infrastructure needs, as well as sociological challenges.
 \end{Abstract}
-%% Sabine @ Kyle et al: your may want to improve :-)  
+% Sabine @ Kyle et al: your may want to improve :-)
 
 \clearpage
 
@@ -111,10 +86,11 @@ Mark S. Neubauer\,\orcidlink{0000-0001-8434-9274}\textsuperscript{3}
 \section{Introduction}
 %-------------------------------------------------------------
 
-What is needed to enable re-analysis of LHC and other data to explore not-yet-thought-of theories 10, 20, 40 years from now ....\\
-Technical considerations along the lines of \cite{LHCReinterpretationForum:2020xtr},  \cite{Cranmer:2021urp}, etc. \\
+What is needed to enable re-analysis and reuse of analyses from the LHC experiments and other collaborations to explore not-yet-thought-of theories in the long term future (i.e., on the 10 to 50 year time scale).
+This requires the development and adoption of techniques and standards for long term storage and preservation of analysis data and data products, reproducible workflows for recasting and reinterpretation of analysis data products, and large sociological changes in the broader particle physics community.\\
+Technical considerations along the lines of \cite{LHCReinterpretationForum:2020xtr,Cranmer:2021urp}, etc. \\
 
-Q: to what extend do we discuss differences between high- and low-energy experiments (energy vs.\ intensity frontier), particle and astro-particle communities, etc.? 
+Q: To what extend do we discuss differences between high- and low-energy experiments (energy vs.\ intensity frontier), particle and astro-particle communities, etc.? 
 
 
 %-------------------------------------------------------------
@@ -125,22 +101,29 @@ Q: to what extend do we discuss differences between high- and low-energy experim
 
 %NOTE (from Kati): this is getting too long, and it is not even done. Let me know if I should cut it down.
 %Reply (from Sabine): i.m.o.\ this is a very important section; it merits a couple of pages. I would not cut it down, not at this stage. 
+% OK, thanks. I'm done. It is CMS centric as usual but I guess it is justified. Feel free to adapt.
 
 
-Following the positive experience and feedback from the open data releases by the CMS experiment since 2014, a CERN open data policy for the LHC experiments~\cite{cern-data-policy} was formulated in 2020. All LHC experiments are committed to releasing research-quality data through the CERN open data portal~\cite{CODP}. The amount of data and release timeline varies from an experiment to another and they are defined in the experiment-specific data policies~\cite{data-policies}. CERN as the host laboratory maintains and develops the infrastructure needed for the portal, provides storage resources and takes the custodial responsibility of released open data in long term. 
+Following the positive experience and feedback from the open data releases by the CMS experiment since 2014, a CERN open data policy for the LHC experiments~\cite{cern-data-policy} was formulated in 2020. All LHC experiments are committed to releasing research-quality data through the CERN open data portal~\cite{CODP}. The amount of data and release timeline varies from an experiment to another and they are defined in the experiment-specific data policies~\cite{cern-data-policy,cern-open-data-privacy-policy,cms-open-data-policy,atlas-open-data-policy,lhcb-open-data-policy,alice-open-data-policy}. CERN as the host laboratory maintains and develops the infrastructure needed for the portal, provides storage resources and takes the custodial responsibility of released open data in long term. 
 
-At the time of writing, CMS is the only experiment having released research-quality data. The CMS open data releases contain full reprocessing of collision data from each data-taking period and the simulated data corresponding to these data. They are made available in the format and with the same data quality requirements that analyses of the CMS collaboration start from. The volume of data, collision and Monte Carlo, amounts currently to 2.8 PB. The public data are accompanied by a compatible version of the CMSSW software and additional information necessary to perform a research-level physics analysis. Example code and some specific guide pages are provided to explain and instruct the use of this associated information.
+At the time of writing, CMS is the only experiment having released research-quality data. The CMS open data releases contain full reprocessing of collision data from each data-taking period and the simulated data corresponding to these data. They are made available in the format and with the same data quality requirements that analyses of the CMS collaboration start from. The volume of data, collision and Monte Carlo simulation, amounts currently to 2.8 PB. The public data are accompanied by a compatible version of the CMSSW software and additional information necessary to perform a research-level physics analysis. Example code and some specific guide pages are provided to explain and instruct the use of the associated information.
 
-Data released through the CERN open data portal satisfy FAIR principles for Findable, Accessible, Interoperable, and Re-usable data and metadata to a large extent. But due to the complexity of experimental particle physics data, the FAIR principles alone do not guarantee the re-usability of these data, and additional effort is needed to pass on the knowledge needed to use and interpret them correctly. In large experiments, collaboration members benefit from the existing knowledge infrastructure (meetings, discussion forums, mentoring, specific groups responsible for providing data assets needed for physics analysis, etc) that is not available to external users or in long term. 
+Data released through the CERN open data portal satisfy Findable, Accessible, Interoperable, and Reusable (FAIR) principles for scientific data management~\cite{FAIR-paper} for data and metadata to a large extent. Due to the complexity of experimental particle physics data, the FAIR principles alone do not guarantee the re-usability of these data, and additional effort is needed to pass on the knowledge needed to use and interpret them correctly. In large experiments, collaboration members benefit from the existing knowledge infrastructure (meetings, discussion forums, mentoring, specific groups responsible for providing data assets needed for physics analysis, etc) that is not available to external users or in long term. 
 
 %[more details can be added here about challenges related to computing and software, and those related to intricacies of experimental particle physics data]
 
 The ensure that the open data can really be used in physics research and that all necessary additional information is captured, stored and provided, early testing is of utmost importance. Therefore, CMS puts emphasis on releasing data relatively early after the data-taking. Feedback and questions from external users indicate the eventual missing data assets and lacking information, and the release can be complemented with them while the expertise on these data is still present in the collaboration. To encourage the use of open data and to get direct feedback, the CMS open data group is organising regular workshops with hands-on tutorials. It is important to reach out to a diverse user community, from newcomers to seniors and with different computing backgrounds and physics skills. While the CMS open data group is looking forward to being able to organize the next workshop in presence, the value of remote, virtual events with many participants who would not have been able to travel is acknowledged.
 
-To make open data initiatives a success, building community of users for these data is paramount. Theory community is a key player in this, and promoting the use of open data despite the substantial work required in their analysis is a strong demonstration of their value on one hand, and an invaluable validation 
+Setting up example analysis workflows is one of the priorities for making open data reusable. They should demonstrate all necessary steps from data access and selection to any eventual corrections, and address the particularities of experimental data such as estimating efficiencies and uncertainties. Activities for preserving analysis workflows internally in the collaboration will facilitate building such workflows. The software container technology, in use with open data, is well adapted for automating workflows and experience gained with them can be used for procedures for current analyses within the collaboration.
 
-[ Community building.  Need of internal analysis preservation for external OD examples. Need of automated workflows.]
-[OD beyond the LHC? Many successful DP efforts in LEP, HERA, but no OD as far as I know. Access to preserved data through different modalities, such as joining the collaboration, or working with collaboration members. The BABAR Collaboration has decided to make its data available for future analyses through the CERN Open Data portal. Reports in DPHEP workshop https://indico.cern.ch/event/1043155/timetable/ Difficulty of policy making after active data taking? Lack of personpower is even more evident for past experiments. Open access initiatives have to start at an early stage.]
+%[input from OD users for these workflows, i.e. they may have already repeated an existing  measurement with OD as a test]
+
+%Can someone check this please:
+There are many successful data preservation efforts in the LEP and HERA experiments, but no public access to these data has yet been provided in terms defined in the CERN data policy for the LHC experiments. Access to preserved data is made possible through different modalities, such as joining the collaboration, or working with collaboration members. The BABAR collaboration has decided to make its data available for future analyses through the CERN Open Data portal. Lack of personpower is often a bottleneck, and while true for experiments in the data-taking phase, it is even more evident for experiments past data taking. Open access initiatives have to start at an early stage.
+
+%[OD beyond the LHC?  Reports in DPHEP workshop https://indico.cern.ch/event/1043155/timetable/ BaBar decision in p 10 of https://indico.cern.ch/event/1043155/contributions/4383112/attachments/2267926/3850947/BaBar-DPHEP-20210621.pdf#page=10 Difficulty of policy making after active data taking? ]
+
+To make open data initiatives a success, building community of users for these data is paramount. Theory community is a key player in this, and promoting the use of open data despite the substantial work required in their analysis is a strong demonstration of their value on one hand, and an invaluable validation effort for their usability for future generations on the other hand.
 
 %-------------------------------------------------------------
 \section{Analysis preservation}
@@ -159,6 +142,12 @@ To make open data initiatives a success, building community of users for these d
 [What data products are needed? In what form? How? 
 What are the challenges? (often sociological) What infrastructure need beyond current HEPData setup?]
 
+\begin{itemize}
+    \item Full probability models of analyses from experiments
+    \item Simplified probability models of analyses from experiments
+    \item \ldots
+\end{itemize}
+
 
 %-------------------------------------------------------------
 \section{Recasting and reinterpretation}
@@ -167,6 +156,14 @@ What are the challenges? (often sociological) What infrastructure need beyond cu
 \subsection{Principles}
 
 \subsection{Collaboration-internal recasting}
+
+\begin{itemize}
+    \item \href{https://github.com/recast-hep/recast-atlas}{recast-atlas}
+        \begin{itemize}
+            \item \NB{Currently have \texttt{recast-atlas} under collaboration-internal instead of public, as even though the code is open source you still need EOS access at CERN. So it is more ``CERN public'' than ``true public''.}
+        \end{itemize}
+    \item \ldots
+\end{itemize}
 
 \subsection{Public recasting tools}
 
@@ -185,12 +182,9 @@ What are the challenges? (often sociological) What infrastructure need beyond cu
 \setcounter{footnote}{0}
 %
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliography
 
 \bibliographystyle{JHEP}
-\bibliography{bib/reinterpretation}
+\bibliography{bib/preservation,bib/reinterpretation}
 
 \end{document}
-
-
-
