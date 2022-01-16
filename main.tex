@@ -2,16 +2,14 @@
 
 \input{latex/packages.tex}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % basic data for the eprint:
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \textwidth=6.0in  \textheight=8.5in
 
-%%  Adjust these for your printer:
+% Adjust these for your printer:
 \parskip=0.1truein 
 
-%% preprint number data:
+% preprint number data:
 \newcommand\pubnumber{DRAFT}
 \newcommand\pubdate{\today}
 
@@ -54,29 +52,42 @@ COMPF7 (Reinterpretation and long-term preservation of data and code)}
 % Stephen Bailey\,\orcidlink{0000-XXXX-XXXX-XXXX}\textsuperscript{1},
 Stephen Bailey\textsuperscript{1},
 Kyle Cranmer\,\orcidlink{0000-0002-5769-7094}\textsuperscript{2},
-Matthew Feickert\,\orcidlink{0000-0003-4124-7862}\textsuperscript{3},
-Lukas Heinrich\,\orcidlink{0000-0002-4048-7584}\textsuperscript{4},
-Matias Carrasco Kind\,\orcidlink{0000-0002-4802-3194}\textsuperscript{3},
-Sabine Kraml\,\orcidlink{0000-0002-2613-7000}\textsuperscript{5},
-Clemens Lange\,\orcidlink{0000-0002-3632-3157}\textsuperscript{6},
-Kati Lassila-Perini\,\orcidlink{0000-0002-5502-1795}\textsuperscript{7},
-Mark S. Neubauer\,\orcidlink{0000-0001-8434-9274}\textsuperscript{3}
+Nishita Desai\,\orcidlink{0000-0001-7942-1649}\textsuperscript{3},
+Matthew Feickert\,\orcidlink{0000-0003-4124-7862}\textsuperscript{4},
+Lukas Heinrich\,\orcidlink{0000-0002-4048-7584}\textsuperscript{5},
+Matias Carrasco Kind\,\orcidlink{0000-0002-4802-3194}\textsuperscript{4},
+Sabine Kraml\,\orcidlink{0000-0002-2613-7000}\textsuperscript{6},
+Clemens Lange\,\orcidlink{0000-0002-3632-3157}\textsuperscript{7},
+Andre Lessa\,\orcidlink{0000-0002-5251-7891}\textsuperscript{8},
+Kati Lassila-Perini\,\orcidlink{0000-0002-5502-1795}\textsuperscript{9},
+Mark S. Neubauer\,\orcidlink{0000-0001-8434-9274}\textsuperscript{4},
+Harrison B. Prosper\,\orcidlink{0000-0002-4077-2713}\textsuperscript{10},
+Sezen Sekmen\,\orcidlink{0000-0003-1726-5681}\textsuperscript{11},
+Giordon Stark\,\orcidlink{0000-0001-6616-3433}\textsuperscript{12},
+Wolfgang Waltenberger\,\orcidlink{0000-0002-6215-7228}\textsuperscript{13}
 \end{center}
 
 % Affiliations 
 \begin{center}
 \textbf{1}~Lawrence Berkeley National Laboratory, USA
 \textbf{2}~New York University, USA
-\textbf{3}~University of Illinois at Urbana-Champaign, USA
-\textbf{4}~Technische Universität München, Germany
-\textbf{5}~LPSC Grenoble, France
-\textbf{6}~Paul Scherrer Institute, Villigen, Switzerland
-\textbf{7}~Helsinki Institute of Physics, Finland
+\textbf{3}~Tata Institute of Fundamental Research, India
+\textbf{4}~University of Illinois at Urbana-Champaign, USA
+\textbf{5}~Technische Universität München, Germany
+\textbf{6}~LPSC Grenoble, France
+\textbf{7}~Paul Scherrer Institute, Villigen, Switzerland
+\textbf{8}~Universidade Federal do ABC, Brazil
+\textbf{9}~Helsinki Institute of Physics, Finland
+\textbf{10}~Florida State University, USA
+\textbf{11}~Kyungpook National University, Korea
+\textbf{12}~SCIPP, UC Santa Cruz, CA, USA
+\textbf{13}~HEPHY and University of Vienna, Austria
 \end{center}
 
 \begin{Abstract}
 \noindent We make the case for the systematic, reliable preservation of data, data products, and analysis code for their long-term future reuse, in order to make the most out of particle physics experiments.
-We discuss technical and infrastructure needs, as well as sociological challenges.
+We cover the motivating needs for both the experimental and theoretical particle physics community, and outline the goals and benefits that are uniquely enabled by analysis recasting and reinterpretation. 
+We discuss the technical challenges and infrastructure needs, as well as sociological challenges and changes, and give summary recommendations to the particle physics community.
 \end{Abstract}
 % Sabine @ Kyle et al: your may want to improve :-)
 
@@ -145,6 +156,7 @@ What are the challenges? (often sociological) What infrastructure need beyond cu
 \begin{itemize}
     \item Full probability models of analyses from experiments
     \item Simplified probability models of analyses from experiments
+    \item HEPData long term support
     \item \ldots
 \end{itemize}
 
@@ -167,7 +179,11 @@ What are the challenges? (often sociological) What infrastructure need beyond cu
 
 \subsection{Public recasting tools}
 
-\subsection{Differences regarding measurements and searches, EFT interpretations, etc.; putting it all together in global analyses}
+\subsection{Differences in analyses}
+
+\subsubsection{Measurements, Searches, and EFT Interpretations}
+
+\subsubsection{Combinations and Global Analyses}
 
 \subsection{Preservation of code and data products from theory studies}
 
@@ -176,11 +192,8 @@ What are the challenges? (often sociological) What infrastructure need beyond cu
 \section{Conclusions}
 %-------------------------------------------------------------
 
-
-
 \def\thefootnote{\fnsymbol{footnote}}
 \setcounter{footnote}{0}
-%
 
 % Bibliography
 
