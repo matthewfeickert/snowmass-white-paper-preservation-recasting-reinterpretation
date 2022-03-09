@@ -89,8 +89,9 @@ COMPF7 (Reinterpretation and long-term preservation of data and code)}
 \begin{center}
 % name\,\orcidlink{0000-XXXX-XXXX-XXXX}\textsuperscript{1},
 Stephen Bailey\textsuperscript{1},
-Andy~Buckley\,\orcidlink{0000-0001-8355-9237}\textsuperscript{14},
 Christian~Bierlich\,\orcidlink{0000-0002-3978-6085}\textsuperscript{16},
+Andy~Buckley\,\orcidlink{0000-0001-8355-9237}\textsuperscript{14},
+Jon~Butterworth\,\orcidlink{0000-0002-5905-5394}\textsuperscript{16}
 Kyle~Cranmer\,\orcidlink{0000-0002-5769-7094}\textsuperscript{2},
 Nishita~Desai\,\orcidlink{0000-0001-7942-1649}\textsuperscript{3},
 Matthew~Feickert\,\orcidlink{0000-0003-4124-7862}\textsuperscript{4},
@@ -117,7 +118,7 @@ Graeme~Watt\,\orcidlink{0000-0003-0775-6604}\textsuperscript{15}
 \textbf{3}~Tata Institute of Fundamental Research, India
 \textbf{4}~University of Illinois at Urbana-Champaign, USA
 \textbf{5}~Technische Universität München, Germany
-\textbf{6}~LPSC Grenoble, France
+\textbf{6}~Univ. Grenoble Alpes, CNRS, Grenoble INP, LPSC-IN2P3, 38000 Grenoble, France
 \textbf{7}~Paul Scherrer Institute, Villigen, Switzerland
 \textbf{8}~Universidade Federal do ABC, Brazil
 \textbf{9}~Helsinki Institute of Physics, Finland
@@ -127,6 +128,7 @@ Graeme~Watt\,\orcidlink{0000-0003-0775-6604}\textsuperscript{15}
 \textbf{13}~HEPHY and University of Vienna, Austria
 \textbf{14}~University of Glasgow, UK
 \textbf{15}~IPPP, Durham University, UK
+\textbf{16}~University College London, UK
 \end{center}
 
 \begin{Abstract}
@@ -146,15 +148,23 @@ We discuss the technical challenges and infrastructure needs, as well as sociolo
 
 \noindent\textbf{Writers:} Matthew, Kyle, \ldots
 
-What is needed to enable re-analysis and reuse of analyses from the LHC experiments and other collaborations to explore not-yet-thought-of theories in the long-term future (i.e., on the 10 to 50 year time scale).
-This requires the development and adoption of techniques and standards for long-term storage and preservation of analysis data and data products, reproducible workflows for recasting and reinterpretation of analysis data products, and large sociological changes in the broader particle physics community.\\
+What is needed to re-analysis and reuse analyses from the LHC experiments and other collaborations is to explore not-yet-thought-of theories in the long-term future (i.e., on the 10 to 50-year time scale).
+Exploring these theories requires developing long-term storage and preservation standards of analysis data products. The infrastructure and corresponding techniques must be built up, including reproducible workflows for recasting and reinterpreting analysis data products. Finally, significant sociological changes in the broader particle physics community need to happen.\\
 Technical considerations along the lines of \cite{LHCReinterpretationForum:2020xtr,Cranmer:2021urp}, etc. \\
 
 \TODO{Note that impact of analysis preservation goes beyond BSM searches, e.g.~testing and tuning of strong-interaction models at EIC.}
 
-Q: To what extend do we discuss differences between high- and low-energy experiments (energy vs.~intensity frontier), particle and astro-particle communities, etc.?
+Q: To what extent do we discuss differences between high- and low-energy experiments (energy vs.~intensity frontier), particle and astroparticle communities, and other fields?
+
 
 \NB{Idea: Call out the main thrusts of the white paper in the introduction:}
+
+\ALERT{Kyle: High-level recommendations that are bubbling up: \\
+- Emphasize getting the most out of the data. \\
+- We need to concentrate on the long-term vision for the next decade and for us to describe that in terms of community action/support. \\
+- Incorporate into operations and facilities planning for experiments. (Jon points out that need ownership beyond the experiments, including the phenomenology community as well. Think about an experiment-independent platform (which resonates with Cosmo frontier white paper). Motivates declarative specifications, interfaces, and standards.)} 
+
+\TODO{Preservation and sharing beyond a single experiment can be a $\Delta$ of effort on top of an experiment's core effort that becomes hard to resource and which may not be well recognized. Appropriate resources and career structures to support such work, which benefit the whole theory/phenomenology/experiment community, need to be planned and provided.}
 
 \begin{itemize}
     \item \ldots
@@ -164,146 +174,212 @@ Q: To what extend do we discuss differences between high- and low-energy experim
 
 \NB{stress that while we focus on the LHC, our findings apply to particle physics experiments in general, including low-energy, not collider, ...}
 
-\TODO{Given the general level of confusion in the larger community RE: the terms ``data products'', ``data'' vs. ``derived data'', ``data preservation'' vs. ``analysis preservation'' and others, it might make sense to create a figure that tries to put the high level concepts into some diagram to be understood pictorially. Matthew will self assign this for next week (2022-02-23), but will welcome feedback/getting scooped by others with greater skill here (e.g., Lukas).}
 
-\TODO{G. Watt: Would it be helpful to use the \href{https://opendata.cern.ch/docs/about}{DPHEP categories} from Level 1 (publication-related data) to Level 4 (raw event-level data)?}
+\TODO{G. Watt: Would it be helpful to use the \href{https://opendata.cern.ch/docs/about}{DPHEP categories} from Level 1 (publication-related data) to Level 4 (raw event-level data)? SK: I don't think so; imo the DPHEP structure is not really appropriate for the points we make below. KLP: as discussed, I agree, I've commented on the DPHEP levels and added a brief introduction to what follows. See the paragraph below.}
 
-% Kati: The following is (loosely) the wording of the DPHEP levels from the CERN open data policy. NB a shift of parts of the original DPHEP definition of Level4 (e.g. generation of new MC compatible with Level3 preserved data) to Level3, and the redefinition of Level4 mainly as raw data
+In the following, we distinguish between preserving collision and simulated data used as input to physics analyses, described in Section~\ref{data-preservation}, and preserving workflows and data products connected to specific analyses, covered in Sections~\ref{analysis-preservation} and~\ref{data-products}, respectively. Section~\ref{reinterpret} addresses using existing data products in reinterpreting new physics scenarios.
 
-Four levels of complexity of HEP data have been identified by the Data Preservation and Long Term Analysis in High Energy Physics (DPHEP) Study Group FIXME cite.
-% Data management plans are defined by the LHC experiments to address the long-term preservation of internal data products. See: Akopov et al., Status report of the DPHEP Study Group: Towards a global effort for sustainable data preservation in high energy physics. arXiv preprint arXiv:1205.4667 (2012).
+\QUESTION{Kati to Matthew et al.: Does the brief introduction paragraph above address the "Todo" comment below? The paragraph can be expanded if needed, but it would be best to keep it in the context of this paper.
+}
 
-\begin{itemize}
-\item Published Results (Level 1): 
-\begin{itemize}
-    \item peer-reviewed publications
-    \item additional information and data made available at the time of publication such as simplified or full binned likelihoods, as well as unbinned likelihoods based on datasets of event-level observables extracted by the analyses
-    \item event selection routines stored in specialised tools.
-\end{itemize}
-\item Outreach and Education (Level 2): 
-\begin{itemize}
-    \item dedicated subsets of data in simplified, portable and self-contained formats suitable for educational and public understanding purposes
-    \item lightweight environments to allow the easy exploration of these data.
-\end{itemize}
-\item Reconstructed Data (Level 3): 
-\begin{itemize}
-    \item calibrated reconstructed data with the level of detail useful for algorithmic, performance and physics studies
-    \item appropriate simulated data samples
-    \item provenance metadata
-    \item software 
-    \item additional information sufficient to allow high-quality analysis including the main correction factors and corresponding systematic uncertainties related to calibrations, detector reconstruction and identification
-    \item reproducible example analysis workflows, and documentation
-    \item virtual computing environments that are compatible with the data and software.
-\end{itemize}
-\item Raw Data (Level 4): 
-\begin{itemize}
-    \item raw data before the reconstruction step
-    \item full machinery to reconstruct Level 3 data starting from raw data.
-\end{itemize}
-\end{itemize}
+\TODO{Given the general level of confusion in the larger community RE: the terms ``data products'', ``data'' vs. ``derived data'', ``data preservation'' vs. ``analysis preservation'' and others, it might make sense to create a figure that tries to put the high-level concepts into some diagram to be understood pictorially. Matthew will self assign this for next week (2022-02-23) but will welcome feedback/getting scooped by others with more excellent skill here (e.g., Lukas).}
+
+
+%\TODO{Kati: The following is (loosely) the wording of the DPHEP levels from the CERN open data policy. If we keep this here, it will make sense to change the order of the sections in the paper. "4. Preservation of data (analysis) products" is Level 1 and "2. Data preservation (open data)" is Level 3, and "3. Analysis preservation" is in between}
+
+% The Data Preservation has identified four levels of complexity of HEP data and Long Term Analysis in High Energy Physics (DPHEP) Study Group FIXME cite.
+% The LHC experiments define the data management plans to address the long-term preservation of internal data products. See Akopov et al., Status report of the DPHEP Study Group: Towards a global effort for sustainable data preservation in high energy physics. arXiv preprint arXiv:1205.4667 (2012).
+% \begin{itemize}
+% \item Published Results (Level 1): 
+% \begin{itemize}
+%     \item peer-reviewed publications
+%     \item additional information and data made available at the time of publication such as simplified or full binned likelihoods, as well as unbinned likelihoods based on datasets of event-level observables extracted by the analyses
+%     \item event selection routines stored in specialized tools.
+% \end{itemize}
+% \item Outreach and Education (Level 2): 
+% \begin{itemize}
+%     \item dedicated subsets of data in simplified, portable and self-contained formats suitable for educational and public understanding purposes
+%     \item lightweight environments to allow the easy exploration of these data.
+% \end{itemize}
+% \item Reconstructed Data (Level 3): 
+% \begin{itemize}
+%     \item calibrated reconstructed data with the level of detail useful for algorithmic, performance, and physics studies
+%     \item appropriate simulated data samples
+%     \item provenance metadata
+%     \item software 
+%     \item additional information sufficient to allow high-quality analysis, including the main correction factors and corresponding systematic uncertainties related to calibrations, detector reconstruction, and identification
+%     \item reproducible example analysis workflows, and documentation
+%     \item virtual computing environments compatible with the data and software.
+% \end{itemize}
+% \item Raw Data (Level 4): 
+% \begin{itemize}
+%     \item raw data before the reconstruction step
+%     \item full machinery to reconstruct Level 3 data starting from raw data.
+% \end{itemize}
+% \end{itemize}
 
 
 %-------------------------------------------------------------
 \section{Data preservation (open data)}
+\label{data-preservation}
 %-------------------------------------------------------------
 
-[Status, what data is currently open (real and Monte Carlo), future plans by collaborations, FAIR Open Data, infrastructure needs, ...]\\
+[status, what data is currently open (actual and Monte Carlo), plans by collaborations, FAIR Open Data, infrastructure needs, ...]\\
 
 \noindent\textbf{Writers:} Kati, Mark?
 
 %NOTE (from Kati): this is getting too long, and it is not even done. Let me know if I should cut it down.
 %Reply (from Sabine): i.m.o.\ this is a very important section; it merits a couple of pages. I would not cut it down, not at this stage. 
-% OK, thanks. I'm done. It is CMS centric as usual but I guess it is justified. Feel free to adapt.
+% OK, thanks. I'm done. It is CMS-centric as usual, but I guess it is justified. Feel free to adapt.
 
-\COMMENT{Andy: ``Data'' is being used throughout here to mean ``events'', either real or simulated. We should be more explicit about this, since there are many categories of ``data'', and here we specifically mean event-wise data at some level. The ``data products'' described later are also typically data\dots maybe ``derived data'' would be better for them.
+\COMMENT{Andy: ``Data'' is being used throughout here to mean ``events'', either actual or simulated. We should be more explicit about this since there are many categories of ``data'', and here we specifically mean event-wise data at some level. The ``data products'' described later are also typically data\dots maybe ``derived data'' would be better for them.
 \hrulex
 Kati: Agree that this would benefit from clarification. In the CERN open data portal terminology, we use ``derived data'' for datasets that have been produced (skimmed or slimmed or else) from the existing public data. Maybe we could use ``data analysis products''? The distinction would be best placed in the introduction.
 } 
 
-Following the positive experience and feedback from the open-data releases by the CMS experiment since 2014, a CERN open-data policy for the LHC experiments~\cite{cern-data-policy} was formulated in 2020. All LHC experiments are committed to releasing research-quality data through the CERN Open Data portal~\cite{CODP}. The amount of data and release timeline varies from an experiment to another and they are defined in the experiment-specific data policies~\cite{cern-data-policy,cern-open-data-privacy-policy,cms-open-data-policy,atlas-open-data-policy,lhcb-open-data-policy,alice-open-data-policy}. CERN as the host laboratory maintains and develops the infrastructure needed for the portal, provides storage resources and takes the custodial responsibility of released open data in long term. 
+Following the positive experience and feedback from the open-data releases by the CMS experiment since 2014, CERN formulated an open-data policy for the LHC experiments~\cite{cern-data-policy} in 2020. As the host laboratory, CERN maintains and develops the infrastructure needed for the portal, provides storage resources, and takes the custodial responsibility of released open data in the long term. All LHC experiments are committed to releasing research-quality data through the CERN Open Data portal~\cite{CODP}. The amount of data and release timeline varies from one experiment to another~\cite{cern-data-policy,cern-open-data-privacy-policy,cms-open-data-policy,atlas-open-data-policy,lhcb-open-data-policy,alice-open-data-policy}. 
 
-At the time of writing, CMS is the only experiment having released research-quality data. The CMS open-data releases contain full reprocessing of collision data from each data-taking period and the simulated data corresponding to these data. They are made available in the format and with the same data quality requirements that analyses of the CMS collaboration start from. The volume of data, collision and Monte Carlo simulation, amounts currently to 2.8~PB. The public data are accompanied by a compatible version of the CMSSW software and additional information necessary to perform a research-level physics analysis. Example code and some specific guide pages are provided to explain and instruct the use of the associated information.
+CMS is the only experiment having released research-quality data at the time of writing. The CMS open-data releases contain complete reprocessing of collision data from each data-taking period and the simulated data corresponding to these data. They are made available in the format and with the exact data quality requirements used by analyses of the CMS collaboration. The volume of data, both actual and Monte Carlo simulation, amounts currently to 2.8~PB. CMS also provides a compatible version of the CMSSW and additional information necessary to perform a research-level physics analysis on the public data. The documentation comes with example code and specific guide pages to instruct new users.
 
-Data released through the CERN open-data portal satisfy Findable, Accessible, Interoperable, and Reusable (FAIR) principles for scientific data management~\cite{FAIR-paper} for data and metadata to a large extent. Due to the complexity of experimental particle physics data, the FAIR principles alone do not guarantee the re-usability of these data, and additional effort is needed to pass on the knowledge needed to use and interpret them correctly. In large experiments, collaboration members benefit from the existing knowledge infrastructure (meetings, discussion forums, mentoring, specific groups responsible for providing data assets needed for physics analysis, etc) that is not available to external users or in long term. 
+Data released through the CERN open-data portal satisfy Findable, Accessible, Interoperable, and Reusable (FAIR) principles for scientific data management~\cite{FAIR-paper} for data and metadata to a large extent. Due to the complexity of experimental particle physics data, the FAIR principles alone do not guarantee the reusability of these data, and additional effort is needed to pass on the knowledge needed to use and interpret them correctly. In large experiments, collaboration members benefit from the existing knowledge infrastructure (meetings, discussion forums, mentoring, specific groups responsible for providing data assets needed for physics analysis, and more) that is unavailable to external users or long-term. 
 
 %[more details can be added here about challenges related to computing and software, and those related to intricacies of experimental particle physics data]
 
-To ensure that the open data can really be used in physics research and that all necessary additional information is captured, stored and provided, early testing is of utmost importance. Therefore, CMS puts emphasis on releasing data relatively early after the data-taking. Feedback and questions from external users indicate the eventual missing data assets and lacking information, and the release can be complemented with them while the expertise on these data is still present in the collaboration. To encourage the use of open data and to get direct feedback, the CMS open-data group is organising regular workshops with hands-on tutorials. It is important to reach out to a diverse user community, from newcomers to seniors and with different computing backgrounds and physics skills. While the CMS open-data group is looking forward to being able to organize the next workshop in presence, the value of remote, virtual events with many participants who would not have been able to travel is acknowledged.
+Early testing is of utmost importance to ensure that the open data is ready for physics research and that all necessary additional information is captured, stored, and provided. Therefore, CMS emphasizes releasing data relatively early after the data-taking. External users' feedback and questions indicate the eventual missing data assets and lack of information. The release can complement them while the expertise on these data is still present in the collaboration. To encourage the use of open data and to get direct feedback, the CMS open-data group is organizing regular workshops with hands-on tutorials. It is essential to reach out to a diverse user community, from newcomers to seniors with different computing backgrounds and physics skills. While the CMS open-data group is looking forward to organizing the next workshop in presence, the value of remote, virtual events with many participants who would not have been able to travel is acknowledged.
 
-Setting up example analysis workflows is one of the priorities for making open data reusable. They should demonstrate all necessary steps from data access and selection to any eventual corrections, and address the particularities of experimental data such as estimating efficiencies and uncertainties. Activities for preserving analysis workflows internally in the collaboration will facilitate building such workflows. The software container technology, in use with open data, is well adapted for automating workflows and experience gained with them can be used for procedures for current analyses within the collaboration.
+Setting up example analysis workflows is one of the priorities for making open data reusable. They should demonstrate all necessary steps from data access and selection to any eventual corrections and address the particularities of experimental data, such as estimating efficiencies and uncertainties. Activities for preserving analysis workflows internally in the collaboration will facilitate building such workflows. In use with open data, the software container technology is suitable for automating workflows. The experience gained with them can be used for current analyses within the collaboration.
 
-%[input from OD users for these workflows, i.e. they may have already repeated an existing  measurement with OD as a test]
+%[input from OD users for these workflows, i.e., they may have already repeated an existing  measurement with OD as a test]
 
 %Can someone check this please:
-There are many successful data preservation efforts in the LEP and HERA experiments, but no public access to these data has yet been provided in terms defined in the CERN data policy for the LHC experiments. Access to preserved data is made possible through different modalities, such as joining the collaboration, or working with collaboration members. The BABAR collaboration has decided to make its data available for future analyses through the CERN Open Data portal. Lack of person-power is often a bottleneck, and while true for experiments in the data-taking phase, it is even more evident for experiments past data taking. Open access initiatives have to start at an early stage.
+There are many successful data preservation efforts in the LEP and HERA experiments. However, no public access to these data exists in terms defined in the CERN data policy for the LHC experiments. Access to preserved data is made possible through different modalities, such as joining or working with collaboration members. The BABAR collaboration has decided to make its data available for future analyses through the CERN Open Data portal. Lack of person-power is often a bottleneck, and while valid for experiments in the data-taking phase, it is even more evident for experiments past data taking. Open access initiatives have to start at an early stage.
 
-%[OD beyond the LHC?  Reports in DPHEP workshop https://indico.cern.ch/event/1043155/timetable/ BaBar decision in p 10 of https://indico.cern.ch/event/1043155/contributions/4383112/attachments/2267926/3850947/BaBar-DPHEP-20210621.pdf#page=10 Difficulty of policy making after active data taking? ]
+%[OD beyond the LHC? Reports in DPHEP workshop https://indico.cern.ch/event/1043155/timetable/ BaBar decision in p 10 of https://indico.cern.ch/event/1043155/contributions/4383112/attachments/2267926/3850947/BaBar-DPHEP-20210621.pdf#page=10 Difficulty of policy-making after active data taking? ]
 
-To make open-data initiatives a success, building community of users for these data is paramount. The theory community is a key player in this, and promoting the use of open data despite the substantial work required in their analysis is a strong demonstration of their value on one hand, and an invaluable validation effort for their usability for future generations on the other hand.
+Building a community of users for these data is paramount to making open-data initiatives successful. The theory community is a critical player in this, and promoting open data despite the substantial work required in their analysis is a strong demonstration of their value and an invaluable validation effort for their usability for future generations.
 
 \noindent
 \textbf{Recommendations:}
 \begin{description}
-   \item[2.1:] Agree on a data preservation and public data policy at the design phase of the experiment.
-   \item[2.2:] Give long-term custodial responsibility of public data to the host laboratory or an organization which persists beyond the life time of the experiment and use common distribution platforms with other experiments.
-   \item[2.4:] Start prepare data for public releases at the time when these data are in active use.
-   \item[2.5:] Encourage and promote the use of open data to explore and improve usability and to make sure that all necessary information for research-level use is available.
+   \item[2.1:] Agree on data preservation and public data releases as a common goal to maximize their scientific outcome and allocate resources and responsibilities to achieve this goal in the experiment organization. %\ALERT{Kyle: incorporate budgeting/resources and experiment organization. Incorporate into operations and facilities. Kati: see updated 2.1 & 2.3  }
+   \item[2.2:] Give long-term custodial responsibility of public data to the host laboratory or an organization that persists beyond the experiment's lifetime and uses common distribution platforms with other experiments.
+   \item[2.3:] Incorporate preparing data for public releases and invest in preserving the knowledge needed for their use in the data processing and analysis operations and facilities.
+   \item[2.4:] Encourage and promote the use of open data to explore and improve usability and to ensure that all necessary information for research-level use is available.
 \end{description}
+
+
 
 %-------------------------------------------------------------
 \section{Analysis preservation}
+\label{analysis-preservation}
 %-------------------------------------------------------------
 
+\noindent\textbf{Writers:} Matthew, Clemens, Lukas, Sabine, Sezen, Andy \dots + Christian Bierlich, Jon B, Andrii V, Benjamin Fuks?
+
 \ALERT{
-\NB{make recommendations for \textbf{generic ideas}, but can give \textbf{specific examples with specific tools}}
-
-\NB{Can focus and compare and contrast the different levels of analysis preservation.}
+  \NB{make recommendations for \textbf{generic ideas}, but can give \textbf{specific examples with specific tools}}
+  \NB{Can focus and compare and contrast the different levels of analysis preservation.}
 }
+% [scope, status, difficulties met, person power and infrastructure needs, ....]
 
-[scope, status, difficulties met, person power and infrastructure needs, ....]
+Preservation of event-wise analysis logic and workflows in any specific form enables the reuse of the original analysis process and associated data products. Such reuse may, for instance, be for (re)interpretation in terms of physics models not considered in the original paper by the experimental collaboration; this may range from beyond-Standard-Model theories to new ideas and implementations non-perturbative QCD, and everything in-between.
 
-\noindent\textbf{Writers:} Matthew, Clemens, Lukas, Sezen, Andy \dots + Christian Bierlich, Jon B, Andrii V, Benjamin Fuks?
+As such, an experiment needs to integrate analysis preservation into its publication processes alongside open-data and data-product preservation to achieve its full scientific impact. Without this, the influence of the hundreds of published analyses from the LHC, HL-LHC, EIC, and other modern collider experiments will be limited mainly to the physics ideas in vogue at the time the collaboration collected collider data. The public investment in experimental programs underscores the importance of going beyond the first publication and ensuring that analyses continue providing scientific value in perpetuity.
+% demands it also be usable in perpetuity, constrain new models, or analyze old ones in more depth as complementary developments narrow down viable model spaces.
 
-\COMMENT{From Christian Bierlich: I would suggest some introductory text about current state-of-the-art in different sub-fields. While high-energy $pp$ has come very far, with even advanced recasting, HEHI is still in its infancy, and still need discussion of standard + basic notions of reproducibility in place, i.e.~need of much more person power}
+Different levels of event-wise analysis preservation are possible. They already exist, from full-detail preservation of the experimental analysis workflow to ``fast'' or ``lightweight'' emulations of the entire analysis that emphasize speed (and often greater public availability) to the expense of some precision. Both the accurate-but-expensive and fast-but-approximate approaches (and points in-between) have value for physical applications. Given an ample model space to explore, combining many preserved event analyses to obtain a more statistically significant result, the emphasis lies more on speed and efficiency than total accuracy, so a rough measure of which parameter regions are viable. However, the emphasis naturally shifts to precision with a smaller range of models to explore, perhaps after such fast-interpretation triage. The expense of re-running full experimental software stacks becomes justifiable and tractable.
 
+In the following sections, we review first the full-detail and then the lightweight preservation paradigms, and finally the current status and issues of both, in both the high-energy $pp$ and heavy-ion programs.
 
-Preservation of event-analysis logic and workflows, in whatever specific form, permits reuse of the original analysis process and associated data products to be re-used for interpretation of new physics models not available, or not within the scope of the original paper. Without some form of analysis preservation, the full impact of the hundreds of published analyses from the LHC, HL-LHC, EIC, or other modern collider experiments will be limited to the physics ideas in vogue at the time the collider data was first studied. The public investment in these programmes demands it also be usable in perpetuity, to constrain new models, or to analyse old ones in more depth as complementary developments narrow down viable model spaces.
-
-Different levels of event-wise\todo{Note exclusion of e.g.~SModelS from this category: cover its position in the data-products section?} analysis preservation are possible and already exist, from full-detail preservation of the experimental analysis workflow, to ``fast'' or ``lightweight'' emulations of the full analysis that emphasise speed (and often greater public availability) to the expense of some precision. The whole spectrum between accurate-but-expensive and fast-but-approximate has value for physical applications: given a large model space to explore, combining a multitude of preserved event-analyses to obtain a more statistically significant result, the emphasis may be on speed in order to obtain a rough measure of which parameter regions are viable in finite computational time. But with a smaller range of models to explore, perhaps after such fast-analysis triage, the emphasis naturally shifts to precision, where the more expensive route of re-running full experimental software stacks becomes both important and viable.
-
-\subsection{Collaboration-internal preservation}
-
-% Clemens
-In particle physics, due to the large amounts of data and the significant computing power required to process them, event generation, simulation, and reconstruction as well as the creation of derived/reduced data tiers for physics analysis are typically performed by central production systems. These first processing stages are therefore largely automated, versioned, and reproducible. The majority of analyses that try to address a particular physics question start from derived data tiers, which often do not require the use of experiment-specific software frameworks. While this simplifies performing physics analysis, it also leads to a large diversity of software frameworks. These often lack extensive documentation and version control is not centralized. For reproducibility, it is therefore imperative that the software used to obtain the results is eventually transferred into a repository maintained by the experimental collaboration. Ideally, however, all analysis software would already reside there when starting the analysis. A standardization of the analysis software would further simplify reusability. The functioning of the software should be confirmed by automated tests using commonly available continuous integration systems. As a part of these tests, Linux container images (e.g.~Docker, Singularity) should be built and preserved on container registries to capture the full software environment needed for data processing. As physics analysis typically consists of several steps (e.g.~event selection, signal extraction), it is also important to capture the workflows that combine the individual steps.
-There is currently no \emph{de~facto} standard for workflow language accepted across the experimental community, although a wide range of options exist (e.g., Common Workflow Language, Snakemake, Yadage~\cite{Cranmer:2017frf,yadage_code}) and are in use in different experimental collaborations.
-
-% Recommend central software repositories
-% container image with automated tests
-% workflows and software standardization
-
-\textbf{Matthew, Andy: REVISE ALL THIS}
-
-% Andy I'm trying to be very high level here but you should feel free to come in with a revision sledge hammer.
-A full description of the analysis workflow combined with the versioning and preservation of the analysis code and software environment allows for the hypothetical reproduction of any published analysis.
-This represents a high fidelity view of the preservation, but with more work.
-A less detailed implementation of the preservation can be used that allows for a simpler and faster summary of the analysis workflow logic, at the price of precision.
-
-% In ATLAS there are ongoing efforts for full preservation of the experiment analyses in the Supersymmetry, Exotics, and Higgs and Diboson working groups through the \recast system implemented through \href{https://github.com/recast-hep/recast-atlas}{recast-atlas} (\NB{Currently have \texttt{recast-atlas} under collaboration-internal instead of public, as even though the code is open source you still need EOS access at CERN. So it is more ``CERN public'' than ``true public''.})
-
-\TODO{Giordon suggestion: Maybe mention SimpleAnalysis as an ATLAS semi-internal fast-simulation framework. ``Semi'' because for now the experiment response functions remain private.}
-
-\TODO{Gambit ColliderBit, CheckMATE, MadAnalysis5\dots more? as archives of BSM-search analysis logic. Detail usually limited, but precision not essential. Detector emulation through Delphes or object smearing + efficiencies. CheckMATE emphasis shifted toward LLPs, using experiment-published efficiency maps.}
-
-\TODO{\rivet as LHC-standard tool and archive of LHC + other analyses, emphasis on precision measurements, some BSM-search content via smearing system. Can go into more detail, e.g.~Contur as reinterpretation layer. Experience of experiment preservation policy in principle and in practice. Increasing use in Higgs (preservation and EFT interpretation) and HI.}
+% \COMMENT{From Christian Bierlich: I would suggest some introductory text about the current state-of-the-art in different sub-fields. While high-energy $pp$ has come very far, with even advanced recasting, HEHI is still in its infancy and still need discussion of standard + basic notions of reproducibility in place, i.e.~need of much more person power}
 
 
 
-\subsection{Public information, analysis-description formats}
+%\subsection{Collaboration-internal preservation} -- the principled distinction is less internal/public and more about the level of detail preserved / CPU cost of running it
+\subsection{Full-detail preservation} \label{sec:analysisPreservation}
+
+The most faithful approach to analysis preservation is to store, in a re-runnable form, the exact software chain used to perform the analysis in the experiment. As each experiment has its internal data formats and software frameworks, injecting new models for analysis typically requires running the full post-generation stack from detector simulation and reconstruction to the physics-analysis code.
+
+The obvious consequence is that simulation and reconstruction are computationally expensive, so is event reinterpretation via such analysis preservations. A secondary implication is the Intellectual Property: at the time of writing, the ability to perform detailed simulation of an experiment's detector response is strategically sensitive information and hence non-public. While not unavoidable, e.g.~by, staged release of older data and frameworks, full-detail preservations exist for collaboration-internal use only.
+
+Preserving full-detail analysis chains is complicated by the diversity of analysis software frameworks, even within a given experiment. Well-versioned central production systems within one framework typically perform event generation, simulation, reconstruction, and data reduction (``derivation''). By contrast, most physics analyses within an experiment start from derived data tiers, and the lack of constraints has led to a proliferation of alternative analysis frameworks. These often lack extensive documentation, may be version-controlled in different locations, and without coordination \& standardization, naturally, evolve as many incompatible technical interfaces as there are packages.
+
+Therefore, for reproducibility, experimental collaborations and host labs must arrange to store analysis data in well-defined repositories and structures, with a plan for long-term archiving. The host institutions should monitor the correctness and continuing validity of the software by using continuous integration testing on a range of suitable datasets for each analysis. As a part of these tests, Linux container images (e.g.~Docker~\cite{docker}, Podman~\cite{podman}, or Singularity~\cite{singularity}) should be built and preserved on container registries to capture the entire software environment needed for data processing.
+
+Physics analyses typically consist of multiple, separately executed steps (e.g.~event, selection and signal extraction). It is also important to capture the workflows for running and combining them over multiple event samples. There is currently no \emph{de~facto} standard for this workflow language across the experimental community: for example, Common Workflow Language~\cite{CWL}, Snakemake~\cite{SnakeMake}, Yadage~\cite{Cranmer:2017frf,yadage_code}, and Argo Workflows~\cite{argo} are in use by different collaborations. Standardization and evolution around a smaller (or unique) subset of such languages would improve interoperability and knowledge transfer. In making such a choice, we stress the importance of a declarative rather than imperative model~\cite{10.3389/fdata.2021.661501}, as the former enables researchers to concentrate on the physics task with minimal need to consider technical details such as scalable job orchestration. Developers can significantly reduce the complexity of workflow descriptions in full-detail preservation by establishing standard interfaces for tools implementing processing steps so that they can be more easily composed.
+
+\TODO{Matthew: Do preserved analyses provide enough metadata that workflow tools can figure out commonalities of simulation and reconstruction versions/geometries between analyses and avoid repeating common steps?}
+
+\TODO{Standardising output format for direct comparability to \hepdata data products}
+
+\TODO{Comment on the ability/limitations/approximations for ``updating'' contributing processes in preserved analyses. I.e.~there are clear use-cases for updating either a background process (nominal or whole-model) to a more precise one published since the original publication or to update or inject a signal model to any number of alternative hypotheses. It would require re-fitting for a perfect result, but even a no-refit approximation would be valuable.}
+
+% In ATLAS, there are ongoing efforts for complete preservation of the experiment analyses in the Supersymmetry, Exotics, and Higgs and Diboson working groups through the \recast system implemented through \href{https://github.com/recast-hep/recast-atlas}{recast-atlas} (\NB{Currently have \texttt{recast-atlas} under collaboration-internal instead of public, as even though the code is open source you still need EOS access at CERN. So it is more ``CERN public'' than ``true public''.})
+
+
+\subsection{Lightweight preservation}
+
+The approach described above represents a high-fidelity version of preservation, with implications for the original analysis software chain and typically high computing-power requirements on any large-scale reuse of the preserved software stack. Even for organizations with the computational resources of active HEP experiments --- and at present such preservations are in-house --- physicists cannot use this form of preservation to explore large model-parameter spaces, e.g.~$\gg 2$ dimensions via adaptive samplers.
+
+These limitations motivate a more lightweight form of preservation, with more modest CPU demands. It is simplest to make this alternative form independent of the original experiment software chain, with the desirable side-effect that it is also simpler to release publicly. The cost of being lightweight is that the approximations involved reduce the precision of the preservation; this makes lightweight preservation suitable for identifying model regions of interest rather than for making definitive statements of discovery. Public availability is essential for theorists' studies outside the experimental collaborations, such as testing new theoretical ideas against the data from several analyses and experiments in a global approach.
+
+Several lightweight frameworks have arisen, ensuring not only preservation and reproducibility of experimental analyses but enabling reinterpretation studies for the whole HEP community~\cite{LHCReinterpretationForum:2020xtr}. The \rivet tool is the clear choice for (differential) measurements, particularly where detector effects have been unfolded to a fiducial phase-space by the original experiment (and the statistical consequences fully reported, cf. Section~\ref{data-products}). The LHC experiments have established \rivet-based measurement-preservation programs, and similar efforts are gaining traction for heavy-ion experiments such as at RHIC.
+
+%Reconstruction-level analyses are 
+Analysis preservation at the reconstruction-level is 
+more ambiguous, as some form of detector response needs to be encoded, and this will necessarily be less accurate than the original detector simulation+reconstruction code. \rivet incorporates a transfer-function approach for experiment-provided efficiencies and kinematic distortions to be applied to generator-level events but currently contains few reconstruction-level (usually BSM-search) analyses.
+%\madanalysis and ColliderBit provide similar systems (and an interface to alternative fast-simulation using \delphes), and have more extensive databases of implemented analyses; \checkmate also uses \delphes, but now focuses more on long-lived particle searches; and experiments can also publish analyses in lightweight, executable form such as ATLAS' semi-public SimpleAnalysis system (where analysis logic is made public, but the detector transfer-functions currently are not).
+In parallel, driven by the need of open access to BSM recasting, the theory community has been developing various simulation-based reinterpretation frameworks, in particular \checkmate~\cite{Drees:2013wra,Dercks:2016npn}, \madanalysis~\cite{Dumont:2014tja,Conte:2018vmg} and GAMBIT's ColliderBit~\cite{GAMBIT:2017qxg}.  They either also use a transfer-function approach, or rely on \delphes~\cite{deFavereau:2013fsa} for the emulation of detector effects; in some cases also generator-level events are used. A detailed overview is given in \cite{LHCReinterpretationForum:2020xtr}.  
+Experiments can also publish analyses in lightweight, executable form such as ATLAS' semi-public SimpleAnalysis system %(where analysis logic is made public, but the detector transfer-functions currently are not).
+(In particular, the analysis logic but not necessarily reconstruction efficiencies, and more.)
+%
+%The natural consolidation of lightweight frameworks into orthogonal domains has been welcome, reducing the ambiguity over which public tool is most suitable for an experiment's preservation program. 
+
+All support standard MC-generator tools such as the HepMC event record. However, essential features such as propagation of systematic uncertainties via weight vectors are not wholly or consistently implemented, and MC generators also have not yet standardized weight-coding conventions. Placing emphasis again on standard interfaces will help speed the convergence of the reconstruction-level BSM-search tools in particular. As in the cases of full-detail analysis preservation and \rivet-based lightweight measurement preservation, active policy and support efforts will be required in experiments as part of the publication process to ensure the required level of preservation coverage.
+%
+An example of good practice in this respect is the CMS jets+missing energy analysis \cite{CMS:2021far}, which provided a \madanalysis recast code \cite{Albert:2774586,DVN/IRF7ZL_2021} together with the paper.
+
+%Common format -- Rosetta
+
+% \TODO{Gambit ColliderBit, CheckMATE, MadAnalysis5\dots more? As archives of BSM-search analysis logic. Detail is usually limited, but precision is not essential. Detector emulation through Delphes or object smearing + efficiencies. CheckMATE emphasis shifted toward LLPs, using experiment-published efficiency maps.}
+
+\TODO{Mention e.g.~Contur and MA Reint as reinterpretation layers on lightweight preservations. SK: yes for Contur, but in MA5 and Checkmate, this is integrated into the tool, see also text modifications above}
+
+\TODO{Experience of experiment preservation policy in principle and practice: ATLAS and CMS official programs and semi-enforced linking of \rivet coding to the publication process. Without incentives, extra work is skipped, and implementations from outside the experiment are less valuable. Increasing use in Higgs (preservation and EFT interpretation) and HI.}
+
+\TODO{Stress need for better meta-data stewardship for analysis codes, to make them searchable and findable (also an issue in \rivet)}
+
+
+\subsection{Analysis description languages}
+
+Both full-detail and lightweight preservation frameworks have the significant benefit of being executable, %for reusability. However, neither is necessarily \emph{readable} as clear documentation of the analysis logic. In full-detail preservation, this logic gets encoded in arbitrarily many scripts and codes within the preserved containers and repositories; in lightweight preservation, the analysis code's readability varies greatly between frameworks and individual analysis encodings.
+
+Therefore, the third facet of analysis preservation is to encode an abstract description of the analysis logic in a clear, human-readable, and unambiguous form-- as should be the case in the paper text but rarely given in practice to the level of detail required for full reproduction. Such a format need not compete with other approaches. It could be used internally as a step in the experimental analysis, be used directly in papers or generate paper elements, and as a configuration file or source for translations to code in each lightweight framework.
+
+As with declarative workflow description formats, a recent trend is to decouple analysis logic from the software frameworks used to execute it. Many new-generation analysis frameworks\todo{which?} accumulate all information related to object and event processing in a single location, e.g.~in, a configuration file, at least for part of the processing chain. An approach that takes this one step further is to use domain-specific rules or even languages (DSLs) dedicated to expressing the physics content of HEP analyses. DSLs can either rely on the syntax of an existing computer language (embedded DSL) or have a custom syntax (external DSL) more tailored to the semantics of the HEP-analysis context. Again, if possible, a declarative approach has many benefits due to abstracting practical details into framework implementations. Several DSL approaches are studied, and various working prototypes exist. \TODO{To be continued and refined...}
+
+
+% % Sezen
+% The infrastructures provided by the experiments for preserving analyses constitute a crucial step in analysis preservation. However, an equally important step is to preserve this information in an accessible and easily communicable manner. The thousands of analyses designed by experimental collaborations and phenomenologists have accumulated a tremendous source of physics content. This diverse content can inspire and inform new analysis ideas or train the new generation of particle physicists. Therefore the physics content of analyses should be presented explicitly, in full detail, yet in a sufficiently clear and systematic manner.
+
+\TODO{Turing machines objection: HEP analyses are not fully domain-specific and often need to execute custom logic in addition to predefined behaviors. To cope, either we extend the DSL to incorporate new known behaviors providing an ``escape'' mechanism to inject general-purpose code (compromising its framework independence) or be combined with pre-and post-processing code to cover gaps in the DSL capabilities.}
+
+% self-documenting
+% Allow querying analysis information
+
+% ADL/CL
+%\cite{Brooijmans:2016vro,Sekmen:2018ehb,Unel:2021edl}
+% NAIL, Fast, Jim's codes
 
 \QUESTION{What are public documents that can be cited heavily here from the collaborations?}
 
-\ALERT{What is the difference between public information and publication of public analysis products (e.g. \hepdata)?
+\QUESTION{What is the difference between public information and publication of public analysis products (e.g., \hepdata)?
 Is this where Sezen's point on communication on the types of analyses comes in?}
+
+
+\subsection{Preservation tools}
+
+\TODO{SK: to my mind, this is taken care of in the previous sections so that section 3.4 can be removed.}
 
 \ALERT{The following are just a brain dump of tools. These are going to get removed or just mentioned in a sentence, but are more here for the time being to make sure that we think about what \textbf{concepts or goals} these tools represent.}
 
@@ -316,115 +392,152 @@ Is this where Sezen's point on communication on the types of analyses comes in?}
     \item \ldots
 \end{itemize}
 
-\QUESTION{At the moment is there any document that links all of these together? If not, can we link them very concisely here?}
-\TODO{RiF status \& recommendations report?!}
+\QUESTION{At the moment, is there any document that links all of these together? If not, can we link them very concisely here?}
+\TODO{RiF status \& recommendations report? SK: no, not really: the RiF report focuses on data products needed for reproducibility and public recasting tools, not [collaboration-internal] analysis preservation per se.}
 
-\COMMENT{AB: As the picture has been evolving, we should presumably say something about public availability and robustness of MVAs, which lie somewhere between ``data products'' and ``analysis logic''. As well as technical challenges in long-term preservation of methods based on evolving frameworks, the questions of the applicability (and uncertainty propagation) from applying MVAs to smeared or truth-level MC events are more urgent for multivariate techniques than for simple cut-sets. Feeds back to methodology in the MVA training, and its reporting and reproducibility.}
+\COMMENT{AB: As the picture has been evolving, we should presumably say something about the public availability and robustness of MVAs, which lie somewhere between ``data products'' and ``analysis logic''. As well as technical challenges in the long-term preservation of methods based on evolving frameworks, the questions of the applicability (and uncertainty propagation) from applying MVAs to smeared or truth-level MC events are more urgent for multivariate techniques than for simple cut-sets. Feeds back to methodology in the MVA training and its reporting and reproducibility. SK: yes! There will also be another Snowmass white paper by T.~Plehn et al.\ which is relevant in this context} 
 
 \COMMENT{Christine Nattrass comments (\rivet/heavy-ion):
 
 Snippet from a proposal:
 
 \hrulex
-The UTK group has been working towards the implementation of heavy ion analyses in \rivet since Summer 2018. 
-This works towards an overarching goal of the UTK group, to make systematic comparisons between data and models, in particular incorporating measurements of jets.
-This work in \rivet has incorporated including most of the undergraduates listed in [table omitted] as summer students, students doing research for credit, and students in a Course-based Undergraduate Research Experience (CURE).  CUREs were pioneered in biology and have been shown to increase graduation rates in STEM fields~\cite{Rodenbusch20062016}.  This also provides an opportunity for a more diverse group of students to participate in research.  Approximately 1/3 of all UTK students graduating with bachelor's degrees in physics since Summer 2019 have worked on \rivet with our group, including about 40\% of all women and about half of all non-white students.  This work has led to the implementation of approximately 20~analyses in \rivet.  
+The UTK group has been working towards implementing heavy-ion analyses in \rivet since Summer 2018. 
+This proposal works towards an overarching goal of the UTK group: to make systematic comparisons between data and models, particularly incorporating jets' measurements.
+This work in \rivet has incorporated most of the undergraduates listed in [table omitted] as summer students, students doing research for credit, and students in a Course-based Undergraduate Research Experience (CURE). CUREs were pioneered in biology and have increased graduation rates in STEM fields~\cite{Rodenbusch20062016}. The outreach also provides an opportunity for a more diverse group of students to participate in research. Approximately one-third of all UTK students graduating with bachelor's degrees in physics since Summer 2019 has worked on \rivet with our group, including about 40\% of all women and about half of all non-white students. This work has led to the implementation of approximately 20~analyses in \rivet.  
 \hrulex
 
-Thoughts: Undergraduates are a great way to address published analyses where the \rivet analysis did not happen with publication.  It might be possible to get undergraduates engaged during the analysis.  It might be the only way to handle published analyses where people who did the work have long moved on.
+Thoughts: Undergraduates are a great way to address published analyses where the \rivet analysis did not happen with publication. It might be possible to get undergraduates engaged during the analysis. It might be the only way to handle published analyses where people who did the work have long moved on.
 
-I am going to try to get a process for approval in PHENIX but was basically told I need to get something approval ready - I've been close for months but the pandemic hit hard.
+I am going to try to get a process for approval in PHENIX but was told I need to get something approval ready - I've been close for months, but the pandemic hit hard.
 
-I think I could contribute a lot to the problems when you DON'T do analysis preservation with the publication.  You just find a lot of ambiguities when you go back years later.
-
-\hrulex
-
-From Raghav in STAR:
-
-I can comment on the analysis part. We did officially bless and release a few of the analysis along with our PYTHIA 8 tune paper https://github.com/star-bnl/star-pythia8-tune 
-These could in principle be included in the next version of \rivet. I contacted Christian Bierlich about this a few months ago but i don’t think it was followed up. 
-
-So the current situation is that Myself (or Matt Kelsey) will officially sign off on any \rivet analysis from STAR but as Frank mentioned, it is not well known and we will try to make that a bit clear in our collaboration meeting. 
+I think I could contribute a lot to the problems when you DON'T do analysis preservation with the publication. You just find a lot of ambiguities when you go back years later.
 }
-
+\COMMENT{
+From Raghav in STAR:
+I can comment on the analysis part. We did officially bless and release a few of the analyses along with our Pythia~8 tune paper: \url{https://github.com/star-bnl/star-pythia8-tune}.
+These could in principle be included in the next version of \rivet.
+}
+\TODO{Andy to rewrite this into a concise form giving the HI/EIC status and potential aligned with the Snowmass priorities.}
 
 \noindent
 \textbf{Recommendations:}
 \begin{description}
-   \item[3.1:] Encourage the support and use of common tools that can allow for simplification of (Matthew: Clemens please feel free to make this more coherent)
-   \item[3.2:] Prioritize the preservation of analysis workflows that capture the full experimental chain. (Matthew: My use of ``full experimental chain'' is probably not a clear choice of words here)
-   \item[3.3:] Sezen: Make sure the analyses are able to be communicated as clearly as possible.
-   \item[3.n:] ............  
+   \item[3.1:] Use software version control and archiving systems for long-term preservation beyond the experiment lifetime.
+   During the lifetime of the experiments, this is the responsibility of the experimental collaborations and, beyond that, one of the host laboratories.
+   \item[3.2:] Encourage the support and use of common and portable analysis tools, making analyses more reproducible.
+    % 
+    % Kyle: It seems there are two ideas here. One is to simplify / approximate analysis done in current approaches. Other is to develop analysis tools (e.g., declarative specifications) that are easier to use, more portable, and reproducible. 
+   \item[3.3:] Ensure the preservation of analysis workflows that capture the complete computational processing chain available to the experiments whenever possible.
+   \textbf{Recommendation summary from Sezen - can merge parts into 3.2:} Explore ways to filter the physics content of analyses and present them explicitly in full detail using a clear, concise, and systematic description for preservation. The description should be self-documenting and easily recognizable and understandable by particle physicists from different domains and generations.  
+   \item[3.4:] Describe physics analyses in a declarative, executable, and translatable form so that they are reproducible independent of the experiment software.
+   % Sezen: Make sure the analyses can be communicated as clearly as possible.
+   % Sabine: This also improves knowledge transfer.
+   % Andy: I think this part needs to be more explicit about analysis logic in a operational form that complements the full-detail preservation of Item~3.2, i.e.~in, a form that can either be run directly on MC events or can be translated into a runnable form (cf.~ADL).
+   % Matthew: How to describe things like ADL (declarative) and \rivet (a specific implementation) with common words (not saying these things by name)?
 \end{description}
 
 
 %-------------------------------------------------------------
 \section{Preservation of data products}
+\label{data-products}
 %-------------------------------------------------------------
 
-\noindent\textbf{Writers:} Lukas, Sabine (Giordon??? Andy Buckley??? Graeme Watt) \\
+\noindent\textbf{Writers:} Lukas, Sabine, Giordon (Andy Buckley??? Graeme Watt) \\
 
-% G. Watt: added the paragraph below on HEPData scope, infrastructure and limitations, hastily written.  Happy to provide more input if requested.
-\hepdata is the primary open-access repository for publication-related (``Level 1'') data from particle physics experiments, with a long history going back to the 1970s.  The \hepdata project underwent a complete transformation in 2017 to a new platform (\url{hepdata.net}) hosted on CERN computing infrastructure~\cite{hepdata}.  Another transition was made in 2020 to deploy the web application via a Docker image on a Kubernetes cluster shared with the INSPIRE-HEP project.  Funding is provided by the UK Science and Technology Facilities Council (STFC) to Durham University (UK) for staff to maintain the operation of the \url{hepdata.net} site, provide user support, and develop the open-source software (\href{https://github.com/HEPData}{@\hepdata}) underlying the web application.  In the past, data preparation in a standard format and upload to the repository were also handled by \hepdata staff at Durham University, but now these tasks are delegated to the experimental collaborations.  Data submitted to \hepdata (as YAML) is primarily in a tabular form that can be interactively plotted in the web application and automatically converted to other common formats (CSV, JSON, ROOT, YODA).  The interactive nature of \hepdata means that data tables must be kept sufficiently small ($\sim$MB or less) that they can be quickly loaded in a web browser.  In practice, tables with more than $\sim$10,000 rows (for example, a covariance matrix for a measurement with $\sim$100 bins) cannot be practically rendered in a web browser.  However, moderately large tables or non-tabular data files can be attached to a \hepdata record as additional resources (in any format), where the original files can be downloaded but the interactive nature is lost.  To avoid the multiple problems caused by the attempted upload of large files, an overall size limit of 50 MB is currently imposed on the uploaded archive file.  Publication-related (``Level 1'') high-energy physics data that is not suitable for \hepdata, due to either being too large or predominantly in a non-tabular format, should be submitted to another data repository like Zenodo, which currently plugs a gap to host HEP data (and software) that does not fit into other repositories.  A new HEP-specific instance of Zenodo could perhaps be useful to better serve the particle physics community in future.
+There is widespread consensus in the community that experiments should systematically provide all relevant derived data or \emph{data products} in an open-access numerical form for future reuse~\cite{LHCReinterpretationForum:2020xtr}. 
+Such data products are also called publication-related or ``Level 1'' data in the 
+\href{https://opendata.cern.ch/docs/about}{DPHEP categories}. 
+They include observed and expected event counts  (including error sources), efficiency functions,  bin-to-bin correlations, profile likelihoods, full statistical models, signal efficiencies, simplified model results, and much more, 
+as discussed extensively in Refs.~\cite{LHCReinterpretationForum:2020xtr,Cranmer:2021urp}.
+%\emph{What} should be provided to enable a pertinent re-use is discussed extensively in Refs.~\cite{LHCReinterpretationForum:2020xtr,Cranmer:2021urp}, so we do not go into more details here. 
 
-There is widespread consensus in the community that the results (data products) of experimental analyses should systematically be provided in numerical form for future reuse~\cite{LHCReinterpretationForum:2020xtr}. 
-\emph{What} should be provided is discussed extensively in Refs.~\cite{LHCReinterpretationForum:2020xtr,Cranmer:2021urp}, so we do not go into details here. Moreover,  
-\hepdata~\cite{hepdata} has long been established as the platform of choice for this purpose by the large collaborations. Nonetheless, the provision of experimental results on \hepdata remains patchy, even if the collaboration policy notes it as standard.  
+%Moreover,  \hepdata has long been established as the platform of choice for this purpose by the large collaborations.
+% G. Watt: added the paragraph below on HEPData scope, infrastructure, and limitations, hastily written. Happy to provide more input if requested.
+With regards to publication infrastructure, 
+\hepdata~\cite{hepdata} is the primary open-access repository for %publication-related (``Level 1'')
+data products from particle physics experiments, with a long history going back to the 1970s.
+% The \hepdata project underwent a complete transformation in 2017 to a new platform (\url{hepdata.net}) hosted on CERN computing infrastructure~\cite{hepdata}.
+% Another transition was made in 2020 to deploy the web application via a Docker image on a Kubernetes cluster shared with the INSPIRE-HEP project.
+Funding is provided by the UK Science and Technology Facilities Council (STFC) to Durham University (UK) for staff to maintain the operation of the \href{https://www.hepdata.net/}{hepdata.net} site, provide user support, and develop the open source software (available on the \href{https://github.com/HEPData}{\hepdata GitHub organisation}) underlying the web application.
 
-Often, instead of being provided on \hepdata, digitized results/plots are available only on collaboration web pages, without appropriate documentation, versioning or other data stewardship. Sometimes the linked ROOT files are the wrong ones (not corresponding to the associated plot) or otherwise corrupted. And too often the digital material is missing altogether. Experience shows that missing or wrong resources can rarely be retrieved or corrected, as often the analyser has left or the relevant files have otherwise been lost. 
+In the past, \hepdata staff at Durham University handled data preparation in a standard format and uploaded it to the repository.
+However, now these tasks are delegated to the experimental collaborations.
+Data submitted to \hepdata (as YAML) is primarily in a tabular form that can be interactively plotted in the web application and automatically converted to other standard formats (i.e. CSV, JSON, ROOT, YODA).
+The interactive nature of \hepdata means that data tables must be kept sufficiently small ($\sim$MB or less) that they can render in a web browser.
+In practice, tables with more than $\sim 10,000$ rows (for example, a covariance matrix for a measurement with $\sim 100$ bins) cannot efficiently render in a web browser.
+However, moderately large tables or non-tabular data files can be attached to a \hepdata record as additional resources (in any format).
+The original files are downloadable, but the interactive nature is lost.
+\hepdata imposes an overall size limit of 50 MB on the uploaded archive file to avoid problems caused by the attempted upload. 
+%
+%Publication-related (``Level 1'') high-energy physics data that is 
+Data products that are not suitable for \hepdata, due to either being too large or predominantly in a non-tabular format, might be submitted to another data repository like \href{https://zenodo.org/}{Zenodo}.
+Zenodo currently plugs a gap to host data (and software) that does not fit into other repositories.%
+\footnote{This concerns also model files, Monte Carlo simulation, and all kinds of data products from phenomenological studies.}
+A new HEP-specific instance of Zenodo could perhaps better serve the particle physics community in the future.
 
-Apparently part of the problem is missing time and community recognition for the effort of providing material on \hepdata. The RAMP (``Reinterpretation: Auxiliary Material Presenation'') seminar series\footnote{See \url{https://indico.cern.ch/category/14155/}}  aims at providing more visibility and recognition for such efforts, but clearly more is needed.
 
-Regarding \hepdata itself, material beyond digitized plots (like MC run cards, input files for benchmark points or, most importantly, statistical models) are usually uploaded as ``additional ressources'', often lumped together in zipballs without any standard structure.   
-There is clearly room for FAIR-ification of these highly valuable data products. 
+Although many experimental collaborations\footnote{ATLAS, CMS, LHCb, and increasingly also in the heavy-ion community.} see the provision of their results on \hepdata together with the published paper as standard procedure, in practice the coverage remains patchy. 
+Often, instead of being provided on \hepdata, digitized results/plots are available only on collaboration web pages, without appropriate documentation, versioning, or other data stewardship.
+Sometimes, the linked ROOT files are wrong (not corresponding to the associated plot) or otherwise corrupted.
+Moreover, the digital material is missing altogether.
+Experience shows that missing or wrong resources can rarely be retrieved or corrected, as often the analysis team has disbanded with analyzers leaving the field, or the relevant files become lost. 
+
+\TODO{Need to revise this into other sections so that it is coherent.}
+Part of the problem is missing time and community recognition to providing material on \hepdata.
+The \href{https://indico.cern.ch/category/14155/}{RAMP} (``Reinterpretation: Auxiliary Material Presentation'') seminar series aims at providing more visibility and recognition for such efforts,  but more is needed. 
+
+Regarding \hepdata itself, material beyond digitized plots (like MC run cards, input files for benchmark points, or, most importantly, statistical models) are ``additional resources'', often lumped together in compressed archives without any standard structure.
+The types of data products being preserved has become much richer and diverse than flat tables.
+To be able to provide the necessary infrastructure for all of these data products will require additional funding.
+There is room, and a clear need, for ``FAIR''-ification of these precious data products. 
 
 \noindent
 \textbf{Recommendations:}
 \begin{description}
-   \item[4.1:] Make the provision on \hepdata of all data products associated to an experimental analysis a mandatory step for publication; assure appropriate person power, time and community recognition to that effect. 
-   \item[4.2:] Assure appropriate funding and further development of the \hepdata infrastructure or alternative repositories like Zenodo; extend the current data structure to include information beyond paper plots/table format, e.g., statistical models, in an individually searchable and citeable form.
+  \item[4.1:] Make the provisioning of all data products associated with an experimental analysis a mandatory step for publication.
+  This will require establishing appropriate person power, time, and community recognition for that effect.
+  %\ALERT{Kyle: We might want to have first a statement about capture and preservation even if it is not made public and then follow up with recommending it to be public.}
+   \item[4.2:] Assure appropriate resources and funding for further development of the cyberinfrastructure, such as \hepdata and other repositories like Zenodo, to preserve the data products and metadata, and extend the current data structure to include more rich data products and information beyond paper plots and flat tables, e.g., statistical models, in an individually searchable and citeable form.
+   \ALERT{Kyle: it would be nice to incorporate INSPIRE, CAP, PDG, and other cyberinfrastructure components.
+   Matthew: @Kyle we might need you to comment a bit more on how you see things like INSPIRE and CAP fit in here, beyond just that they need more funding.
+   If so, maybe we should work a funding story for them into another section?}
+   % Maybe later on in revisions, we can make these a few sentences to make the FAIR components of them more transparent.
 \end{description}
+
+% \NB{Lukas: Focusing on the funding agent view, it would be good to focus on the types of data being preserved has become \emph{much} richer --- we have moved far beyond flat tables.
+% Need funding and infrastructures to realize its use and make it interactive.}
+
+\TODO{Reword recommendations language-wise, to make them read nicely.}
+
 
 \hrule 
 
-\TODO{Original brainstorming: What data products are needed? In what form? How? 
-What are the challenges? (often sociological) What infrastructure need beyond current \hepdata setup?}
-
-\ALERT{Can lean heavily on the reinterpretation report here and cite that}
 
 \COMMENT{Christine Nattrass comments:  
-RHIC:  ALICE, STAR and PHENIX now require \hepdata with publication now.  I proposed it for sPHENIX; it was decided that the mechanism for how the data points were distributed would be a procedure, not in the publication policy, but as a practical matter, I think \hepdata will be adopted by sPHENIX.  Phobos and BRAHMS do not officially have a procedure to get data up.  BRAHMS has some effort which is less formal.  Phobos only has two papers up on \hepdata.  (Note Phobos is not an acronym, hence not being all caps.)  That is, overall, the heavy ion community has adopted \hepdata - but we still have issues with previously published papers.
+RHIC:  ALICE, STAR and PHENIX now require \hepdata with publication now. I proposed it for sPHENIX; it was decided that the mechanism for how the data points were distributed would be a procedure, not in the publication policy, but as a practical matter, I think \hepdata will be adopted by sPHENIX. Phobos and BRAHMS do not officially have a procedure to get data up. BRAHMS has some effort which is less formal. Phobos only has two papers up on \hepdata. (Note Phobos is not an acronym, hence not being all caps.)  That is, overall, the heavy ion community has adopted \hepdata - but we still have issues with previously published papers.
 
 For previously published papers:  STAR made formatting data from old papers for \hepdata an alternative to shifts during the pandemic.
 
-In PHENIX, I just put in a proposal to hire undergrads to do this.  Here's some text out of that proposal, with light editing for coherence:
+In PHENIX, I just put in a proposal to hire undergrads to do this. Here's some text out of that proposal, with light editing for coherence:
 
 \hrulex
-\hepdata only became obligatory for STAR in 2019 and PHENIX in 2020, after a proposal by Nattrass to the PHENIX Executive Council.  Around this time, both experiments' web sites suffered prolonged outages due to cybersecurity incidents, making uploading data to \hepdata a much higher priority.  In early 2020, it was determined that the old PHENIX web site hosting data would no longer be externally available.  \hepdata is now the \textit{only} means of disseminating PHENIX data.  Nattrass helped develop a procedure for submission of PHENIX data to \hepdata, is helping oversee the submission of PHENIX data to \hepdata (including previously published data), and is assisting primary authors with formatting data.  Data from previously published papers, however, are still generally unavailable outside of the collaboration.
+\hepdata only became obligatory for STAR in 2019 and PHENIX in 2020, after a proposal by Nattrass to the PHENIX Executive Council. Around this time, both experiments' web sites suffered prolonged outages due to cybersecurity incidents, making uploading data to \hepdata a much higher priority. In early 2020, it was determined that the old PHENIX web site hosting data would no longer be externally available.  \hepdata is now the \textit{only} means of disseminating PHENIX data. Nattrass helped develop a procedure for submission of PHENIX data to \hepdata, is helping oversee the submission of PHENIX data to \hepdata (including previously published data), and is assisting primary authors with formatting data. Data from previously published papers, however, are still generally unavailable outside of the collaboration.
 
-As of January~12, 2022, there are 224 published PHENIX papers and 55 PHENIX papers (25\%) with data available on \hepdata.  The majority of papers without data available on \hepdata are earlier papers, including many seminal results in the field.  The previously-public PHENIX web page where the data were is still available to PHENIX collaborators internally, but there was no enforced structure.  The varied nature of the papers, as well as some issues with the clarity or completeness of  these data, means that there is no trivial, automated way to convert the data to the format required for submission to \hepdata.  Furthermore, the preparation of the YAML files for \hepdata requires some knowledge of high energy physics.  This task is currently being done voluntarily by PHENIX collaborators, who must learn how to format data for \hepdata, and parasitically by undergraduates working on \rivet.  It is therefore very slow.
+As of January~12, 2022, there are 224 published PHENIX papers and 55 PHENIX papers (25\%) with data available on \hepdata. The majority of papers without data available on \hepdata are earlier papers, including many seminal results in the field. The previously-public PHENIX web page where the data were is still available to PHENIX collaborators internally, but there was no enforced structure. The varied nature of the papers, as well as some issues with the clarity or completeness of  these data, means that there is no trivial, automated way to convert the data to the format required for submission to \hepdata. Furthermore, the preparation of the YAML files for \hepdata requires some knowledge of high energy physics. This task is currently being done voluntarily by PHENIX collaborators, who must learn how to format data for \hepdata, and parasitically by undergraduates working on \rivet. It is therefore very slow.
 
-Nattrass has supervised several undergraduates as they implement this process, including several with limited programming experience.  We estimate that it takes between 2--20 hours for an experienced worker to format data for \hepdata, depending on the complexity of the paper.  The simplest papers may only have one or two data points, while at least one paper formatted by our group had over 2000 data tables with about 20 data points each.  A beginning undergraduate would need to learn some basics of the field, and could use the materials developed for the CURE.  We estimate this would take approximately 45 hours, commensurate with the time it takes in the CURE, and that we could complete approximately 100 papers by hiring two undergraduates part time during the semester and full time in the summer.  This task is scalable, so if less funding is available, it would still be possible to format some PHENIX data for upload to \hepdata.
+Nattrass has supervised several undergraduates as they implement this process, including several with limited programming experience. We estimate that it takes between 2--20 hours for an experienced worker to format data for \hepdata, depending on the complexity of the paper. The simplest papers may only have one or two data points, while at least one paper formatted by our group had over 2000 data tables with about 20 data points each. A beginning undergraduate would need to learn some basics of the field, and could use the materials developed for the CURE. We estimate this would take approximately 45 hours, commensurate with the time it takes in the CURE, and that we could complete approximately 100 papers by hiring two undergraduates part time during the semester and full time in the summer. This task is scalable, so if less funding is available, it would still be possible to format some PHENIX data for upload to \hepdata.
 \hrulex
 
-Successfully uploading data to \hepdata also requires extensive communication with and contributions from current and former PHENIX collaborators, both to resolve questions about the data and to vet the final product before it is made public.  Most people are incredibly enthusiastic to have someone else format data from a measurement they worked on, and the collaboration membership and leadership strongly support this effort.  We have not had problems getting assistance in the past and do not anticipate problems in the future.
+Successfully uploading data to \hepdata also requires extensive communication with and contributions from current and former PHENIX collaborators, both to resolve questions about the data and to vet the final product before it is made public. Most people are incredibly enthusiastic to have someone else format data from a measurement they worked on, and the collaboration membership and leadership strongly support this effort. We have not had problems getting assistance in the past and do not anticipate problems in the future.
 }
 
-
-\begin{itemize}
-    \item Full probability models of analyses from experiments
-    \item Simplified probability models of analyses from experiments
-    \item \hepdata long term support
-    \item \ldots
-\end{itemize}
-
-\NB{Lukas: Focusing on the funding agent view, it would be good to focus on the types of data being preserved has become \emph{much} richer --- we have moved far beyond flat tables.
-Need funding and infrastructures to realize the use of it and make it interactive.}
 
 -------------------------------------------
 
 %-------------------------------------------------------------
 \section{Recasting and reinterpretation}
+\label{reinterpret}
 %-------------------------------------------------------------
 
 \noindent\textbf{Writers:} Lukas, Sabine, Matthew, Andre\\
@@ -447,33 +560,56 @@ Need funding and infrastructures to realize the use of it and make it interactiv
     \item \ldots
 \end{itemize}
 
-Mention difficulties currently met when attempting global re-interpretations (e.g. pMSSM efforts, EFT fits) to make recommendations how to improve.
+Mention difficulties currently met when attempting global reinterpretations (e.g., pMSSM efforts, EFT fits) to make recommendations on improvements.
+
+\COMMENT{SK: mention some actual reinterpretations done inside the collaborations in order to illustrate use and benefits?}
+
+%\subsection{Public recasting tools}
+\subsection{Recasting outside the experimental collaborations}
 
 
-\subsection{Public recasting tools}
+% Collaborations can increase a given analysis's impact by publicly making software frameworks available for reinterpreting the analysis results within distinct new physics scenarios. 
+
+% \ALERT{Kyle: Suggest we have some way of distinguishing between the ``official" recasting tools that the experiments would endorse and ``unofficial'' recasting tools that are useful but not necessarily endorsed by experiments. I would not use the word "public" to make that distinction because the RECAST API could be made public even if the underlying processing of the data is done internally inside the experiments. }
+% \COMMENT{SK: we can make the distinction between collaboration-internal or collaboration-owned and collaboration-independent efforts (?)}
 
 
-The impact of a given analysis can be largely increased once public software frameworks are available for reinterpreting the analysis results within distinct new physics scenarios.
-Different reinterpretation approaches and software tools (CheckMATE, MadAnalysis5, \rivet/Contur, SModelS, ...) implementing them are discussed in detail in section~III of \cite{LHCReinterpretationForum:2020xtr}.
-Maintaining these tools and implementing new analyses requires a considerable amount of person power and funding.
-Within this context it would be desirable to have a minimal coordination of the recasting effort among the distinct frameworks in order to avoid duplicated work and to prioritize the analysis implementation.
-In particular, a central location for bookkeeping the list of implemented analysis in the distinct tools along with the corresponding validation material could help in this direction.
-Furthermore, whenever possible, it would be useful to adopt a few guidelines for the validation in order to allow for proper estimate of the recasting uncertainties introduced by each analysis implementation.
-Such a preliminary effort has been attempted for the recasting of searches for long-lived particles in the format of a GitHub repository\cite{llpRepo}.
-In some cases it has been shown to be a useful resource within the LLP community, but a similar attempt has not been widely adopted by the recasting tools.
+While efforts within the collaborations to publish analyses data and software which could be directly used for reinterpretation are in progress (see Sec.~\ref{sec:analysisPreservation}), many analyses still require recasting by the theory community.
+Currently, several software tools (CheckMATE, MadAnalysis5, Rivet/Contur, SModelS, and others) are available for the task of recasting and reinterpretation,
+supplying a database of implemented analyses, allowing the user to implement new analyses and providing statistical tools for reinterpreting the results within the desired BSM model.
+These tools rely on distinct reinterpretation approaches, as discussed in section~III of \cite{LHCReinterpretationForum:2020xtr}.
+Maintaining these tools and implementing new analyses requires considerable person power and funding.
 
-In the recent years the amount of information provided by the experimental collaborations has increased significantly, allowing for a more robust statistical interpretation in phenomenological studies. However, to take full advantage of these new developments, it would be desirable to coordinate and partially unify the statistical output format and treatment within the distinct recasting tools, so the users can have a common ground for comparison. Another important aspect to be taken into account is the possibility for a global analyses of the results, which could in principle combine results from distinct recasting tools. Such an effort has been developed within the GAMBIT collaboration \cite{Kvellestad:2019vxm} and more recently by the ``protomodelling'' project in \cite{Waltenberger:2020ygp}.
-These studies would also benefit from a unified statistical treatment in the recasting tools.
+Within this context, it would be desirable to coordinate the recasting effort to maximize its impact and avoid redundant work. As a final goal, a unified format for analysis implementation, which could be used interchangeably by the different tools, would significantly improve the reinterpretation potential of the phenomenology community.
+Even though the community has discussed this proposal in the past (refs?), not enough progress has been made.
+We recommend a few steps the community could take with immediate benefits to achieving this final goal.
+In particular, a collaborative effort among the tool developers could maintain a central location for bookkeeping the list of implemented analysis in the specific tools and the corresponding validation material.
+Furthermore, whenever possible, it would be helpful to adopt a few validation guidelines to allow for a proper estimate of the recasting uncertainties introduced by each analysis implementation.
+Some physicists in the community have made progress in the recasting of searches for long-lived particles in the format of a GitHub repository\cite{llpRepo}.
+While recasting has been demonstrably useful within the LLP community, they have not adopted these tools.
+(What else? For me, it seems that achieving a common analysis implementation code would require some big steps, such as rewriting all the existing tools, writing parsers, keeping the backwards compatibility, etc. I couldn't come up with small steps to be taken here.)
+
+Another vital aspect of reinterpretation is the statistical treatment of the results. In recent years, the amount of information provided by experimental collaborations has increased significantly, allowing for a more robust statistical interpretation in phenomenological studies. However, to take full advantage of these new developments, it would be desirable to coordinate and unify the statistical output format and treatment within the specific recasting tools to have a common ground for comparison. Another critical aspect to be taken into account is the possibility for a global analysis of the results, which could, in principle, combine results from different recasting tools. The GAMBIT collaboration has done this~\cite{Kvellestad:2019vxm} and seen more recently by the ``protomodelling'' project in \cite{Waltenberger:2020ygp}.
+These studies would also benefit from a unified statistical treatment in the recasting tools. Assuming the required statistical information is provided by the experimental collaborations, one possible solution for establishing a more robust and consistent statistical interpretation would be to share between the recasting tools a single software package for the statistical calculations required since these are common for the typical reinterpretation studies.
+Some tools, such as SModelS and MadAnalysis5, already share code for a few steps of their statistical analysis, but it is not a centralized effort. An example of such a multi-purpose statistical package is pyhf~\cite{pyhf}, which is publicly available and open source. With some coordination and further development, pyhf or a similar package could be used and maintained by the developers' reinterpretation tools to have a common statistical interpretation of the results produced by each tool.
+
+\COMMENT{SK: The above is a good start, but we need to go further than that. A unified statistical approach is nice, but what's needed are the actual statistical models to use to this end. pyhf can do the job when the analysis is based on Histfactory, but CMS uses a different approach; un-binned results need yet a different treatment, etc. So it is not that simple.}
+
+\COMMENT{AL: The statistical models should be provided (in some format) by the experimental collaborations, no? I mentioned pyhf or a "similar package", since pyhf would have to be extended to deal with other formats or a new package would have to be developed.}
 
 
+When it comes to reinterpretation of analyses results, the effort is often non-trivial and demands significant computing time. Therefore it is important to ensure reproducibility and  preservation of the results obtained.
+A few platforms are already in place and allow for storage of large data and versioning of its content. In particular, \href{https://zenodo.org/}{Zenodo} has already been used by a few groups to publish auxiliary material from phenomenological studies.
+It is also important that the tools used for obtaining the results are properly documented in order to allow for future reproducibility.
+This policy should be largely encouraged within the theory community.
 
 
 % (some lines on motivation and use)
 %
-% Different reinterpretation methods and public software frameworks that enable them are discussed in detail in section~III of \cite{LHCReinterpretationForum:2020xtr}. We do not repeat this here. However, one important aspect to highlight is the aim of global analyses, that is putting all the available experimental information together. Such global approaches are attempted by, e.g., the GAMBIT collaboration and the ``protomodelling'' project in \cite{Waltenberger:2020ygp}.
-% One serious shortcoming is that the set of analyses that can be recast in the different frameworks (CheckMATE, MadAnalysis5, Rivet/Contur, SModelS, ...) is still very patchy. It depends a lot on the information available from the experimental collaborations but also on the person power available in the different teams developing these public frameworks. Often (with the exception of Rivet) these are theory collaborations, which are constantly struggling to be funded. But, without funding of PhD students and postdocs(!) such efforts cannot be successful.
+% Different reinterpretation methods and public software frameworks that enable them are discussed in detail in section~III of \cite{LHCReinterpretationForum:2020xtr}. We do not repeat this here. However, one important aspect to highlight is the aim of global analyses, which is putting all the available experimental information together. Such global approaches are attempted by, e.g., the GAMBIT collaboration and the ``protomodelling'' project in \cite{Waltenberger:2020ygp}.
+% One serious shortcoming is that the set of analyses that can be recast in the different frameworks (CheckMATE, MadAnalysis5, Rivet/Contur, SModelS, and other tools) is still very patchy. It depends a lot on the information available from the experimental collaborations and the person power available in the different teams developing these public frameworks. Often (except for \rivet), these are underfunded theory collaborations. Nevertheless, without Ph.D. students and postdocs(!), such efforts cannot be successful.
 %
-% Efforts to make recast codes framework-independent / interchangeable between frameworks have been started with the idea of an accord for a  declarative analysis description~\cite{Brooijmans:2016vro} but need much further development (see also Section~3). In particular ADL parsers for the most common public frameworks (including automatised validation) would be of great benefit but are still missing.
+% Efforts to make recast codes framework-independent / interchangeable between frameworks have been started with the idea of an accord for a  declarative analysis description~\cite{Brooijmans:2016vro} but need much further development (see also Section~3). In particular, ADL parsers for the most common public frameworks (including automatized validation) would greatly benefit but are still missing.
 
 Other points to elaborate:
 \begin{itemize}
@@ -483,15 +619,19 @@ Other points to elaborate:
     \item preservation of code and data products from theory studies
 \end{itemize}
 
-(finish with recommendations ....)
+(finish with recommendations)
 
 \noindent
 \textbf{Recommendations:}
 \begin{description}
-   \item[5.1:] ............
-   \item[5.2:] Improve the coordination among the distinct recasting tools. Establish a centralized location for documenting the analyses implementations. Unify the statistical interpretation. Make a push toward recasting of ML-based analyses;
-   \item[5.3:] Require FAIR-ification of data products from (theory) re-interpretation studies outside the experimental collaborations. %similar to provision of exp results on HEPData
+   \item[5.1:] \TODO{Make the point here that designing an analysis with interpretability and reuse in mind requires physics insight early on in the process?}
+   %, e.g., things to think about early on so that the signal regions can be orthogonal and easier to combine final states.
+   \item[5.2:] Improve the coordination among the different recasting tools with the goals of achieving a centralized framework for recasting analyses and unifying the statistical treatment of the reinterpretation results.
+   %interpretations through the setup of a centralized location for documenting the analyses implementations and the unification of the statistical framework used by the tools.
+   \item[5.3:] Encourage FAIR-ification of data products from (theory) reinterpretation studies outside the experimental collaborations. %similar to the provision of exp results on HEPData
+   % Make clear in the text that this would be archived like Zenodo.
 \end{description}
+\TODO{Consideration of reuse and reinterpretation during analysis design. }
 %-------------------------------------------------------------
 \section{Conclusions}
 %-------------------------------------------------------------
