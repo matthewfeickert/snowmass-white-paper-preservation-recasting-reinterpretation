@@ -482,11 +482,6 @@ A new HEP-specific instance of Zenodo could perhaps better serve the particle ph
 Reporting of results on \hepdata has become a standard procedure in the LHC community, with ATLAS, CME, ALICE, and LHCb all providing the results and data products from publications.
 This is also increasingly the case in the heavy-ion community with the STAR, PHENIX, and NA61/SHINE collaborations publishing their data products to \hepdata as well in recent years.
 However, as use of \hepdata is not a particle physics wide community norm yet, coverage remains incomplete and will continue to until there are cultural shifts, as the heavy ion community has recently experienced.
-% 
-% Although many experimental collaborations\footnote{The LHC ATLAS, CMS, ALICE, and LHCb experiments, and increasingly also in the heavy-ion community e.g.~STAR, PHENIX, and NA61/SHINE.} see the provision of their results on \hepdata together with the published paper as standard procedure, in practice the coverage remains incomplete.
-% \TODO{Here elevate the footnote to emphasize the cultural value to the HEP community.
-% LHC community has had a large win here.
-% Heavy Ion community is starting to have a culture shift here, and this should be encouraged and supported and funded as needed.}
 
 Often, instead of being provided on \hepdata, digitized results/plots are available only on collaboration web pages, without appropriate documentation, versioning, or other data stewardship.
 Sometimes, the linked ROOT files are wrong (not corresponding to the associated plot) or otherwise corrupted.
@@ -509,32 +504,9 @@ There is room, and a clear need, for ``FAIR''-ification of these precious data p
    \item[4.1:] Make the provisioning of all data products associated with an experimental analysis a mandatory step for publication.
    Establishing appropriate person power, time, and community recognition is essential to that end.
    \item[4.2:] Assure appropriate resources and funding for further development of the cyberinfrastructure, such as \hepdata and other repositories like Zenodo, to preserve the data products and metadata, and extend the current data structure to include more rich data products and information beyond paper plots and flat tables, e.g., statistical models, in an individually searchable and citeable form.
-%   \ALERT{Kyle: it would be nice to incorporate INSPIRE, CAP, PDG, and other cyberinfrastructure components.
-%   \hrulex
-%   Matthew: @Kyle we might need you to comment a bit more on how you see things like INSPIRE and CAP fit in here, beyond just that they need more funding.
-%   If so, maybe we should work a funding story for them into another section?}
-   % Maybe later on in revisions, we can make these a few sentences to make the FAIR components of them more transparent.
-%   \item[4.3:] Assure that appropriate meta-data are associated to  preserved data products in a systematic and standardized way, to make them searchable and findable.
-%   \COMMENT{SK: while 4.3 is important, I'm not sure about adding it as a recommendation: it takes emphasis away from reco 4.2 ...}
 \end{description}
 
-% \COMMENT{Christine Nattrass comments:  
-% RHIC:  ALICE, STAR and PHENIX now require \hepdata with publication now. I proposed it for sPHENIX; it was decided that the mechanism for how the data points were distributed would be a procedure, not in the publication policy, but as a practical matter, I think \hepdata will be adopted by sPHENIX. Phobos and BRAHMS do not officially have a procedure to get data up. BRAHMS has some effort which is less formal. Phobos only has two papers up on \hepdata. (Note Phobos is not an acronym, hence not being all caps.)  That is, overall, the heavy ion community has adopted \hepdata - but we still have issues with previously published papers.
 
-% For previously published papers:  STAR made formatting data from old papers for \hepdata an alternative to shifts during the pandemic.
-
-% In PHENIX, I just put in a proposal to hire undergrads to do this. Here's some text out of that proposal, with light editing for coherence:
-
-% \hrulex
-% \hepdata only became obligatory for STAR in 2019 and PHENIX in 2020, after a proposal by Nattrass to the PHENIX Executive Council. Around this time, both experiments' web sites suffered prolonged outages due to cybersecurity incidents, making uploading data to \hepdata a much higher priority. In early 2020, it was determined that the old PHENIX web site hosting data would no longer be externally available.  \hepdata is now the \textit{only} means of disseminating PHENIX data. Nattrass helped develop a procedure for submission of PHENIX data to \hepdata, is helping oversee the submission of PHENIX data to \hepdata (including previously published data), and is assisting primary authors with formatting data. Data from previously published papers, however, are still generally unavailable outside of the collaboration.
-
-% As of January~12, 2022, there are 224 published PHENIX papers and 55 PHENIX papers (25\%) with data available on \hepdata. The majority of papers without data available on \hepdata are earlier papers, including many seminal results in the field. The previously-public PHENIX web page where the data were is still available to PHENIX collaborators internally, but there was no enforced structure. The varied nature of the papers, as well as some issues with the clarity or completeness of  these data, means that there is no trivial, automated way to convert the data to the format required for submission to \hepdata. Furthermore, the preparation of the YAML files for \hepdata requires some knowledge of high energy physics. This task is currently being done voluntarily by PHENIX collaborators, who must learn how to format data for \hepdata, and parasitically by undergraduates working on \rivet. It is therefore very slow.
-
-% Nattrass has supervised several undergraduates as they implement this process, including several with limited programming experience. We estimate that it takes between 2--20 hours for an experienced worker to format data for \hepdata, depending on the complexity of the paper. The simplest papers may only have one or two data points, while at least one paper formatted by our group had over 2000 data tables with about 20 data points each. A beginning undergraduate would need to learn some basics of the field, and could use the materials developed for the CURE. We estimate this would take approximately 45 hours, commensurate with the time it takes in the CURE, and that we could complete approximately 100 papers by hiring two undergraduates part time during the semester and full time in the summer. This task is scalable, so if less funding is available, it would still be possible to format some PHENIX data for upload to \hepdata.
-% \hrulex
-
-% Successfully uploading data to \hepdata also requires extensive communication with and contributions from current and former PHENIX collaborators, both to resolve questions about the data and to vet the final product before it is made public. Most people are incredibly enthusiastic to have someone else format data from a measurement they worked on, and the collaboration membership and leadership strongly support this effort. We have not had problems getting assistance in the past and do not anticipate problems in the future.
-% }
 
 
 % -------------------------------------------
@@ -557,20 +529,20 @@ We also point out some of the steps which could be taken to improve the current 
 
 %\subsection{Principles}
 
-\subsection{Collaboration-internal  reinterpretation}
+%\subsection{Collaboration-internal  reinterpretation}
 
-\TODO{Matthew and Clemens will revise an experimental viewpoint from ATLAS and CMS}
+%\TODO{Matthew and Clemens will revise an experimental viewpoint from ATLAS and CMS}
 
-\COMMENT{SK: experience with EFT interpretations and ATLAS/CMS pMSSM studies should go here!} 
+%\COMMENT{SK: experience with EFT interpretations and ATLAS/CMS pMSSM studies should go here!} 
 
-\subsubsection{CMS-internal recasting}
+%\subsubsection{CMS-internal recasting}
 
-Within CMS, reinterpretation or recasting is largely performed within ongoing analyses or via the statistical combination of completed analyses. While the analysis code is not systematically archived, the data products for signal extraction are usually preserved so that uncertainties across different analyses can be treated consistently in a statistical combination. Furthermore, for some analyses, see e.g.\ Refs.~\cite{CMS:2017may,CMS:2018tuo}, cut efficiency tables are provided for further reinterpretation. For several other analyses, simplified likelihoods are also published~\cite{CMS:2017nxf,CMS:2017zts,CMS:2018ffd,CMS:2018eqb}.
+%Within CMS, reinterpretation or recasting is largely performed within ongoing analyses or via the statistical combination of completed analyses. While the analysis code is not systematically archived, the data products for signal extraction are usually preserved so that uncertainties across different analyses can be treated consistently in a statistical combination. Furthermore, for some analyses, see e.g.\ Refs.~\cite{CMS:2017may,CMS:2018tuo}, cut efficiency tables are provided for further reinterpretation. For several other analyses, simplified likelihoods are also published~\cite{CMS:2017nxf,CMS:2017zts,CMS:2018ffd,CMS:2018eqb}.
 
-Mention difficulties currently met when attempting global reinterpretations (e.g., pMSSM efforts, EFT fits) to make recommendations on improvements.
+%Mention difficulties currently met when attempting global reinterpretations (e.g., pMSSM efforts, EFT fits) to make recommendations on improvements.
 
 
-\subsection{Reinterpretation outside the experimental collaborations}
+%\subsection{Reinterpretation outside the experimental collaborations}
 
 
 % Collaborations can increase a given analysis's impact by publicly making software frameworks available for reinterpreting the analysis results within distinct new physics scenarios. 
@@ -602,9 +574,6 @@ To help in this direction the statistical analysis should be factorized as much 
 % \COMMENT{AK: The above paragraph maybe gives the impression that \cite{Kvellestad:2019vxm} and \cite{Waltenberger:2020ygp} are examples of studies that combine results from different recasting tools, which I don't think was the intended meaning? Suggested edit: \textit{Another critical aspect to be taken into account is the possibility for a global analysis of the results. The GAMBIT Collaboration has done this~\cite{Kvellestad:2019vxm} and seen more recently by the ``protomodelling'' project in~\cite{Waltenberger:2020ygp}. Such global analyses could, in principle, combine results from different recasting tools.} Also, perhaps you meant to cite the GAMBIT electroweakino study~\cite{GAMBIT:2018gjo}, not the review paper~\cite{Kvellestad:2019vxm}?}
 
 A further motivation for facilitating collider reinterpretations in global analyses is that it enables large-scale and adaptive exploration of the complementarities between collider results and other experimental results. Such global fits have the potential of both uncovering gaps in the experimental coverage, and identify which uncovered BSM scenarios are most plausible in light of other experiments, and thus constitute well-motivated targets for future analyses/experiments. Realising this potential, however, depends critically on computational efficiency, since a global fit faces the additional computational cost of recasting all relevant non-collider results and explore a typically many-dimensional theory parameter space. As such, a focus on code efficiency, stability and parallelisability in reinterpretation tools, and on development of fast approximations for expensive computations (e.g.~computation of higher-order cross-sections or marginalisation of many-parameter statistical models), is important to enable proper utilisation of experimental results.
-
-%One possible solution for establishing a more robust and consistent statistical interpretation would be to share between the recasting tools a single software package for the statistical calculations required since these are common for the typical reinterpretation studies.
-%Some tools, such as SModelS and MadAnalysis5, already share code for a few steps of their statistical analysis, but it is not a centralized effort. An example of such a multi-purpose statistical package is pyhf~\cite{pyhf}, which is publicly available and open source. With some coordination and further development, pyhf or a similar package could be used and maintained by the developers' reinterpretation tools to have a common statistical interpretation of the results produced by each tool.
 
 
 When it comes to reinterpretation of analyses results, the effort is often non-trivial and demands significant computing time. Therefore it is important to ensure reproducibility and  preservation of the results obtained.
