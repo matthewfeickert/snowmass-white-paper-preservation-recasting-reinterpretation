@@ -64,9 +64,10 @@ final:
 
 arXiv: realclean document
 	mkdir submit_to_arXiv
-	cp *.tex submit_to_arXiv
+	cp $(FILENAME).tex submit_to_arXiv
 	cp *.bbl submit_to_arXiv/ms.bbl
 	cp Makefile submit_to_arXiv
+	if [ -d src ]; then cp -r src submit_to_arXiv; fi
 	if [ -d latex ]; then cp -r latex submit_to_arXiv; fi
 	if [ -d figures ]; then cp -r figures submit_to_arXiv; fi
 	if [ -f *.sty ]; then cp *.sty submit_to_arXiv; fi
