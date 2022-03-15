@@ -69,6 +69,7 @@ arXiv: realclean document
 	cp Makefile submit_to_arXiv
 	if [ -d latex ]; then cp -r latex submit_to_arXiv; fi
 	if [ -d figures ]; then cp -r figures submit_to_arXiv; fi
+	if [ -f *.sty ]; then cp *.sty submit_to_arXiv; fi
 	mv submit_to_arXiv/main.tex submit_to_arXiv/ms.tex
 	# -i.bak is used for compatability across GNU and BSD/macOS sed
 	# Change the FILENAME to ms while ignoring commented lines
