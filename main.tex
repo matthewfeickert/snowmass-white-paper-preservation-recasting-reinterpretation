@@ -197,7 +197,7 @@ This paper focuses primarily on the LHC, but its recommendations apply to partic
 
 % \TODO{G. Watt: Would it be helpful to use the \href{https://opendata.cern.ch/docs/about}{DPHEP categories} from Level 1 (publication-related data) to Level 4 (raw event-level data)? SK: I don't think so; imo the DPHEP structure is not really appropriate for the points we make below. KLP: as discussed, I agree, I've commented on the DPHEP levels and added a brief introduction to what follows. See the paragraph below.}
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \begin{tcolorbox}
 \begin{center}
 {\large \textbf{Glossary of terms}}
@@ -392,7 +392,7 @@ are moving towards accumulating all information related to object and event proc
 \EDITOR{These next two paragraphs seem to be focusing on listing different examples of DSLs.
 While it is fine and enocuarged to cite all of these, I think it would be better for readers to be able to just get a high level summary of the types of DSLs and advantages.
 The shorter we can keep all these sections the better.}
-On the embedded DSL side, an early example is the \texttt{F.A.S.T.} framework~\cite{FAST} which incorporates a YAML-based DSL for analysis description, managing both analysis definitions and data processing. However most of the more recent developments feature Python. For example \texttt{NAIL} (Natural Analysis Implementation Language)~\cite{NAIL} is a declarative Python-based embedded DSL with a syntax resembling that of ROOT framework's RDataFrame (RDF)~\cite{enrico_guiraud_2017_26023}, and that can be converted to an RDF-based C++ code.  Another Python-based DSL linked to RDF is defined within the bamboo framework~\cite{David:2021ohq}.  One more declarative example within Python is FuncADL, which is inspired by functional programming and query languages~\cite{Proffitt:2021wfh}.
+On the embedded DSL side, an early example is the \texttt{F.A.S.T.} framework~\cite{FAST} which incorporates a YAML-based DSL for analysis description, managing both analysis definitions and data processing. However most of the more recent developments feature Python. For example \texttt{NAIL} (Natural Analysis Implementation Language)~\cite{NAIL} is a declarative Python-based embedded DSL with a syntax resembling that of ROOT framework's RDataFrame (RDF)~\cite{enrico_guiraud_2017_260230}, and that can be converted to an RDF-based C++ code.  Another Python-based DSL linked to RDF is defined within the bamboo framework~\cite{David:2021ohq}.  One more declarative example within Python is FuncADL, which is inspired by functional programming and query languages~\cite{Proffitt:2021wfh}.
 
 On the external DSL side, the most developed example is ADL (Analysis Description Language)~\cite{adlweb, Unel:2021edl}, which originated from a community-based effort called LHADA (Les Houches Analysis Description Accord)~\cite{Brooijmans:2016vro} and CutLang~\cite{Sekmen:2018ehb}, a parallel effort focused on testing the runtime interpretability of external DSLs. ADL organizes the analysis description in multiple blocks separating object, variable and event selection definitions, and has keywords specifying analysis concepts and operations. 
 ADL can be executed by any framework capable of parsing its syntax, among which, the most advanced is the runtime interpreter CutLang. The LHC analyses implemented by ADL are currently preserved in a GitHub database~\cite{adllhcanl}. ADL together with CutLang provide a functioning example of lightweight preservation. There also exists a toy language called PartiQL, designed to demonstrating features that would be a radical departure from general-purpose languages, addressing problems specific to particle physics~\cite{PartiQL}. 
@@ -435,33 +435,18 @@ One should note however that HEP analyses are not always fully domain-specific a
 \noindent
 \textbf{Recommendations:}
 
-%\TODO{Need to rework recommendations as discussed: a first point on the crucial role of common standards and interoperability to reduce fragmentation and duplication of effort; followed by specific statements on concrete actions needed in full-detail and lightweight preservation, and for completion/uptake of ADLs. Points 3.3 and 3.4 should be merged; all points should be less vague.}
-
-\TODO{Update by AB: please re-check that these are representative of author-group opinion and cover the necessary points.}
+\COMMENT{Update by AB: please re-check that these are representative of author-group opinion and cover the necessary points.}
 
 \begin{description}
    \item[3.1:] Ensure use of interoperable systems to maximise the preservability and reusablility of experiment simulation and analysis software chains. This includes use of open version-control and archiving systems, containerisation, an effort to establish common software interfaces and data formats, and commitments to long-term archiving support from experimental collaborations and their host laboratories.
    
-   %   Use software version control and archiving systems for long-term preservation beyond the experiment lifetime.
-   %   During the lifetime of the experiments, this is the responsibility of the experimental collaborations and, beyond that, one of the host laboratories.
-   %   \item[3.2:] Encourage the support and use of common and portable analysis tools, making analyses more reproducible.
-   %
-    % Kyle: It seems there are two ideas here. One is to simplify / approximate analysis done in current approaches. Other is to develop analysis tools (e.g., declarative specifications) that are easier to use, more portable, and reproducible. 
    \item[3.2:] Ensure that all operational and in-preparation experiments have a planned and resourced programme for capture and long-term reproduction of their complete computational processing chain, including validation testing.
    
-   %   \textbf{Recommendation summary from Sezen - can merge parts into 3.2:} Explore ways to filter the physics content of analyses and present them explicitly in full detail using a clear, concise, and systematic description for preservation. The description should be self-documenting and easily recognizable and understandable by particle physicists from different domains and generations.  
    \item[3.3:] Ensure that release of MC-event analysis preservation logic via public frameworks and for whole-community use is integrated with experiment publication and data-release processes, to maximise analysis impact.
    \item[3.4:] Support continuing development and uptake of new technologies for increasingly framework-independent analysis specifications, such as via declarative domain-specific analysis languages.
+   %   \textbf{Recommendation summary from Sezen} Explore ways to filter the physics content of analyses and present them explicitly in full detail using a clear, concise, and systematic description for preservation. The description should be self-documenting and easily recognizable and understandable by particle physicists from different domains and generations.  
    
-   %   Describe physics analyses in a declarative, executable, and translatable form so that they are reproducible independent of the experiment software.
-   %   % Sezen: Make sure the analyses can be communicated as clearly as possible.
-   % Sabine: This also improves knowledge transfer.
-   % Andy: I think this part needs to be more explicit about analysis logic in a operational form that complements the full-detail preservation of Item~3.2, i.e.~in, a form that can either be run directly on MC events or can be translated into a runnable form (cf.~ADL).
-   % Matthew: How to describe things like ADL (declarative) and \rivet (a specific implementation) with common words (not saying these things by name)?
 \end{description}
-
-
-%\COMMENT{SK: these recommendations very much need to be revised; at present they are ambiguous and it s really hard to grasp their intention. See also TODO box above.}
 
 %-------------------------------------------------------------
 \section{Preservation of data products}
@@ -473,15 +458,10 @@ Such data products are also called publication-related or ``Level 1'' data in th
 \href{https://opendata.cern.ch/docs/about}{DPHEP categories}. 
 They include observed and expected event counts  (including error sources), efficiency functions,  bin-to-bin correlations, profile likelihoods, full statistical models, signal efficiencies, simplified model results, and much more, 
 as discussed extensively in Refs.~\cite{LHCReinterpretationForum:2020xtr,Cranmer:2021urp}.
-%\emph{What} should be provided to enable a pertinent re-use is discussed extensively in Refs.~\cite{LHCReinterpretationForum:2020xtr,Cranmer:2021urp}, so we do not go into more details here. 
 
-%Moreover,  \hepdata has long been established as the platform of choice for this purpose by the large collaborations.
-% G. Watt: added the paragraph below on HEPData scope, infrastructure, and limitations, hastily written. Happy to provide more input if requested.
 With regards to publication infrastructure, 
 \hepdata~\cite{hepdata} is the primary open-access repository for %publication-related (``Level 1'')
 data products from particle physics experiments, with a long history going back to the 1970s.
-% The \hepdata project underwent a complete transformation in 2017 to a new platform (\url{hepdata.net}) hosted on CERN computing infrastructure~\cite{hepdata}.
-% Another transition was made in 2020 to deploy the web application via a Docker image on a Kubernetes cluster shared with the INSPIRE-HEP project.
 Funding is provided by the UK Science and Technology Facilities Council (STFC) to Durham University (UK) for staff to maintain the operation of the \href{https://www.hepdata.net/}{hepdata.net} site, provide user support, and develop the open source software (available on the \href{https://github.com/HEPData}{\hepdata GitHub organisation}) underlying the web application.
 
 In the past, \hepdata staff at Durham University handled data preparation in a standard format and uploaded it to the repository.
@@ -493,7 +473,6 @@ However, moderately large tables or non-tabular data files can be attached to a 
 The original files are downloadable, but the interactive nature is lost.
 \hepdata imposes an overall size limit of 50 MB on the uploaded archive file to avoid problems caused by the attempted upload. 
 %
-%Publication-related (``Level 1'') high-energy physics data that is 
 Data products that are not suitable for \hepdata, due to either being too large or predominantly in a non-tabular format, might be submitted to another data repository like \href{https://zenodo.org/}{Zenodo}.
 Zenodo currently plugs a gap to host data (and software) that does not fit into other repositories.%
 \footnote{This concerns also model files, Monte Carlo simulation, and data products from phenomenological studies.}
