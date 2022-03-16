@@ -65,21 +65,33 @@ final:
 arXiv: realclean document
 	mkdir submit_to_arXiv
 	cp $(FILENAME).tex submit_to_arXiv
-	cp *.bbl submit_to_arXiv/ms.bbl
+	if [ -f $(FILENAME).bbl ]; then cp $(FILENAME).bbl submit_to_arXiv/ms.bbl; fi
 	cp Makefile submit_to_arXiv
+
 	if [ -d src ]; then cp -r src submit_to_arXiv; fi
 	if [ -d latex ]; then cp -r latex submit_to_arXiv; fi
 	if [ -d figures ]; then cp -r figures submit_to_arXiv; fi
 	if [ -f *.sty ]; then cp *.sty submit_to_arXiv; fi
-	mv submit_to_arXiv/main.tex submit_to_arXiv/ms.tex
+
+	# Glossary support
+	if [ -f .latexmkrc ]; then cp .latexmkrc submit_to_arXiv; fi
+	if [ -f $(FILENAME).gls ]; then cp $(FILENAME).gls submit_to_arXiv/ms.gls; fi
+
+	mv submit_to_arXiv/$(FILENAME).tex submit_to_arXiv/ms.tex
+
 	# -i.bak is used for compatability across GNU and BSD/macOS sed
 	# Change the FILENAME to ms while ignoring commented lines
 	sed -i.bak '/^ *#/d;s/#.*//;0,/FILENAME/s/.*/FILENAME = ms/' submit_to_arXiv/Makefile
+
 	# Remove hyperref for arXiv
-	sed -i.bak '/{hyperref}/d' submit_to_arXiv/ms.tex
+	# sed -i.bak '/{hyperref}/d' submit_to_arXiv/ms.tex
+	sed -i.bak '/{hyperref}/d' submit_to_arXiv/latex/packages.tex
+
 	find submit_to_arXiv/ -name "*.bak" -type f -delete
+
 	# arXiv requires .bib files to be compiled to .bbl files and will remove any .bib files
 	find submit_to_arXiv/ -name "*.bib" -type f -delete
+
 	tar -zcvf submit_to_arXiv.tar.gz submit_to_arXiv/
 	rm -rf submit_to_arXiv
 	$(MAKE) realclean
