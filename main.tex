@@ -11,6 +11,8 @@
 
 % preprint number data:
 \newcommand\pubnumber{DRAFT}
+% Toggle commenting to disallow/allow line numbers.
+\linenumbers
 \newcommand\pubdate{\today}
 
 \input{latex/commands.tex}
@@ -19,9 +21,6 @@
 
 \loadglsentries{latex/glossary}
 \makeglossaries
-
-% Toggle commenting to disallow/allow line numbers.
-\linenumbers
 
 % DEADLINES
 % 15 January 2022: Please provide an abstract and short outline of your white paper contribution to TF07 conveners
@@ -94,7 +93,7 @@ COMPF7 (Reinterpretation and long-term preservation of data and code)}
 
 \begin{center}
 % name\,\orcidlink{0000-XXXX-XXXX-XXXX}\textsuperscript{1},
-Stephen~Bailey\,\orcidlink{0000-0003-4162-6619}\textsuperscript{1},   
+Stephen~Bailey\,\orcidlink{0000-0003-4162-6619}\textsuperscript{1}, 
 Christian~Bierlich\,\orcidlink{0000-0002-3978-6085}\textsuperscript{2},
 Andy~Buckley\,\orcidlink{0000-0001-8355-9237}\textsuperscript{3},
 Jon~Butterworth\,\orcidlink{0000-0002-5905-5394}\textsuperscript{4},
@@ -378,13 +377,13 @@ As in the cases of full analysis preservation and \rivet-based lightweight measu
 All current tools support standard MC-generator tools such as the HepMC event record. However, essential features such as propagation of systematic uncertainties via weight vectors are not wholly or consistently implemented, and MC generators also have not yet standardised weight-coding conventions. Placing emphasis again on standard interfaces will help speed the convergence of the reconstruction-level \gls{BSM} search tools in particular.
 
 While public, lightweight preservation of cut-and-count analyses is increasingly becoming standard, the preservation of analyses that employ \gls{ML} is still in its infancy. 
-Indeed there are very few examples of analyses where communicating machine-learned models has been tried. In particular, the \gls{CMS} all-hadronic search for supersymmetry~\cite{CMS:2017qxu} published a simplified version of their top-quark tagger~\cite{cms:toptagger}, which is based on a Random Forest decision tree, and the \gls{ATLAS} 0-lepton gluino/squark search~\cite{ATLAS:2020syg,Uno:2763449} published the \gls{BDT} weights of their event selection as \texttt{XML} files on HEPData~\cite{hepdata.95664.v2/r8}.  
+Indeed there are very few examples of analyses where communicating machine-learned models has been tried. Concretely, the \gls{CMS} all-hadronic search for supersymmetry~\cite{CMS:2017qxu} published a simplified version of their top-quark tagger, which is based on a Random Forest decision tree~\cite{cms:toptagger}, and the \gls{ATLAS} 0-lepton gluino/squark search~\cite{ATLAS:2020syg,Uno:2763449} published the \gls{BDT} weights of their event selection as \texttt{XML} files on HEPData~\cite{hepdata.95664.v2/r8}.  
 
 Standards exist for a degree of \gls{ML} interoperability, including the exchange of neural networks and \glspl{BDT}, e.g.~the 
 \gls{ONNX}~\cite{onnx} format or direct preservation of decision trees as framework-independent code, but their long-term stability is unclear; the inclusion of implementation-specific behaviours mean that for long-term preservation either exact versions of frameworks (often Python-specific) need to be re-used, or functionality limited to a minimal subset. Trained networks have bee published in \gls{ONNX} format by the \gls{ATLAS} search for $R$-parity-violating supersymmetry~\cite{ATLAS:2021fbt,hepdata.104860.v1/r3}; this is also included in the \gls{ATLAS} \simpleanalysis framework~\cite{atlas:simpleanalysis}. 
 However, detailed documentation of, e.g.~the input variables is missing, and it is unclear how to verify that physics objects from any given fast-simulation package will produce the intended \gls{ML} responses within acceptable uncertainties.
 
-Further development along these lines is highly needed. Successful sharing of a \gls{ML} model requires not only sharing the model itself (including architectures, weights, and complete specification of software dependencies) but also the detailed specification of the input data. See also the corresponding discussion in Ref.~\cite{snowmass:MLevts} in this context.
+Further development along these lines is highly needed. Successful sharing of an \gls{ML} model requires not only sharing the model itself (including architectures, weights, and complete specification of software dependencies) but also the detailed specification of the input data. See also the corresponding discussion in Ref.~\cite{snowmass:MLevts} in this context.
 
 
 % \TODO{Mention e.g.~Contur and MA Reint as reinterpretation layers on lightweight preservations. SK: yes for Contur, but in MA5 and Checkmate, this is integrated into the tool, see also text modifications above}
@@ -519,7 +518,7 @@ However, as use of \hepdata is not a particle physics wide community norm yet, c
 
 Often, instead of being provided on \hepdata, digitised results/plots are available only on collaboration web pages, without appropriate documentation, versioning, or other data stewardship.
 Sometimes, the linked ROOT files are wrong (not corresponding to the associated plot) or otherwise corrupted.
-Moreover, the digital material is missing altogether.
+In some cases, the digital material is missing altogether.
 Experience shows that missing or wrong resources can rarely be retrieved or corrected, as often the analysis team has disbanded with analyzers leaving the field, or the relevant files become lost. 
 Part of the problem is missing time and community recognition to providing material on \hepdata.
 The \href{https://indico.cern.ch/category/14155/}{RAMP} (``Reinterpretation: Auxiliary Material Presentation'') seminar series aims at providing more visibility and recognition for such efforts,  but more is needed for a 
@@ -530,7 +529,7 @@ As with \gls{analysis preservation}, current heavy-ion experiments have less com
 Regarding \hepdata itself, material beyond digitised plots (like MC run cards, input files for benchmark points, or, most importantly, statistical models) are ``additional resources'', often lumped together in compressed archives without any standard structure.
 The types of data products being preserved has become much richer and diverse than flat tables.
 To be able to provide the necessary infrastructure for all of these data products will require additional funding.
-There is room, and a clear need, for \gls{FAIR}-ification of these precious data products. 
+There is room, and a clear need, for \gls{FAIR}-ification of these precious material. 
 
 \begin{figure}[!ht]
 \begin{tcolorbox}
@@ -541,7 +540,7 @@ There is room, and a clear need, for \gls{FAIR}-ification of these precious data
 \begin{description}
    \item[4.1:] Make the provisioning of all \glspl{data product} associated with an experimental analysis a mandatory step for publication.
    Establishing appropriate person power, time, and community recognition is essential to that end.
-   \item[4.2:] Assure appropriate resources and funding for further development of the cyberinfrastructure, such as \hepdata and other repositories like Zenodo, to preserve the data products and metadata, and extend the current data structure to include more rich data products and information beyond paper plots and flat tables, e.g., statistical models, in an individually searchable and citeable form.
+   \item[4.2:] Assure appropriate resources and funding for further development of the cyberinfrastructure, such as \href{https://www.hepdata.net/}{\hepdata} and other repositories like \href{https://zenodo.org}{Zenodo}, to preserve the data products and metadata, and extend the current data structure to include more rich data products and information beyond paper plots and flat tables, e.g., statistical models, in an individually searchable and citeable form.
 \end{description}
 \end{tcolorbox}
 \caption{Recommendations for data preservation.}
@@ -618,7 +617,7 @@ A further motivation for facilitating collider reinterpretations in global analy
 
 When it comes to reinterpretation of analyses results, the effort is often non-trivial and demands significant computing time. Therefore it is important to ensure reproducibility and  preservation of the results obtained.
 The same platforms used for data product preservation (see~\Cref{data-products}) can also be used by the theory community to preserve the reinterpretation results and data.
-In particular, \href{https://zenodo.org/}{Zenodo} has already been used by a few groups to publish auxiliary material from phenomenological studies.
+In particular, \href{https://zenodo.org/}{Zenodo} has already been used by a few groups to publish auxiliary material from phenomenological studies, see e.g.~\cite{zenodo:LHCreinterpretation,zenodo:gambit}.
 It is also important that the tools used for obtaining the results are properly documented and \emph{versioned} in order to allow for future reproducibility.
 This policy should be largely encouraged within the theory community.
 
