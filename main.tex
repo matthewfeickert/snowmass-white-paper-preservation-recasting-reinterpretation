@@ -202,23 +202,25 @@ This paper focuses primarily on the \gls{LHC}, but its recommendations apply to 
 
 % \TODO{G. Watt: Would it be helpful to use the \href{https://opendata.cern.ch/docs/about}{DPHEP categories} from Level 1 (publication-related data) to Level 4 (raw event-level data)? SK: I don't think so; imo the DPHEP structure is not really appropriate for the points we make below. KLP: as discussed, I agree, I've commented on the DPHEP levels and added a brief introduction to what follows. See the paragraph below.}
 
+\TODO{Giordon: Reintepretation/recasting should be basically the same thing? Not sure how to refine it separately. Whatever you do here, also fix it in the glossary.}
+
 \begin{figure}[!ht]
 \begin{tcolorbox}
 \begin{center}
 {\large \textbf{Glossary of terms}}
 \end{center}
 %
-\begin{itemize}
-    \item \textbf{\Gls{data}}: In the context of this paper, this refers explicitly to data recorded from experiments that has been passed through the experiment's event reconstruction.
-    \item \textbf{\Gls{derived data}}: Data that has passed through a size reduction step that prunes information, but which might also add additional calculated quantities to the data files.
-    \item \textbf{\Glspl{data product}}: All files containing selections of derived data and synthesized information from the various stages of an analysis.
+\begin{description}
+    \item[1.1:] \textbf{\Gls{data}}: In the context of this paper, this refers explicitly to data recorded from experiments that has been passed through the experiment's event reconstruction.
+    \item[1.2:] \textbf{\Gls{derived data}}: Data that has passed through a size reduction step that prunes information, but which might also add additional calculated quantities to the data files.
+    \item[1.3:] \textbf{\Glspl{data product}}: All files containing selections of derived data and synthesized information from the various stages of an analysis.
 These might include summary plots and tables, histograms of kinematic distributions, fiducial cross sections, cross section limits, simplified model results, correlation information, analysis statistical workspace binaries or full statistical models, etc.
-    \item \textbf{\Gls{data preservation}}: The procedures, practices, and standards of ensuring the long-term (i.e., decades beyond the end of an experiment) preservation, accessibility, and usability of data and derived data from experiments.
-    \item \textbf{\Gls{analysis preservation}}: The procedures, practices, and standards of ensuring the long-term preservation, accessibility, and usability of information necessary to repeat an experimental analysis (starting from its associated preserved data) and generate all associated \glspl{data product}.
+    \item[1.4:] \textbf{\Gls{data preservation}}: The procedures, practices, and standards of ensuring the long-term (i.e., decades beyond the end of an experiment) preservation, accessibility, and usability of data and derived data from experiments.
+    \item[1.5:] \textbf{\Gls{analysis preservation}}: The procedures, practices, and standards of ensuring the long-term preservation, accessibility, and usability of information necessary to repeat an experimental analysis (starting from its associated preserved data) and generate all associated \glspl{data product}.
     As discussed in~\Cref{sec:analysis-preservation}, there are multiple levels of analysis preservation fidelity with distinct advantages and trade offs.
-    \item \textbf{\Gls{reinterpretation}}: Any type of new or updated interpretation of an experimental analysis or result, including the combination in, e.g., global fits or global averages. 
-    \item \textbf{\Gls{recasting}}: Kinematic reinterpretation (kinematic distributions change....) %% to be refined
-\end{itemize}
+    \item[1.6:] \textbf{\Gls{reinterpretation}}: Any type of new or updated interpretation of an experimental analysis or result, including the combination in, e.g., global fits or global averages. 
+    \item[1.7:] \textbf{\Gls{recasting}}: Kinematic reinterpretation (kinematic distributions change....) %% to be refined
+\end{description}
 \end{tcolorbox}
 \caption{Definitions of a few key terms used in this paper.}
 \label{fig:glossary}
@@ -286,14 +288,21 @@ There are many successful data-preservation efforts in the \gls{LEP} and \gls{HE
 
 Building a community of users for these data is paramount to making open data initiatives successful. The theory community is a critical player in this, and promoting open data despite the substantial work required in their analysis is a strong demonstration of their value and an invaluable validation effort for their usability for future generations.
 
-\noindent
-\textbf{Recommendations:}
+\begin{figure}[!ht]
+\begin{tcolorbox}
+\begin{center}
+{\large \textbf{Open Data Recommendations}}
+\end{center}
+%
 \begin{description}
    \item[2.1:] Agree on \gls{data preservation} and public event-data releases as a means to maximize scientific outcomes, and allocate resources and responsibilities to achieve this goal in the experiments' organization.    \item[2.2:] Give long-term custodial responsibility of public \gls{data} to the host laboratory or an organization that persists beyond the experiment's lifetime and uses common distribution platforms with other experiments.
    \item[2.3:] Incorporate preparing \gls{data} for public releases and invest in preserving the knowledge needed for their use in the data processing and analysis operations and facilities.
    \item[2.4:] Encourage and promote the use of open data to explore and improve usability and to ensure that all necessary information for research-level use is available.
 \end{description}
-
+\end{tcolorbox}
+\caption{Recommendations for data preservation.}
+\label{fig:recs_opendata}
+\end{figure}
 
 
 %-------------------------------------------------------------
@@ -333,9 +342,11 @@ As a part of these tests, container images (e.g.~Docker~\cite{docker}, Podman~\c
 % \TODO{AB, question for Matthew et al: Do preserved analyses provide enough metadata that workflow tools can figure out commonalities of simulation and reconstruction versions/geometries between analyses and avoid repeating common steps?\\
 % @Andy: No, preserved analyses are starting from derived datasets (to use our ATLAS jargon, DAODS), so I think the things that you're asking about would come before the derivations are created.}
 
-%\TODO{Standardising output format for direct comparability to \hepdata data products?} -- covered by Recommendation 3.1
+%\TODO{Standardising output format for direct comparability to \hepdata data products?} 
+% Giordon: this seems to be covered by Recommendation 3.1
 
-\TODO{Comment on the ability/limitations/approximations for ``updating'' contributing processes in preserved analyses. I.e.~there are clear use-cases for updating either a background process (nominal or whole-model) to a more precise one published since the original publication or to update or inject a signal model to any number of alternative hypotheses. It would require re-fitting for a perfect result, but even a no-refit approximation would be valuable.}
+%\TODO{Comment on the ability/limitations/approximations for ``updating'' contributing processes in preserved analyses. I.e.~there are clear use-cases for updating either a background process (nominal or whole-model) to a more precise one published since the original publication or to update or inject a signal model to any number of alternative hypotheses. It would require re-fitting for a perfect result, but even a no-refit approximation would be valuable.}
+% Giordon: This comment doesn't make a lot of sense, or rather, it's not thinking deeply enough. For example, RECAST just allows you to process any particular sample through the existing machinery, so there's no particular limitations there. An issue might be if the sample is too new or has theory systematics that didn't exist at the time the software was defined. Another issue is that the new sample might have systematics correlated in a different way than other backgrounds in a statistical fit, and at that point, you're more of a mix of RECAST+workspace-modification. As it stands, I'm going to comment out the TODO since I don't think it's something that can be easily generalizable or benefits anyone to make such a sweeping statement for something that really has to be handled on a case-by-case basis.
 
 % In ATLAS, there are ongoing efforts for complete preservation of the experiment analyses in the Supersymmetry, Exotics, and Higgs and Diboson working groups through the \recast system implemented through \href{https://github.com/recast-hep/recast-atlas}{recast-atlas} (\NB{Currently have \texttt{recast-atlas} under collaboration-internal instead of public, as even though the code is open source you still need EOS access at CERN. So it is more ``CERN public'' than ``true public''.})
 
@@ -437,21 +448,32 @@ Therefore, the third facet of \gls{analysis preservation} is to encode an abstra
 % \QUESTION{At the moment, is there any document that links all of these together? If not, can we link them very concisely here?}
 % \TODO{RiF status \& recommendations report? SK: no, not really: the RiF report focuses on data products needed for reproducibility and public recasting tools, not [collaboration-internal] analysis preservation per se.}
 
-\noindent
-\textbf{Recommendations:}
+% \COMMENT{Update by AB: please re-check that these are representative of author-group opinion and cover the necessary points.}
+% Giordon: Checked and tweaked a bit to fit the rest of Section 3 better
 
-\COMMENT{Update by AB: please re-check that these are representative of author-group opinion and cover the necessary points.}
-
+\begin{figure}[!ht]
+\begin{tcolorbox}
+\begin{center}
+{\large \textbf{Analysis Preservation Recommendations}}
+\end{center}
+%
 \begin{description}
-   \item[3.1:] Ensure use of interoperable systems to maximise the preservability and reusablility of experiment simulation and analysis software chains. This includes use of open version-control and archiving systems, containerisation, an effort to establish common software interfaces and data formats, and commitments to long-term archiving support from experimental collaborations and their host laboratories.
+   \item[3.1:] Ensure use of interoperable systems to maximise the preservability and reusablility of experiment simulation and analysis software chains. This includes the use of version control, archival systems, containerisation, common software interfaces and data formats, and commitments from experimental collaborations and their host laboratories to maintain documentation and provide long-term support.
    
    \item[3.2:] Ensure that all operational and in-preparation experiments have a planned and resourced programme for capture and long-term reproduction of their complete computational processing chain, including validation testing.
    
-   \item[3.3:] Ensure that release of MC-event \gls{analysis preservation} logic via public frameworks and for whole-community use is integrated with experiment publication and data-release processes, to maximise analysis impact.
+   \item[3.3:] Ensure that release of \gls{analysis preservation} logic via public frameworks for the community to use is integrated with experiment publication and data-release processes, to maximise analysis impact. This also includes providing clear documentation and making all dependent frameworks available and documented for community consumption.
+
    \item[3.4:] Support continuing development and uptake of new technologies for increasingly framework-independent analysis specifications, such as via declarative domain-specific analysis languages.
+
    %   \textbf{Recommendation summary from Sezen} Explore ways to filter the physics content of analyses and present them explicitly in full detail using a clear, concise, and systematic description for preservation. The description should be self-documenting and easily recognizable and understandable by particle physicists from different domains and generations.  
    
 \end{description}
+\end{tcolorbox}
+\caption{Recommendations for analysis preservation.}
+\label{fig:recs_analysispreservation}
+\end{figure}
+
 
 %-------------------------------------------------------------
 \section{Preservation of data products}
@@ -486,7 +508,7 @@ A new \gls{HEP}-specific instance of Zenodo could perhaps better serve the parti
 
 Reporting of results on \hepdata has become a standard procedure in the \gls{LHC} community, with \gls{ATLAS}, \gls{CMS}, \gls{ALICE}, and \gls{LHCb} all providing the results and data products from publications.
 This is also increasingly the case in the heavy-ion community with the \gls{STAR}, \gls{PHENIX}, and NA61/SHINE collaborations publishing their data products to \hepdata as well in recent years.
-However, as use of \hepdata is not a particle physics wide community norm yet, coverage remains incomplete\footnote{Even in \gls{ATLAS} and \gls{CMS}} and will continue to until there are cultural shifts, as the heavy ion community has recently experienced.
+However, as use of \hepdata is not a particle physics wide community norm yet, coverage remains incomplete\footnote{Even in \gls{ATLAS} and \gls{CMS}.} and will continue to until there are cultural shifts, as the heavy ion community has recently experienced.
 
 Often, instead of being provided on \hepdata, digitized results/plots are available only on collaboration web pages, without appropriate documentation, versioning, or other data stewardship.
 Sometimes, the linked ROOT files are wrong (not corresponding to the associated plot) or otherwise corrupted.
@@ -503,16 +525,21 @@ The types of data products being preserved has become much richer and diverse th
 To be able to provide the necessary infrastructure for all of these data products will require additional funding.
 There is room, and a clear need, for \gls{FAIR}-ification of these precious data products. 
 
-\noindent
-\textbf{Recommendations:}
+\begin{figure}[!ht]
+\begin{tcolorbox}
+\begin{center}
+{\large \textbf{Data Preservation Recommendations}}
+\end{center}
+%
 \begin{description}
    \item[4.1:] Make the provisioning of all \glspl{data product} associated with an experimental analysis a mandatory step for publication.
    Establishing appropriate person power, time, and community recognition is essential to that end.
    \item[4.2:] Assure appropriate resources and funding for further development of the cyberinfrastructure, such as \hepdata and other repositories like Zenodo, to preserve the data products and metadata, and extend the current data structure to include more rich data products and information beyond paper plots and flat tables, e.g., statistical models, in an individually searchable and citeable form.
 \end{description}
-
-
-
+\end{tcolorbox}
+\caption{Recommendations for data preservation.}
+\label{fig:recs_datapreservation}
+\end{figure}
 
 % -------------------------------------------
 
@@ -572,7 +599,8 @@ long-lived particle \gls{recasting} community, which created a centralized locat
 %This repository has been shown to be useful for the community and helped to include the recasting of LLP searches in public tools.
 In addition, whenever possible, it would be helpful to adopt a few validation guidelines to allow for a proper estimate of the recasting uncertainties introduced by each analysis implementation.
 As a second step, adopting basic standards for the input and output formats would also help the user to efficiently use distinct tools.
-\COMMENT{AL: What else? For me, it seems that achieving a common analysis implementation code would require some big steps, such as rewriting all the existing tools, writing parsers, keeping the backwards compatibility, etc. I couldn't come up with small steps to be taken here.}
+%\COMMENT{AL: What else? For me, it seems that achieving a common analysis implementation code would require some big steps, such as rewriting all the existing tools, writing parsers, keeping the backwards compatibility, etc. I couldn't come up with small steps to be taken here.}
+% Giordon: This is the point here -- big steps need to be taken to really push the community towards harmonization. Small steps only work when you've agreed on some set of standards.. but we haven't gotten there yet... 
 
 Another vital aspect of reinterpretation is the statistical treatment of the results. In recent years, the amount of information provided by experimental collaborations has increased significantly, allowing for a more robust statistical interpretation in phenomenological studies. However, to take full advantage of these new developments, it would be desirable to coordinate and unify the statistical output format and treatment within the specific recasting tools to have a common ground for comparison. Another critical aspect to be taken into account is the possibility for a global analysis of the results. Such an approach is taken by the GAMBIT Collaboration, which combines results from distinct experiments~\cite{Kvellestad:2019vxm}, while the combination of multiple \gls{LHC} analyses has recently been used by the ``protomodelling'' project in Ref.~\cite{Waltenberger:2020ygp}. Such global analyses could, in principle, combine results from different recasting tools.
 To help in this direction the statistical analysis should be factorized as much as possible within each tool, allowing for interoperability. In addition,  standards and guidelines could be established for presenting the results and providing the required output for the statistical interpretation.
@@ -605,21 +633,33 @@ This policy should be largely encouraged within the theory community.
 %
 %(finish with recommendations)
 
-\noindent
-\textbf{Recommendations:}
+\begin{figure}[!ht]
+\begin{tcolorbox}
+\begin{center}
+{\large \textbf{Reinterpretation Recommendations}}
+\end{center}
+%
 \begin{description}
    \item[5.1:] Encourage that reinterpretability and reuse be kept in mind early on in the analysis design. This concerns, for instance, the choice of input parameters in \gls{ML} models, or the choice of non-overlapping regions and standard naming of shared nuisances to facilitate the combination of analyses.
    \item[5.2:] Improve the coordination among the different public reinterpretation frameworks  with the goal of a centralized database of recast code and a unified statistical treatment.
-   \item[5.3:] Encourage the \gls{FAIR}-ification of code and \glspl{data product} from (theory) reinterpretation studies outside the experimental collaborations at the same level of sophistication as asked for experimental analyses and results. Suitable repositories are, e.g., Github and Zenodo; appropriate versioning is essential.
+   \item[5.3:] Encourage the \gls{FAIR}-ification of code and \glspl{data product} from (theory) reinterpretation studies outside the experimental collaborations at the same level of sophistication as asked for experimental analyses and results. Suitable repositories are, e.g., GitHub and Zenodo; appropriate versioning is essential.
 \end{description}
-
+\end{tcolorbox}
+\caption{Recommendations for reinterpretation.}
+\label{fig:recs_reinterpretation}
+\end{figure}
 
 %-------------------------------------------------------------
 \section{Conclusions}
 %-------------------------------------------------------------
 
-\TODO{Add! Can be brief}
-(Matthew will start on these in a bit after coffee. Feel free to beat me to it Giordon)
+% \TODO{Add! Can be brief}
+% (Matthew will start on these in a bit after coffee. Feel free to beat me to it Giordon)
+
+The recommendations we put forth in this paper are designed to give the particle physics community actionable steps in ensuring robust preservation of data, analysis logic, and tools that will allow us to get the most scientific value possible out of the rich data and data products from the experiments.
+One primary goal is to reduce the amount of overhead by our colleagues in \gls{HEP}, either in re-reproducing existing analysis logic, or having to re-derive or re-produce data products that should have already been made more accessible from the start.
+For example, by looking towards harmonisation of analysis logic, experimental collaborations could begin automatising the data products necessary for reinterpreation and reusability, and reduce the burden on their colleagues.
+Our recommendations in~\Cref{fig:recs_opendata,fig:recs_analysispreservation,fig:recs_datapreservation,fig:recs_reinterpretation} will require being enacted at the start of the design and planning phases for experiments and analyses, and provisioned with appropriate resources and funding. These guidelines will allow for the testing of models in new physics regimes for decades to come through reinterpretation and recasting of published experimental results.
 
 %-------------------------------------------------------------
 \section*{Acknowledgments}
