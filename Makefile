@@ -84,6 +84,7 @@ arXiv: realclean document
 	sed -i.bak '/^ *#/d;s/#.*//;0,/FILENAME/s/.*/FILENAME = ms/' submit_to_arXiv/Makefile
 
 	# Remove hyperref for arXiv
+	# N.B. Need to manually set the file to edit for the time being
 	# sed -i.bak '/{hyperref}/d' submit_to_arXiv/ms.tex
 	sed -i.bak '/{hyperref}/d' submit_to_arXiv/latex/packages.tex
 
