@@ -1,3 +1,4 @@
+\pdfoutput=1
 \PassOptionsToPackage{x11names,svgnames}{xcolor}
 \usepackage[utf8]{inputenc}
 \usepackage{cite}  % in text chain sequential citations in bibliography with a dash
@@ -7,8 +8,18 @@
 \usepackage{tcolorbox}
 %\usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{url}
-\usepackage[colorlinks = true, linkcolor = blue, urlcolor  = blue, citecolor = blue, anchorcolor = blue]{hyperref}
-
+\usepackage[breaklinks,
+    colorlinks=true,
+    urlcolor=blue,
+    anchorcolor=blue,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    menucolor=blue,
+    linktocpage=true,
+    pdfproducer=medialab,
+    pdfa=true
+]{hyperref}
 \usepackage{xspace}
 \usepackage{orcidlink}
 \usepackage{lineno}

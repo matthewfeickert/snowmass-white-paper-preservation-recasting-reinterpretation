@@ -74,7 +74,6 @@ arXiv: realclean document
 	if [ -f *.sty ]; then cp *.sty submit_to_arXiv; fi
 
 	# Glossary support
-	if [ -f .latexmkrc ]; then cp .latexmkrc submit_to_arXiv; fi
 	if [ -f $(FILENAME).gls ]; then cp $(FILENAME).gls submit_to_arXiv/ms.gls; fi
 
 	mv submit_to_arXiv/$(FILENAME).tex submit_to_arXiv/ms.tex
