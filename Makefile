@@ -72,6 +72,8 @@ arXiv: realclean document
 	if [ -d latex ]; then cp -r latex submit_to_arXiv; fi
 	if [ -d figures ]; then cp -r figures submit_to_arXiv; fi
 	if [ -f *.sty ]; then cp *.sty submit_to_arXiv; fi
+	# https://arxiv.org/help/00README
+	if [ -f 00README.XXX ]; then cp 00README.XXX submit_to_arXiv; fi
 
 	# Glossary support
 	if [ -f $(FILENAME).gls ]; then cp $(FILENAME).gls submit_to_arXiv/ms.gls; fi
@@ -84,8 +86,9 @@ arXiv: realclean document
 
 	# Remove hyperref for arXiv
 	# N.B. Need to manually set the file to edit for the time being
+	# N.B. Currently fixed by 00README.XXX
 	# sed -i.bak '/{hyperref}/d' submit_to_arXiv/ms.tex
-	sed -i.bak '/{hyperref}/d' submit_to_arXiv/latex/packages.tex
+	# sed -i.bak '/{hyperref}/d' submit_to_arXiv/latex/packages.tex
 
 	find submit_to_arXiv/ -name "*.bak" -type f -delete
 
