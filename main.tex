@@ -109,8 +109,8 @@ We also discuss technical challenges and infrastructure needs, as well as sociol
 \section{Introduction}
 %-------------------------------------------------------------
 
-The scientific value of the output from analyses performed at experiments at the \gls{LHC} and other collaborations is immense.
-To maximise the value of the data obtained and the analyses performed, it is imperative that there are strategic community plans in practice for the reuse and reinterpretation of the analyses and all of their associated data products.
+The scientific value of the output from analyses performed at experiments in \gls{HEP} is immense.
+To maximise the scientific return of the data obtained and the analyses performed, it is imperative that there are strategic community plans in practice for the reuse and reinterpretation of the analyses and all of their associated data products.
 Enabling reuse and the ability to explore not-yet-thought-of-theories in the long-term future (i.e., on the 10 to 50-year time scale) needs to become a community priority.
 The benefits extend beyond improving and extending searches for new physics, and also allow for testing models in new physics regimes --- e.g. the tuning of strong-interaction models at planned colliders like the \gls{EIC}.
 This will require reuse and preservation to become parts of the planning process for future analyses, and additionally be incorporated into the operations and facilities planning for future experiments, as well as for the phenomenology community, who will need to be major shareholders in this work.
@@ -140,8 +140,8 @@ This paper focuses primarily on the \gls{LHC}, but its recommendations apply to 
 \end{center}
 %
 \begin{description}
-    \item[1.1:] \textbf{\Gls{data}}: In the context of this paper, this refers explicitly to data recorded from experiments that has been passed through the experiment's event reconstruction.
-    \item[1.2:] \textbf{\Gls{derived data}}: Data that has passed through a size reduction step that prunes information, but which might also add additional calculated quantities to the data files.
+    \item[1.1:] \textbf{\Gls{data}}: In the context of this paper, this refers explicitly to data recorded from experiments that have been passed through the experiment's event reconstruction.
+    \item[1.2:] \textbf{\Gls{derived data}}: Data that have passed through a size reduction step that prunes information, but which might also add additional calculated quantities to the data files.
     \item[1.3:] \textbf{\Glspl{data product}}: All files containing selections of derived data and synthesised information from the various stages of an analysis.
 These might include summary plots and tables, histograms of kinematic distributions, fiducial cross sections, cross section limits, simplified model results, correlation information, analysis statistical workspace binaries or full statistical models, etc.~\cite{Cranmer:2021urp}
     \item[1.4:] \textbf{\Gls{data preservation}}: The procedures, practices, and standards of ensuring the long-term (i.e., decades beyond the end of an experiment) preservation, accessibility, and usability of data and derived data from experiments.
@@ -167,12 +167,10 @@ Following the positive experience and feedback from the open releases of recorde
 
 Data released through the \gls{CERN} Open Data portal satisfy \gls{FAIR} principles for scientific data management~\cite{FAIR-paper} for data and metadata to a large extent. Due to the complexity of experimental particle physics data, the \gls{FAIR} principles alone do not guarantee the reusability of these data, and additional effort is needed to pass on the knowledge needed to use and interpret them correctly. In large experiments, collaboration members benefit from the existing knowledge infrastructure (meetings, discussion forums, mentoring, specific groups responsible for providing data assets needed for physics analysis, and more) that is unavailable to external users or long-term. 
 
-Early testing is of utmost importance to ensure that the open data is ready for physics research and that all necessary additional information is captured, stored, and provided. Therefore, \gls{CMS} emphasises releasing data relatively early after the data-taking. External users' feedback and questions indicate the eventual missing data assets and lack of information. The release can complement them while the expertise on these data is still present in the collaboration. To encourage the use of open data and to get direct feedback, the \gls{CMS} Open Data group is organizing regular workshops with hands-on tutorials. It is essential to reach out to a diverse user community, from newcomers to seniors with different computing backgrounds and physics skills. While the \gls{CMS} Open Data group is looking forward to organizing the next workshop in presence, the value of remote, virtual events with many participants who would not have been able to travel is acknowledged.
+Early testing is of utmost importance to ensure that the open data are usable for physics research and that all necessary additional information is captured, stored, and provided. Therefore, \gls{CMS} emphasises releasing data relatively early after the data-taking. External users' feedback and questions indicate the eventual missing data assets and lack of information. The release can then be complemented while the expertise on these data is still present in the collaboration. To encourage the use of open data and to get direct feedback, the \gls{CMS} Open Data group is organizing regular workshops with hands-on tutorials. It is essential to reach out to a diverse user community, from newcomers to seniors with different computing backgrounds and physics skills. While the \gls{CMS} Open Data group is looking forward to organizing the next workshop in presence, the value of remote, virtual events with many participants who would not have been able to travel is acknowledged.
 
 Setting up example analysis workflows is one of the priorities for making open data reusable. They should demonstrate all necessary steps from data access and selection to any eventual corrections and address the particularities of experimental data, such as estimating efficiencies and uncertainties. Activities for preserving analysis workflows internally in the collaboration will facilitate building such workflows. In use with open data, the software container technology is suitable for automating workflows. The experience gained with them can be used for current analyses within the collaboration.
 
-
-%Can someone check this please:
 There have been successful data-preservation efforts in the \gls{LEP} and \gls{HERA} experiments. However, no public access to these data exists in terms defined in the \gls{CERN} data policy for the \gls{LHC} experiments. Access to preserved data is made possible through different modalities, such as joining or working with collaboration members. The \gls{BABAR} collaboration has decided to make its data available for future analyses through the \gls{CERN} Open Data portal. Lack of person-power is often a bottleneck, and while valid for experiments in the data-taking phase, it is even more evident for experiments past data-taking. Open access initiatives have to start at an early stage; see also the reports at the recent DPHEP workshop~\cite{DPHEPws:2021}.
 
 Building a community of users for these data is paramount to making open data initiatives successful. The theory community is a critical player in this, and promoting open data despite the substantial work required in their analysis is a strong demonstration of their value and an invaluable validation effort for their usability for future generations.
@@ -180,7 +178,7 @@ Building a community of users for these data is paramount to making open data in
 \begin{figure}[!ht]
 \begin{tcolorbox}
 \begin{center}
-{\large \textbf{Open Data Recommendations}}
+{\large \textbf{Data Preservation Recommendations}}
 \end{center}
 %
 \begin{description}
@@ -198,7 +196,6 @@ Building a community of users for these data is paramount to making open data in
 \section{Analysis preservation}
 \label{sec:analysis-preservation}
 %-------------------------------------------------------------
-
 
 Preservation of analysis logic and workflows in any specific form enables the reuse of the original analysis process and associated \glspl{data product}. Such reuse may, for instance, be the \gls{reinterpretation} in terms of physics models not considered in the original analysis by the experimental collaboration; this may range from \gls{BSM} theories, to new ideas and implementations of non-perturbative \gls{QCD}, and everything in between.
 
@@ -362,7 +359,7 @@ The original files are downloadable, but the interactive nature is lost.
 \hepdata imposes an overall size limit of 50 MB on the uploaded archive file to avoid problems caused by the attempted upload. 
 %
 Data products that are not suitable for \hepdata, due to either being too large or predominantly in a non-tabular format, might be submitted to another data repository like \href{https://zenodo.org/}{Zenodo}.
-Zenodo currently plugs a gap to host data (and software) that does not fit into other repositories.%
+Zenodo currently plugs a gap to host data (and software) that do not fit into other repositories.%
 \footnote{This concerns also model files, Monte Carlo simulation, and data products from phenomenological studies.}
 A new \gls{HEP}-specific instance of Zenodo could perhaps better serve the particle physics community in the future.
 
@@ -389,7 +386,7 @@ There is room, and a clear need, for \gls{FAIR}-ification of these precious mate
 \begin{figure}[!ht]
 \begin{tcolorbox}
 \begin{center}
-{\large \textbf{Data Preservation Recommendations}}
+{\large \textbf{Data Product Preservation Recommendations}}
 \end{center}
 %
 \begin{description}
@@ -398,7 +395,7 @@ There is room, and a clear need, for \gls{FAIR}-ification of these precious mate
    \item[4.2:] Assure appropriate resources and funding for further development of the cyberinfrastructure, such as \href{https://www.hepdata.net/}{\hepdata} and other repositories like \href{https://zenodo.org}{Zenodo}, to preserve the data products and metadata, and extend the current data structure to include more rich data products and information beyond paper plots and flat tables, e.g., statistical models, in an individually searchable and citeable form.
 \end{description}
 \end{tcolorbox}
-\caption{Recommendations for data preservation.}
+\caption{Recommendations for data product preservation.}
 \label{fig:recs_datapreservation}
 \end{figure}
 
@@ -412,14 +409,15 @@ The physics impact of an experimental analysis can be increased well beyond its 
 The various kinds of \gls{reinterpretation} include:
 \begin{description}
 	\item{\it updates of existing analyses} using e.g.\ more precise theoretical calculations, improved experimental calibrations, or a different probability model;
-	\item{\it parametric reinterpretation} reparametrizing the likelihood through rescaling, without altering the efficiencies and acceptances that might modify the distributions --- this is the approach taken for example in SModelS when reusing simplified model results from the LHC, or in Lilith and HiggsSignals in the context of Higgs signal strengths; 
+	\item{\it parametric reinterpretation} reparametrizing the likelihood through rescaling, without altering the efficiencies and acceptances that might modify the distributions --- this is the approach taken for example when reusing simplified model results from the LHC, or in in the context of Higgs signal strengths; 
     \item{\it kinematic reinterpretation} considering a different physical process with a different phase space distribution, which might have different efficiencies and acceptances --- this is what we generally refer to as \gls{recasting}; a concrete example from these proceedings is the reuse of multi-boson and top-quark measurements to constrain new scalar states in composite Higgs models in \cite{Banerjee:2022xmu}; 
     \item{\it combinations of analyses or datasets} in model surveys,%
     \footnote{Reinterpretation of several analyses within a given (usually \gls{BSM}) scenario is relevant for displaying the complementary of distinct searches as well as identifying possible gaps in coverage. Such gaps can then be used as motivation for designing new experimental searches.} 
-    global fits or global averages; this includes global EFT and BSM analyses as well as the reuse of datasets for the determination of parton distribution functions (discussed in more detail in \cite{Cranmer:2021urp}).
+    global fits or global averages; this includes global \gls{EFT} and \gls{BSM} analyses as well as the reuse of datasets for the determination of parton distribution functions (discussed in more detail in \cite{Cranmer:2021urp}).
 \end{description}
 
 For this to be possible, the preservation of \glspl{data product} and analyses (usually in a lightweight format) are essential, as discussed in~\Cref{sec:analysis-preservation,data-products}.
+It is relevant to note here, that for many purposes of \gls{recasting},\footnote{Except, for instance, when signal-background interference effects play a role.} analyses need only be preserved to the extent that the new signal yields can be determined and the subsequent statistical analysis using them can be performed. In this case, details of e.g.\ the derivation of background estimates need not be captured as they should already be preserved in the \glspl{data product} described in Section~\ref{data-products}.
 
 %\Glspl{reinterpretation} can be based on \gls{analysis preservation} by the experimental collaborations, where analyses may be either preserved in their original form through ``full analysis preservation'' as described in Section~\ref{section:full-detail-preservation} or lightweight preservation approaches as described in Section~\ref{lightweight} (e.g. ATLAS' \simpleanalysis routines, \gls{CMS}-approved \madanalysis codes, and \rivet analysis codes from all experimental collaborations. In cases, where no collaboration-provided implementation is available analysis recasting codes may also developed outside the collaborations. It's important to note, that for reinterpretation analyses need only be preserved to the extend that a new signal yields and the subsequent statistical analysis using them can be performed. That is details of e.g. the derivation of background estimates need not be captured as they should already be preserved in the Level-1 data products described in Section~\ref{data-products}.
 %Below we briefly review these two possibilities and highlight some of the current issues faced by each approach. We also point out some of the steps which could be taken to improve the current status.
@@ -428,10 +426,13 @@ For this to be possible, the preservation of \glspl{data product} and analyses (
 In \gls{ATLAS}, \gls{analysis preservation} for reinterpretation has been more seriously pursued in recent years. A large number of analyses is preserved using docker images and the yadage workflow language~\cite{Cranmer:2017frf,Cranmer_2015}. This has led to the first successful uses of the RECAST~\cite{Cranmer:2010hk} paradigm, in which existing analyses are reinterpreted at full fidelity within the collaboration~\cite{RECAST1, RECAST2, RECAST3}. Currently the selection of candidate reinterpretations  is done mostly within the experiment. In the future, a public portal in which the wider \gls{HEP} community has access to the catalog of RECAST-able analyses and can provide input for future full-fidelity reinterpretations will be desirable. Reinterpretations like such provide additional scientific value and should be published in peer-reviewed venues in the future. As such, they are also producers of \glspl{data product} in their own right. Products such as yields of the newly studied signal, statistical model fragments (``patches''), etc., should be submitted to archives such as \hepdata or \zenodo as well.
 
 Within \gls{CMS}, reinterpretation or recasting is largely performed within ongoing analyses or via statistically combining analyses that explore complementary final states. 
-While the analysis code is not systematically archived, the data products for signal extraction are usually preserved so that uncertainties across different analyses can be treated consistently in a statistical combination. 
+While the analysis code is not systematically archived, the \glspl{data product} for signal extraction are usually preserved so that uncertainties across different analyses can be treated consistently in a statistical combination. 
+We refer to Section~4 of \cite{Cranmer:2021urp} for more discussion of collaboration practices and use cases, including inter-experiment combinations, \gls{EFT} fits, measurements in the flavour sector, etc..
 
 Outside of the collaborations several software tools are being developed (CheckMATE~\cite{Drees:2013wra,Dercks:2016npn}, MadAnalysis5~\cite{Dumont:2014tja,Conte:2018vmg}, Contur/Rivet~\cite{Buckley:2021neu}, SModelS~\cite{Kraml:2013mwa,Alguero:2021dig}, and others as detailed in Section~III of Ref.~\cite{LHCReinterpretationForum:2020xtr})
-and available for the task of reinterpretation/recasting. They typically supply a database of implemented analyses, but also allow the user to implement new ones. 
+and are publicly available for the task of reinterpretation and/or recasting. 
+%(a review of existing tools and approaches is given in Section~III of Ref.~\cite{LHCReinterpretationForum:2020xtr}). 
+They typically supply a database of implemented analyses, but also allow the user to implement new ones. 
 In addition, they provide functionality for making statistical statements about the results, either by implementing the statistical models supplied by the collaboration (if available) or by taking some simplifying assumptions. We note that 
 maintaining these tools and implementing new analyses requires considerable person power and funding. 
 
@@ -450,7 +451,7 @@ As a second step, adopting basic standards for the input and output formats woul
 
 Another vital aspect of reinterpretation is the statistical treatment of the results. In recent years, the amount of information provided by experimental collaborations has increased significantly, allowing for a more robust statistical interpretation in phenomenological studies. However, to take full advantage of these new developments, it would be desirable to coordinate and unify the statistical output format and treatment within the specific recasting tools to have a common ground for comparison. Another critical aspect to be taken into account is the possibility for a global analysis of the results. 
 Such global approaches are attempted by, e.g., the GAMBIT collaboration~\cite{GAMBIT:2018gjo,Kvellestad:2019vxm} and the ``protomodelling'' project in \cite{Waltenberger:2020ygp}.
-Such global analyses could, in principle, also combine results from different recasting tools.
+They could, in principle, also combine results from different recasting tools.
 To help in this direction, the statistical analysis should be factorised as much as possible within each tool, allowing again for interoperability. In addition,  standards and guidelines should be established for presenting the results and providing the required output for the statistical interpretation.
 
 A further motivation for facilitating collider reinterpretations in global analyses is that it enables large-scale and adaptive exploration of the complementarities between collider results and other experimental results. Such global fits have the potential of both uncovering gaps in the experimental coverage, and identify which uncovered \gls{BSM} scenarios are most plausible in light of other experiments, and thus constitute well-motivated targets for future analyses/experiments. Realising this potential, however, depends critically on computational efficiency, since a global fit faces the additional computational cost of reinterpreting all relevant non-collider results and explore a typically many-dimensional theory parameter space. As such, a focus on code efficiency, stability and parallelisability in reinterpretation tools, and on development of fast approximations for expensive computations (e.g.~computation of higher-order cross-sections), is important to enable proper utilisation of experimental results.
@@ -459,12 +460,12 @@ Last but not least, it is important to ensure reproducibility and  preservation 
 The same platforms used for \gls{data product} preservation (see~\Cref{data-products}) can also be used by the theory community to preserve the reinterpretation results and data.
 In particular, \href{https://zenodo.org/}{Zenodo} has already been used by a few groups to publish auxiliary material from phenomenological studies, see e.g.~\cite{zenodo:LHCreinterpretation,zenodo:gambit}.
 On the code side, is imperative for the purpose of reproducibility that the tools used for obtaining the results are properly documented and \emph{versioned}.
-This policy should be largely encouraged within the theory community.
+This policy should be largely encouraged within the theory community.\\
 
 \begin{figure}[!ht]
 \begin{tcolorbox}
 \begin{center}
-{\large \textbf{Reinterpretation Recommendations}}
+{\large \textbf{Reinterpretation and Recasting Recommendations}}
 \end{center}
 %
 \begin{description}
@@ -474,7 +475,7 @@ This policy should be largely encouraged within the theory community.
     \item[5.4:] Encourage the \gls{FAIR}-ification of codes and \glspl{data product} from (theory) reinterpretation studies outside the experimental collaborations at the same level of sophistication as asked for experimental analyses and results. Suitable repositories are, e.g., GitHub and Zenodo; appropriate versioning is essential.
 \end{description}
 \end{tcolorbox}
-\caption{Recommendations for reinterpretation.}
+\caption{Recommendations for reinterpretation and recasting.}
 \label{fig:recs_reinterpretation}
 \end{figure}
 
@@ -504,7 +505,7 @@ Axel Huebl acknowledges support by the Exascale Computing Project (17-SC-20-SC),
 Sabine Kraml acknowledges support by the IN2P3 master project ``Th\'eorie -- BSMGA'' and the joint ANR-FWF project PRCI SLDNP grant no.~ANR-21-CE31-0023.
 Andre Lessa is supported by Sao Paulo Research Foundation (FAPESP) grants no.~2018/25225-9 and 2021/01089-1.
 Christine Nattrass acknowledges support from the Division of Nuclear Physics of the U.S. Department of Energy under Grant No. DE-FG02-96ER40982 and from the National Science Foundation under Grant No. OAC-1550300.
-
+Sezen Sekmen is supported by the Basic Science Research Program through the National Research Foundation of Korea (NRF) funded by the Ministry of Education under contracts NRF-2021R1I1A3048138, NRF-2018R1A6A1A06024970 and NRF-2008-00460. 
 
 \def\thefootnote{\fnsymbol{footnote}}
 \setcounter{footnote}{0}
