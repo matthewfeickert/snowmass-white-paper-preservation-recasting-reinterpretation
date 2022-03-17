@@ -292,8 +292,12 @@ are moving towards accumulating all information related to object and event proc
 %\COMMENT{GS: A format like YODA or JSON is different from a tool like FuncADL. One is a project that needs to be cited, and the other is very general.}
 
 
-On the embedded \gls{DSL} side, an early example is the \texttt{F.A.S.T.} framework~\cite{FAST} which incorporates a \texttt{YAML} \gls{DSL}. More recent developments include  
-\texttt{NAIL} (Natural Analysis Implementation Language)~\cite{NAIL}, bamboo~\cite{David:2021ohq}, and FuncADL~\cite{Proffitt:2021wfh}, all based on  Python. 
+% On the embedded \gls{DSL} side, an early example is the \texttt{F.A.S.T.} framework~\cite{FAST} which incorporates a \texttt{YAML} \gls{DSL}.
+% More recent developments include \texttt{NAIL} (Natural Analysis Implementation Language)~\cite{NAIL}, bamboo~\cite{David:2021ohq}, and FuncADL~\cite{Proffitt:2021wfh}, all based on  Python.
+% The following is an attempt to get things rendered out okay so subsequent recommendation sections to not split other sections up. If the phrasing is awkward, just revert to the 2 sentences above.
+On the embedded \gls{DSL} side, an early example is the \texttt{F.A.S.T.} framework~\cite{FAST} which incorporates a \texttt{YAML} \gls{DSL}, and has been used in analyses at CMS, \gls{LZ}, and \gls{DUNE}.
+There are more recent Python based developments, such as \texttt{NAIL} (Natural Analysis Implementation Language)~\cite{NAIL}, used in the CMS analysis that observed the first evidence for Higgs to two muon decays~\cite{CMS:2020xwi}, and bamboo~\cite{David:2021ohq}, which has been used in studies for Snowmass.
+Additionally, FuncADL~\cite{Proffitt:2021wfh} constructs hierarchical data queries using SQL-like concepts in Python and has been used to explore applications of functional programming and query languages for HC experiments.
 
 On the external \gls{DSL} side, the most advanced example is the so-called \gls{ADL}%
 % \footnote{This originated from a community-based effort to work toward a Les Houches Analysis Description Accord~\cite{Brooijmans:2016vro}, and the parallel effort in CutLang~\cite{Sekmen:2018ehb} of testing the runtime interpretability of external \glspl{DSL}.}
@@ -403,7 +407,7 @@ There is room, and a clear need, for \gls{FAIR}-ification of these precious mate
 \label{fig:recs_datapreservation}
 \end{figure}
 
-
+% \TODO{Get formatting to look okay for Data Product Preservation Recommendations not bleeding into the reinterpretation includes}
 %-------------------------------------------------------------
 \section{Reinterpretation and recasting}
 \label{reinterpret}
