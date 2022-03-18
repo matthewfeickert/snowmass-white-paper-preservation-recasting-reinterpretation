@@ -102,9 +102,16 @@ We also discuss technical challenges and infrastructure needs, as well as sociol
 
 
 \clearpage
-%
 \tableofcontents
 \clearpage
+
+\hrule
+\paragraph{Executive summary.}
+To achieve their full scientific impact, HEP experiments need to integrate extensive data and analysis preservation efforts into their publication processes, alongside the communication of results in reusable form and preservation of data products, and making event-level data publicly available.
+Without this, the influence of the hundreds of published analyses from the LHC, HL-LHC, EIC, and other future experiments will be limited mainly to the physics ideas in vogue at the time the collaboration collected their data.
+The public investment in experimental programs underscores the importance of going beyond the original paper publication and ensuring that analyses continue providing scientific value in perpetuity.\\
+\hrule
+
 %-------------------------------------------------------------
 \section{Introduction}
 %-------------------------------------------------------------
@@ -130,8 +137,7 @@ could significantly increase contributions to data and software repositories.
 
 In this paper, we distinguish between preserving collision and simulated event data used as input to physics analyses, described in~\Cref{data-preservation}, and preserving workflows and data products connected to specific analyses, covered in~\Cref{sec:analysis-preservation,data-products}, respectively. \Cref{reinterpret} addresses the usage of the available material for reinterpretation in terms of new theoretical ideas and global analyses.
 To help with clarity of discussion, we summarise key terms used in the paper in~\Cref{fig:glossary}.
-This paper focuses primarily on the \gls{LHC}, but its recommendations apply to particle physics experiments in general, and beyond physics analyses.
-
+This paper focuses primarily on the \gls{LHC}, but its recommendations apply to particle physics experiments in general, and beyond physics analyses.%\\[2mm]
 
 \begin{figure}[!ht]
 \begin{tcolorbox}
@@ -274,7 +280,7 @@ Finally, a better meta-data stewardship for preserved analysis codes is in order
 The full and lightweight preservation frameworks described above constitute a crucial step in analysis preservation, with the significant benefit of being executable.  
 However, an equally important step is to preserve %this information 
 analysis logic in a more accessible and easily communicable, yet unambiguous format.
-% \footnote{As should be the case in the paper publication, but rarely is given to the level of detail required for full reproduction.} % for space
+\footnote{As should be the case in the paper publication, but rarely is given to the level of detail required for full reproduction.} % for space
 The thousands of analyses designed by experimental collaborations and phenomenologists have accumulated a tremendous source of physics content. This diverse content can inspire and inform new analysis ideas or train the new generation of particle physicists. %Therefore the physics content of analyses should be presented explicitly, in full, yet in a sufficiently clear and systematic manner.
 Therefore, the third facet of \gls{analysis preservation} is to encode an abstract description of the analysis logic in a \emph{human- and machine-readable} declarative language. 
 
@@ -296,8 +302,8 @@ are moving towards accumulating all information related to object and event proc
 % On the embedded \gls{DSL} side, an early example is the \texttt{F.A.S.T.} framework~\cite{FAST} which incorporates a \texttt{YAML} \gls{DSL}.
 % More recent developments include \texttt{NAIL} (Natural Analysis Implementation Language)~\cite{NAIL}, bamboo~\cite{David:2021ohq}, and FuncADL~\cite{Proffitt:2021wfh}, all based on  Python.
 % The following is an attempt to get things rendered out okay so subsequent recommendation sections to not split other sections up. If the phrasing is awkward, just revert to the 2 sentences above.
-On the embedded \gls{DSL} side, the \texttt{F.A.S.T.} framework~\cite{FAST}, used in CMS, \gls{LZ}, and \gls{DUNE} analyses, incorporates a \texttt{YAML} \gls{DSL}.
-More recent Python based developments include \texttt{NAIL}~\cite{NAIL}, used in the CMS analysis that observed the first evidence for Higgs to two muon decays~\cite{CMS:2020xwi}, and bamboo~\cite{David:2021ohq} which has been used in studies for Snowmass.
+On the embedded \gls{DSL} side, the \texttt{F.A.S.T.} framework~\cite{FAST}, used in \gls{CMS}, \gls{LZ}, and \gls{DUNE} analyses, incorporates a \texttt{YAML} \gls{DSL}.
+More recent Python based developments include \texttt{NAIL}~\cite{NAIL}, used in the \gls{CMS} analysis that observed the first evidence for Higgs to two muon decays~\cite{CMS:2020xwi}, and bamboo~\cite{David:2021ohq} which has been used in studies for Snowmass.
 Additionally, FuncADL~\cite{Proffitt:2021wfh} constructs hierarchical data queries using SQL-like concepts in Python and has been used to explore applications of functional programming.
 
 On the external \gls{DSL} side, the most advanced example is the so-called \gls{ADL}%
@@ -409,6 +415,7 @@ There is room, and a clear need, for \gls{FAIR}-ification of these precious mate
 \end{figure}
 
 % \TODO{Get formatting to look okay for Data Product Preservation Recommendations not bleeding into the reinterpretation includes}
+
 %-------------------------------------------------------------
 \section{Reinterpretation and recasting}
 \label{reinterpret}
@@ -508,7 +515,7 @@ of published experimental analyses and results, much beyond the lifetime of the 
 \addcontentsline{toc}{section}{Acknowledgments}
 
 %% sort alphabetically by author names:
-Andy Buckley and Graeme Watt are supported by the UK STFC Consolidated Grant programme.
+Andy Buckley, Jon Butterworth, and Graeme Watt are supported by the UK STFC Consolidated Grant programme.
 Kyle Cranmer, Matthew Feickert, and Mark Neubauer are supported in part by the National Science Foundation under Cooperative Agreement OAC-1836650.
 Lukas Heinrich is supported by the Excellence Cluster ORIGINS, which is funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under Germany’s Excellence Strategy - EXC-2094-390783311.
 Axel Huebl acknowledges support by the Exascale Computing Project (17-SC-20-SC), a collaborative effort of the U.S. Department of Energy Office of Science and the National Nuclear Security Administration.
