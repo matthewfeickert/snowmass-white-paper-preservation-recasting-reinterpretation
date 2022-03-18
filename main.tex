@@ -119,7 +119,7 @@ The public investment in experimental programs underscores the importance of goi
 The scientific value of the output from analyses performed at experiments in \gls{HEP} is immense.
 To maximise the scientific return of the data obtained and the analyses performed at these unique machines, it is imperative that there are strategic community plans in practice for the reuse and reinterpretation of the analyses and all of their associated data products.
 Enabling reuse and the ability to explore not-yet-thought-of-theories in the long-term future (i.e., on the 10 to 50-year time scale) needs to become a community priority.
-The benefits extend beyond improving and extending searches for new physics, and also allow for testing models in new physics regimes.% --- e.g. the tuning of strong-interaction models at planned colliders like the \gls{EIC}.
+The benefits extend beyond improving and extending searches for new physics, and also allow models, including new precision Standard Model calculations, to be tested in new physics regimes.
 This will require reuse and preservation to become parts of the planning process for future analyses, and additionally be incorporated into the operations and facilities planning for future experiments, as well as for the phenomenology community, who will need to be major shareholders in this work.
 
 These changes, and the technical infrastructure necessary for long-term storage and improved preservation standards, are not inconsequential or easy~\cite{LHCReinterpretationForum:2020xtr,Cranmer:2021urp}.
@@ -279,8 +279,8 @@ Finally, a better meta-data stewardship for preserved analysis codes is in order
 
 The full and lightweight preservation frameworks described above constitute a crucial step in analysis preservation, with the significant benefit of being executable.  
 However, an equally important step is to preserve %this information 
-analysis logic in a more accessible and easily communicable, yet unambiguous format.
-\footnote{As should be the case in the paper publication, but rarely is given to the level of detail required for full reproduction.} % for space
+analysis logic in a more accessible and easily communicable, yet unambiguous format.%
+\footnote{As should be the case in the paper publication, but rarely is given to the level of detail required for full reproduction.}
 The thousands of analyses designed by experimental collaborations and phenomenologists have accumulated a tremendous source of physics content. This diverse content can inspire and inform new analysis ideas or train the new generation of particle physicists. %Therefore the physics content of analyses should be presented explicitly, in full, yet in a sufficiently clear and systematic manner.
 Therefore, the third facet of \gls{analysis preservation} is to encode an abstract description of the analysis logic in a \emph{human- and machine-readable} declarative language. 
 
@@ -485,7 +485,9 @@ This policy should be largely encouraged within the theory community.\\
 \end{center}
 %
 \begin{description}
-    \item[5.1:] Encourage that reinterpretability and reuse be kept in mind early on in the analysis design. This concerns, for instance, the choice of input parameters in \gls{ML} models, or the choice of non-overlapping regions and standard naming of shared nuisances to facilitate the combination of analyses.
+    \item[5.1:] Encourage that reinterpretability and reuse be kept in mind early on in the analysis design. This concerns, for instance, the choice of input parameters in \gls{ML} models,
+    the full specification of the fiducial phase space of a measurement in terms of the final state, including any vetos applied,
+    or the choice of non-overlapping regions and standard naming of shared nuisances to facilitate the combination of analyses.
     \item[5.2:] Design the format and nature of the public and internally preserved \glspl{data product}, such as statistical models, with reinterpretation use-cases in mind.
     \item[5.3:] Improve the coordination among the different public reinterpretation frameworks  with the goal of a centralised database of recast codes, common input/output formats, and a unified statistical treatment.
     \item[5.4:] Encourage the \gls{FAIR}-ification of codes and \glspl{data product} from (theory) reinterpretation studies outside the experimental collaborations at the same level of sophistication as asked for experimental analyses and results. Suitable repositories are, e.g., GitHub and Zenodo; appropriate versioning is essential.
