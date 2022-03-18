@@ -93,14 +93,6 @@ We cover the needs of both the experimental and theoretical particle physics com
 We also discuss technical challenges and infrastructure needs, as well as sociological challenges and changes, and give summary recommendations to the particle-physics community.
 \end{abstract}
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% **Running meeting notes**
-%%% Google Doc: https://docs.google.com/document/d/1WXM7BpQ_ROgqdfu2HNGSTOQ83--p6sUt46oJpdq30-A/edit?usp=sharing
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \clearpage
 \tableofcontents
 \clearpage
@@ -126,18 +118,15 @@ These changes, and the technical infrastructure necessary for long-term storage 
 They will require development of standards, software, cyberinfrastructure, stewardship roles, and additional support from funding agencies.
 Changes at fundamental levels to the community's approach to analysis will necessarily require additional sociological changes.
 The particle physics community is not homogeneous in its experiences and practices with preservation and reinterpretation, so it is to be expected that different subfields will have different adoption times of recommendations and experience different levels of sociological challenges.
-% Segment added by Axel
-% Maybe need to move or revise this
 There are steps that can be taken to smooth this process in the field.
 %
 Current procedures in national laboratories and universities for publishing data and software --- e.g., by asserting copyright --- are non-uniform and often require significant overhead of individual scientists.
 Reducing such administrative entry burdens to contribute to repositories by using fast and streamlined procedures,
-%e.g., through project-wide approvals at the funding-stage
 could significantly increase contributions to data and software repositories.
 
 In this paper, we distinguish between preserving collision and simulated event data used as input to physics analyses, described in~\Cref{data-preservation}, and preserving workflows and data products connected to specific analyses, covered in~\Cref{sec:analysis-preservation,data-products}, respectively. \Cref{reinterpret} addresses the usage of the available material for reinterpretation in terms of new theoretical ideas and global analyses.
 To help with clarity of discussion, we summarise key terms used in the paper in~\Cref{fig:glossary}.
-This paper focuses primarily on the \gls{LHC}, but its recommendations apply to particle physics experiments in general, and beyond physics analyses.%\\[2mm]
+This paper focuses primarily on the \gls{LHC}, but its recommendations apply to particle physics experiments in general, and beyond physics analyses.
 
 \begin{figure}[!ht]
 \begin{tcolorbox}
@@ -231,18 +220,6 @@ Therefore, for reproducibility, experimental collaborations and host institution
 The host institutions should monitor the correctness and continuing validity of the software by using continuous integration testing on a range of suitable \gls{data} for each analysis.
 As a part of these tests, container images (e.g.~Docker~\cite{docker}, Podman~\cite{podman}, or Singularity~\cite{singularity}) should be built and preserved on accessible container registries to capture the software environment needed for data processing.
 
-% \TODO{AB, question for Matthew et al: Do preserved analyses provide enough metadata that workflow tools can figure out commonalities of simulation and reconstruction versions/geometries between analyses and avoid repeating common steps?\\
-% @Andy: No, preserved analyses are starting from derived datasets (to use our ATLAS jargon, DAODS), so I think the things that you're asking about would come before the derivations are created.}
-
-%\TODO{Standardising output format for direct comparability to \hepdata data products?} 
-% Giordon: this seems to be covered by Recommendation 3.1
-
-%\TODO{Comment on the ability/limitations/approximations for ``updating'' contributing processes in preserved analyses. I.e.~there are clear use-cases for updating either a background process (nominal or whole-model) to a more precise one published since the original publication or to update or inject a signal model to any number of alternative hypotheses. It would require re-fitting for a perfect result, but even a no-refit approximation would be valuable.}
-% Giordon: This comment doesn't make a lot of sense, or rather, it's not thinking deeply enough. For example, RECAST just allows you to process any particular sample through the existing machinery, so there's no particular limitations there. An issue might be if the sample is too new or has theory systematics that didn't exist at the time the software was defined. Another issue is that the new sample might have systematics correlated in a different way than other backgrounds in a statistical fit, and at that point, you're more of a mix of RECAST+workspace-modification. As it stands, I'm going to comment out the TODO since I don't think it's something that can be easily generalizable or benefits anyone to make such a sweeping statement for something that really has to be handled on a case-by-case basis.
-
-% In ATLAS, there are ongoing efforts for complete preservation of the experiment analyses in the Supersymmetry, Exotics, and Higgs and Diboson working groups through the \recast system implemented through \href{https://github.com/recast-hep/recast-atlas}{recast-atlas} (\NB{Currently have \texttt{recast-atlas} under collaboration-internal instead of public, as even though the code is open source you still need EOS access at CERN. So it is more ``CERN public'' than ``true public''.})
-
-
 \subsection{Lightweight preservation}
 \label{lightweight}
 
@@ -278,41 +255,25 @@ Finally, a better meta-data stewardship for preserved analysis codes is in order
 \subsection{Analysis description languages}
 
 The full and lightweight preservation frameworks described above constitute a crucial step in analysis preservation, with the significant benefit of being executable.  
-However, an equally important step is to preserve %this information 
-analysis logic in a more accessible and easily communicable, yet unambiguous format.%
+However, an equally important step is to preserve analysis logic in a more accessible and easily communicable, yet unambiguous format.%
 \footnote{As should be the case in the paper publication, but rarely is given to the level of detail required for full reproduction.}
-The thousands of analyses designed by experimental collaborations and phenomenologists have accumulated a tremendous source of physics content. This diverse content can inspire and inform new analysis ideas or train the new generation of particle physicists. %Therefore the physics content of analyses should be presented explicitly, in full, yet in a sufficiently clear and systematic manner.
+The thousands of analyses designed by experimental collaborations and phenomenologists have accumulated a tremendous source of physics content. This diverse content can inspire and inform new analysis ideas or train the new generation of particle physicists.
 Therefore, the third facet of \gls{analysis preservation} is to encode an abstract description of the analysis logic in a \emph{human- and machine-readable} declarative language. 
 
 Physics analyses typically consist of multiple, separately executed steps (e.g.~event, selection and signal extraction). It is also important to capture the workflows for running and combining them over multiple event samples. There is currently no \emph{de~facto} standard for this workflow language across the experimental community: for example, Common Workflow Language~\cite{CWL}, Snakemake~\cite{SnakeMake}, Yadage~\cite{Cranmer:2017frf,yadage_code}, and Argo Workflows~\cite{argo} are in use by different collaborations. Standardization and evolution around a smaller (or unique) subset of such languages would improve interoperability and knowledge transfer. In making such a choice, we stress the importance of a \textsl{declarative} rather than \textsl{imperative} model~\cite{10.3389/fdata.2021.661501}, as the former enables researchers to concentrate on the physics task with minimal need to consider technical details such as scalable job orchestration. Developers can significantly reduce the complexity of workflow descriptions by establishing standard interfaces for tools implementing processing steps so that they can be more easily composed.
 
 As with declarative workflow description formats, a recent trend is to decouple analysis logic from the software frameworks used to execute it. Analysis frameworks internally used in \gls{ATLAS} and \gls{CMS}
-%% Sezen: frameworks used in CMS such as NanoAOD tools, CMGTools, Razorcode, etc.} 
-%% Giordon: ATLAS's CP frameworks (xAODAnaHelpers was an early version of this)
 are moving towards accumulating all information related to object and event processing in a single location, e.g.~in a configuration file, at least for part of the processing chain. An approach that takes this one step further is to use \glspl{DSL} dedicated to expressing the physics content of \gls{HEP} analyses. \glspl{DSL} can either rely on the syntax of an existing computer language (embedded \gls{DSL}) or have a custom syntax (external \gls{DSL}) more tailored to the semantics of the \gls{HEP}-analysis context. Here also, a declarative approach has many benefits due to abstracting practical details into framework implementations. Several \gls{DSL} approaches are studied, and various working prototypes exist.
 
-% \EDITOR{Matthew: These next two paragraphs seem to be focusing on listing different examples of \glspl{DSL}.
-% While it is fine and encouraged to cite all of these, I think it would be better for readers to be able to just get a high level summary of the types of \glspl{DSL} and advantages.
-% The shorter we can keep all these sections the better.}
-% \COMMENT{AB: I agree, not clear what they add, and not sure the proliferation of attempts gives a helpful impression. Are these two paras necessary at all, or is the surrounding material enough for the Snowmass briefing purpose?}
-%\COMMENT{SK: I want this in. It is relevant and would not be fair to take it out. Besides, there are lot of other technical references elsewhere, like yoda stuff, that are kept.}
-%\COMMENT{GS: A format like YODA or JSON is different from a tool like FuncADL. One is a project that needs to be cited, and the other is very general.}
-
-
-% On the embedded \gls{DSL} side, an early example is the \texttt{F.A.S.T.} framework~\cite{FAST} which incorporates a \texttt{YAML} \gls{DSL}.
-% More recent developments include \texttt{NAIL} (Natural Analysis Implementation Language)~\cite{NAIL}, bamboo~\cite{David:2021ohq}, and FuncADL~\cite{Proffitt:2021wfh}, all based on  Python.
-% The following is an attempt to get things rendered out okay so subsequent recommendation sections to not split other sections up. If the phrasing is awkward, just revert to the 2 sentences above.
 On the embedded \gls{DSL} side, the \texttt{F.A.S.T.} framework~\cite{FAST}, used in \gls{CMS}, \gls{LZ}, and \gls{DUNE} analyses, incorporates a \texttt{YAML} \gls{DSL}.
 More recent Python based developments include \texttt{NAIL}~\cite{NAIL}, used in the \gls{CMS} analysis that observed the first evidence for Higgs to two muon decays~\cite{CMS:2020xwi}, and bamboo~\cite{David:2021ohq} which has been used in studies for Snowmass.
 Additionally, FuncADL~\cite{Proffitt:2021wfh} constructs hierarchical data queries using SQL-like concepts in Python and has been used to explore applications of functional programming.
 
 On the external \gls{DSL} side, the most advanced example is the so-called \gls{ADL}%
-% \footnote{This originated from a community-based effort to work toward a Les Houches Analysis Description Accord~\cite{Brooijmans:2016vro}, and the parallel effort in CutLang~\cite{Sekmen:2018ehb} of testing the runtime interpretability of external \glspl{DSL}.}
 ~\cite{adlweb, Unel:2021edl}, see also \cite{LHCReinterpretationForum:2020xtr}. 
 It organizes the analysis description in multiple blocks separating object, variable and event selection definitions, and has keywords specifying analysis concepts and operations. 
 \gls{ADL} can be executed by any framework capable of parsing its syntax, notably the runtime interpreter CutLang~\cite{Sekmen:2018ehb}. \gls{ADL} together with CutLang thus provide a functioning example of lightweight preservation in the sense of \Cref{lightweight}. 
 The \gls{LHC} analyses implemented by \gls{ADL} are currently preserved in a GitHub repository~\cite{adllhcanl}.  \gls{ADL} principles and prospects are discussed further in a dedicated Snowmass White Paper contribution~\cite{snowmass:ADL}.
-%There also exists the toy language PartiQL designed to demonstrate HEP-specific features requiring a radical departure from general purpose languages~\cite{PartiQL}. 
 
 One caveat to note is that \gls{HEP} analyses are not always fully domain-specific and often need to execute custom logic in addition to predefined behaviors.
 This could be remedied either by extending the \gls{DSL} to incorporate new known behaviors via an ``escape'' mechanism to inject general-purpose code (compromising its framework independence), or combining them with pre-and post-processing code to cover gaps in the \gls{DSL} capabilities.
@@ -321,9 +282,6 @@ This could be remedied either by extending the \gls{DSL} to incorporate new know
 The applications of \gls{ADL} and \gls{ADL}-type preservation are numerous. It may be used for analysis design, be directly included in publications, serve for pedagogical purposes and knowledge transfer, 
 act as a configuration file that transpiles to code in lightweight analysis preservation frameworks, or
 as a source to transpile between full and lightweight preservation frameworks.
-
-
-% \TODO{}
 
 \begin{figure}[ht!]
 \begin{tcolorbox}
@@ -339,9 +297,6 @@ as a source to transpile between full and lightweight preservation frameworks.
    \item[3.3:] Ensure that release of \gls{analysis preservation} logic via public frameworks for the community to use is integrated with experiment publication and data-release processes, to maximise analysis impact. This also includes providing clear documentation and making all dependent frameworks available and documented for community consumption.
 
    \item[3.4:] Support continuing development and uptake of new technologies for increasingly framework-independent analysis specifications, such as via declarative domain-specific analysis description languages.
-
-   %   \textbf{Recommendation summary from Sezen} Explore ways to filter the physics content of analyses and present them explicitly in full detail using a clear, concise, and systematic description for preservation. The description should be self-documenting and easily recognizable and understandable by particle physicists from different domains and generations.  
-   
 \end{description}
 \end{tcolorbox}
 \caption{Recommendations for analysis preservation.}
@@ -360,8 +315,7 @@ They include observed and expected event counts  (including error sources), effi
 as discussed extensively in Refs.~\cite{LHCReinterpretationForum:2020xtr,Cranmer:2021urp}.
 
 With regards to publication infrastructure, 
-\hepdata~\cite{hepdata} is the primary open-access repository for %publication-related (``Level 1'')
-data products from particle physics experiments, with a long history going back to the 1970s.
+\hepdata~\cite{hepdata} is the primary open-access repository for data products from particle physics experiments, with a long history going back to the 1970s.
 Funding is provided by the UK Science and Technology Facilities Council (STFC) to Durham University (UK) for staff to maintain the operation of the \href{https://www.hepdata.net/}{hepdata.net} site, provide user support, and develop the open source software (available on the \href{https://github.com/HEPData}{\hepdata GitHub organisation}) underlying the web application.
 
 In the past, \hepdata staff at Durham University handled data preparation in a standard format and uploaded it to the repository.
@@ -414,8 +368,6 @@ There is room, and a clear need, for \gls{FAIR}-ification of these precious mate
 \label{fig:recs_datapreservation}
 \end{figure}
 
-% \TODO{Get formatting to look okay for Data Product Preservation Recommendations not bleeding into the reinterpretation includes}
-
 %-------------------------------------------------------------
 \section{Reinterpretation and recasting}
 \label{reinterpret}
@@ -435,9 +387,6 @@ The various kinds of \gls{reinterpretation} include:
 For this to be possible, the preservation of \glspl{data product} and analyses (usually in a lightweight format) are essential, as discussed in~\Cref{sec:analysis-preservation,data-products}.
 It is relevant to note here, that for many purposes of \gls{recasting},\footnote{Except, for instance, when signal-background interference effects play a role.} analyses need only be preserved to the extent that the new signal yields can be determined and the subsequent statistical analysis using them can be performed. In this case, details of e.g.\ the derivation of background estimates need not be captured as they should already be preserved in the \glspl{data product} described in Section~\ref{data-products}.
 
-%\Glspl{reinterpretation} can be based on \gls{analysis preservation} by the experimental collaborations, where analyses may be either preserved in their original form through ``full analysis preservation'' as described in Section~\ref{section:full-detail-preservation} or lightweight preservation approaches as described in Section~\ref{lightweight} (e.g. ATLAS' \simpleanalysis routines, \gls{CMS}-approved \madanalysis codes, and \rivet analysis codes from all experimental collaborations. In cases, where no collaboration-provided implementation is available analysis recasting codes may also developed outside the collaborations. It's important to note, that for reinterpretation analyses need only be preserved to the extend that a new signal yields and the subsequent statistical analysis using them can be performed. That is details of e.g. the derivation of background estimates need not be captured as they should already be preserved in the Level-1 data products described in Section~\ref{data-products}.
-%Below we briefly review these two possibilities and highlight some of the current issues faced by each approach. We also point out some of the steps which could be taken to improve the current status.
-
 \Glspl{reinterpretation} are most often done by physicists (from both, the theory and the experiment sides) outside the experimental collaborations, but sometimes also collaboration-internally. 
 In \gls{ATLAS}, \gls{analysis preservation} for reinterpretation has been more seriously pursued in recent years. A large number of analyses is preserved using Docker images and the yadage workflow language~\cite{Cranmer:2017frf,Cranmer_2015}. This has led to the first successful uses of the RECAST~\cite{Cranmer:2010hk} paradigm, in which existing analyses are reinterpreted at full fidelity within the collaboration~\cite{RECAST1, RECAST2, RECAST3}. Currently the selection of candidate reinterpretations is done mostly within the experiment. In the future, a public portal in which the wider \gls{HEP} community has access to the catalog of RECAST-able analyses and can provide input for future full-fidelity reinterpretations will be desirable. Reinterpretations like such provide additional scientific value and should be published in peer-reviewed venues in the future. As such, they are also producers of \glspl{data product} in their own right. Products such as yields of the newly studied signal, statistical model fragments (``patches''), etc., should be submitted to archives such as \hepdata or \zenodo as well.
 
@@ -447,15 +396,12 @@ We refer to Section~4 of \cite{Cranmer:2021urp} for more discussion of collabora
 
 Outside of the collaborations several software tools are being developed (CheckMATE~\cite{Drees:2013wra,Dercks:2016npn}, MadAnalysis5~\cite{Dumont:2014tja,Conte:2018vmg}, Contur/Rivet~\cite{Buckley:2021neu}, SModelS~\cite{Kraml:2013mwa,Alguero:2021dig}, and others as detailed in Section~III of Ref.~\cite{LHCReinterpretationForum:2020xtr})
 and are publicly available for the task of reinterpretation and/or recasting. 
-%(a review of existing tools and approaches is given in Section~III of Ref.~\cite{LHCReinterpretationForum:2020xtr}). 
 They typically supply a database of implemented analyses, but also allow the user to implement new ones. 
 In addition, they provide functionality for making statistical statements about the results, either by implementing the statistical models supplied by the collaboration (if available) or by taking some simplifying assumptions. We note that 
 maintaining these tools and implementing new analyses requires considerable person power and funding. 
 
 The public tools provide distinct analyses coverage and sometimes different implementations of the same analysis. 
 The proliferation of analyses and tools, and the lack of interoperability between the tools, can make the complete coverage of a physics case in reinterpretation studies seriously difficult. 
-%Within this context, it would be desirable to coordinate the \gls{recasting} effort to maximise its impact and avoid redundant work. 
-%As a final goal, 
 A unified format for analysis implementation, which could be used interchangeably by the different tools, would significantly improve the reinterpretation potential of the phenomenology community. 
 Even though this proposal has been discussed in the past~\cite{lukas_heinrich_2017_6362700}, not much progress has been made in this direction. A possible interface format to make recast codes interchangeable between frameworks  might be based on \gls{ADL}~\cite{adlweb, Unel:2021edl} if parsers for the most common public frameworks (best including automatised validation) are developed.  
 
@@ -505,11 +451,8 @@ The recommendations we put forth in this paper are designed to give the particle
 One primary goal is to reduce the amount of overhead by our colleagues in \gls{HEP}, either in re-reproducing existing analysis logic, or having to re-derive or re-produce data products that should have already been made more accessible from the start.
 For example, by looking towards harmonisation of analysis logic, experimental collaborations could begin automatising the data products necessary for reinterpreation and reusability, and reduce the burden on their colleagues.
 
-Our recommendations in~\Cref{fig:recs_opendata,fig:recs_analysispreservation,fig:recs_datapreservation,fig:recs_reinterpretation} will %require being enacted at the start of 
-ideally be enacted early on in 
-the design and planning phases for experiments and analyses, and provisioned with appropriate resources and funding. 
-If adopted rigorously, our guidelines will allow for new scientific results, including testing of new models, for decades to come through reinterpretation %and recasting 
-of published experimental analyses and results, much beyond the lifetime of the experiment.
+Our recommendations in~\Cref{fig:recs_opendata,fig:recs_analysispreservation,fig:recs_datapreservation,fig:recs_reinterpretation} will ideally be enacted early on in the design and planning phases for experiments and analyses, and provisioned with appropriate resources and funding. 
+If adopted rigorously, our guidelines will allow for new scientific results, including testing of new models, for decades to come through reinterpretation of published experimental analyses and results, much beyond the lifetime of the experiment.
 
 %-------------------------------------------------------------
 \section*{Acknowledgments}
@@ -538,6 +481,5 @@ Sezen Sekmen is supported by the Basic Science Research Program through the Nati
 % Glossary
 \clearpage
 \printglossaries
-
 
 \end{document}
